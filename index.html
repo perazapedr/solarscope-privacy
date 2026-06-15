@@ -1,26 +1,44 @@
 <!doctype html>
-<html lang="de">
+<html lang="en" data-lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f7f9ff">
-  <meta name="description" content="SolarScope ist eine App zur übersichtlichen Anzeige von Solar-, geomagnetischen, ionosphärischen und funkbezogenen Daten. Hier finden Sie Datenschutz, Support, Impressum und Datenquellen.">
+  <meta name="description" content="Official SolarScope information page with app features, privacy policy, support, legal notice and data sources.">
   <meta name="robots" content="index,follow">
-  <meta property="og:title" content="SolarScope — App, Datenschutz, Support und Impressum">
-  <meta property="og:description" content="Offizielle Informationsseite zur SolarScope-App mit Datenschutz, Support, Impressum und Datenquellen.">
+  <meta property="og:title" content="SolarScope — App, Privacy, Support & Legal Notice">
+  <meta property="og:description" content="Official SolarScope information page with privacy, support, legal notice, data sources and app features.">
   <meta property="og:type" content="website">
-  <meta property="og:locale" content="de_DE">
-  <title>SolarScope — App, Datenschutz, Support & Impressum</title>
+  <meta property="og:locale" content="en_US">
+  <title>SolarScope — App, Privacy, Support & Legal Notice</title>
 
   <!--
     SolarScope Website
     Single-file static website.
     No external fonts, no analytics, no tracking scripts, no cookies.
-
-    TODO: Replace placeholder App Store / Google Play links after publication.
-    TODO: If you do not use GitHub Pages, adjust the Website Privacy section under "Hosting".
-    TODO: If you add analytics, external fonts, contact forms or cookies later, update the privacy notices.
+    The language switch can store only the selected language in localStorage.
   -->
+
+  <script>
+    (function () {
+      var storageKey = 'solarscope.website.language.v1';
+      function storedLanguage() {
+        try {
+          var saved = window.localStorage && window.localStorage.getItem(storageKey);
+          return saved === 'de' || saved === 'en' ? saved : null;
+        } catch (error) {
+          return null;
+        }
+      }
+      function browserLanguage() {
+        var primary = (navigator.languages && navigator.languages[0]) || navigator.language || navigator.userLanguage || '';
+        return String(primary).toLowerCase().indexOf('de') === 0 ? 'de' : 'en';
+      }
+      var lang = storedLanguage() || browserLanguage();
+      document.documentElement.lang = lang;
+      document.documentElement.setAttribute('data-lang', lang);
+    })();
+  </script>
 
   <style>
     :root {
@@ -826,74 +844,234 @@
         animation-iteration-count: 1 !important;
       }
     }
+  
+
+    /* Language handling: browser detection + manual switch. */
+    html[data-lang="de"] [data-lang-block="en"],
+    html[data-lang="en"] [data-lang-block="de"] {
+      display: none !important;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .language-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--card-solid) 82%, transparent);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+      white-space: nowrap;
+    }
+
+    .language-switch button {
+      border: 0;
+      appearance: none;
+      cursor: pointer;
+      min-height: 30px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted-strong);
+      font: inherit;
+      font-size: 0.88rem;
+      font-weight: 720;
+      line-height: 1.1;
+    }
+
+    .language-switch button:hover {
+      color: var(--text);
+      background: color-mix(in srgb, var(--accent) 8%, transparent);
+    }
+
+    .language-switch button[aria-pressed="true"] {
+      color: #ffffff;
+      background: linear-gradient(135deg, #0b5cff, #0077ff 48%, #21c6ff);
+      box-shadow: 0 10px 22px rgba(11, 92, 255, 0.18);
+    }
+
+    .feature-tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 0;
+      margin: 18px 0 0;
+      list-style: none;
+    }
+
+    .feature-tag-list li {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 6px 11px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--card-solid) 78%, transparent);
+      color: var(--muted-strong);
+      font-size: 0.92rem;
+      font-weight: 660;
+    }
+
+    .mini-metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .mini-metric {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: color-mix(in srgb, var(--card-solid) 74%, transparent);
+      padding: 15px;
+    }
+
+    .mini-metric .value {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--text);
+      font-size: 1.08rem;
+      font-weight: 820;
+      letter-spacing: -0.03em;
+    }
+
+    .mini-metric .label {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.35;
+    }
+
+    .feature-card-footnote {
+      margin-top: auto;
+      padding-top: 10px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .subtle-list {
+      display: grid;
+      gap: 8px;
+      margin: 14px 0 0;
+      padding-left: 1.1rem;
+    }
+
+    .subtle-list li {
+      color: var(--muted-strong);
+    }
+
+    @media (max-width: 980px) {
+      .nav-actions {
+        width: 100%;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      .mini-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 740px) {
+      .nav-actions {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .language-switch { align-self: flex-start; }
+      .mini-metrics { grid-template-columns: 1fr; }
+    }
+
   </style>
 </head>
 
 <body>
-  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+  <a class="skip-link" href="#main" data-i18n="skipLink">Skip to content</a>
 
-  <nav class="site-nav" aria-label="Hauptnavigation">
+  <nav class="site-nav" aria-label="Main navigation" data-i18n-aria-label="mainNavigation">
     <div class="container nav-inner">
-      <a class="brand" href="#home" aria-label="SolarScope Startseite">
+      <a class="brand" href="#home" aria-label="SolarScope home" data-i18n-aria-label="brandHome">
         <span class="brand-mark" aria-hidden="true">
-          <!-- Place icon.png in the same folder as this index.html. If unavailable, the gradient background remains visible. -->
           <img src="icon.png" alt="" loading="eager">
         </span>
         <span>SolarScope</span>
       </a>
 
-      <ul class="nav-links">
-        <li><a href="#features">Features</a></li>
-        <li><a href="#privacy">Datenschutz</a></li>
-        <li><a href="#website-privacy">Website</a></li>
-        <li><a href="#data-sources">Datenquellen</a></li>
-        <li><a href="#support">Support</a></li>
-        <li><a href="#impressum">Impressum</a></li>
-      </ul>
+      <div class="nav-actions">
+        <ul class="nav-links">
+          <li><a href="#features" data-i18n="navFeatures">Features</a></li>
+          <li><a href="#privacy" data-i18n="navPrivacy">Privacy</a></li>
+          <li><a href="#website-privacy" data-i18n="navWebsite">Website</a></li>
+          <li><a href="#data-sources" data-i18n="navSources">Data sources</a></li>
+          <li><a href="#support" data-i18n="navSupport">Support</a></li>
+          <li><a href="#impressum" data-i18n="navLegal">Legal notice</a></li>
+        </ul>
+
+        <div class="language-switch" aria-label="Language selection" data-i18n-aria-label="languageSwitchLabel">
+          <button type="button" data-lang-switch="de" aria-pressed="false">Deutsch</button>
+          <button type="button" data-lang-switch="en" aria-pressed="false">English</button>
+        </div>
+      </div>
     </div>
   </nav>
 
   <header id="home" class="hero">
     <div class="container hero-grid">
       <div>
-        <span class="eyebrow">Solar, geomagnetic & radio data</span>
-        <h1>SolarScope</h1>
-        <p class="hero-lead">
-          SolarScope ist eine mobile App zur übersichtlichen Anzeige von Solar-, geomagnetischen,
-          ionosphärischen und funkbezogenen Mess- und Prognosedaten. Ergänzend bietet die App lokale
-          Converter- und optional standortbezogene Funktionen.
-        </p>
+        <div data-lang-block="de">
+          <span class="eyebrow">Solar-, Geomagnetik- & Funkdaten</span>
+          <h1>SolarScope</h1>
+          <p class="hero-lead">
+            SolarScope ist eine mobile App für Solar-, geomagnetische, ionosphärische und funkbezogene Daten.
+            Die App bündelt Live-Werte, Ausbreitungsindikatoren, lokale Funkbewertungen, DX-Pfade, Trends,
+            Alarme und praktische Ham-Radio-Converter in einer ruhigen, übersichtlichen Oberfläche.
+          </p>
 
-        <div class="hero-actions" aria-label="App-Links und rechtliche Informationen">
-          <!-- TODO: Replace # with the real App Store URL once the iOS app is published. -->
-          <a class="button primary" href="https://play.google.com/store/apps/details?id=de.pedroperazagonzalez.solarscope" aria-label="Download on Google Play placeholder">Download on the App Store</a>
-          <!-- TODO: Replace # with the real Google Play URL once available. -->
-          <a class="button secondary" aria-label="Get it soon in App Store placeholder">Get it on Google Play</a>
-          <a class="button ghost" href="#privacy">Privacy ansehen</a>
+          <div class="hero-actions" aria-label="App-Links und rechtliche Informationen">
+            <a class="button primary" href="https://play.google.com/store/apps/details?id=de.pedroperazagonzalez.solarscope">Bei Google Play herunterladen</a>
+            <span class="button secondary" aria-label="Demnächst im App Store erhältlich">Demnächst im App Store</span>
+            <a class="button ghost" href="#privacy">Datenschutz ansehen</a>
+          </div>
+          <p class="availability-note">Android ist über Google Play verfügbar. Die iOS-Version ist für den App Store vorbereitet bzw. folgt später.</p>
         </div>
-        <p class="availability-note">
-          TODO: App-Store- und Google-Play-Links nach Veröffentlichung ersetzen.
-        </p>
+
+        <div data-lang-block="en" lang="en">
+          <span class="eyebrow">Solar, geomagnetic & radio data</span>
+          <h1>SolarScope</h1>
+          <p class="hero-lead">
+            SolarScope is a mobile app for solar, geomagnetic, ionospheric and radio-related data.
+            It combines live values, propagation indicators, local radio assessment, DX path analysis, trends,
+            alarms and practical ham-radio converters in a calm, clear interface.
+          </p>
+
+          <div class="hero-actions" aria-label="App links and legal information">
+            <a class="button primary" href="https://play.google.com/store/apps/details?id=de.pedroperazagonzalez.solarscope">Download on Google Play</a>
+            <span class="button secondary" aria-label="Coming soon to the App Store">Coming soon to the App Store</span>
+            <a class="button ghost" href="#privacy">View privacy</a>
+          </div>
+          <p class="availability-note">Android is available on Google Play. The iOS version is prepared for the App Store or will follow later.</p>
+        </div>
       </div>
 
-      <div class="device-card" aria-label="SolarScope App Vorschau">
+      <div class="device-card" aria-label="SolarScope App preview" data-i18n-aria-label="appPreview">
         <div class="phone" aria-hidden="true">
           <div class="phone-screen">
-            <div class="phone-icon">
-              <img src="icon.png" alt="">
-            </div>
+            <div class="phone-icon"><img src="icon.png" alt=""></div>
             <p class="screen-title">SolarScope</p>
-            <p class="screen-subtitle">A clean overview for solar and radio-related conditions.</p>
+            <p class="screen-subtitle" data-i18n="phoneSubtitle">A clean overview for solar and radio-related conditions.</p>
             <div class="screen-card">
-              <div class="screen-row"><span>Solar data</span><span>Live view</span></div>
-              <div class="screen-row"><span>Geomagnetic</span><span>Overview</span></div>
-              <div class="screen-row"><span>Ionosonde</span><span>External</span></div>
-              <div class="screen-row"><span>Location</span><span>Optional</span></div>
+              <div class="screen-row"><span data-i18n="phoneSolar">Solar data</span><span data-i18n="phoneLive">Live view</span></div>
+              <div class="screen-row"><span data-i18n="phoneHF">HF conditions</span><span>80–10 m</span></div>
+              <div class="screen-row"><span data-i18n="phoneVHF">VHF/Es Watch</span><span>6 m · 4 m · 2 m</span></div>
+              <div class="screen-row"><span data-i18n="phoneDX">DX path</span><span data-i18n="phoneAssess">Assessment</span></div>
             </div>
             <div class="screen-card">
-              <div class="screen-row"><span>Tracking</span><span>None</span></div>
-              <div class="screen-row"><span>Ads</span><span>No SDK</span></div>
-              <div class="screen-row"><span>Accounts</span><span>No login</span></div>
+              <div class="screen-row"><span data-i18n="phoneConverters">Converters</span><span data-i18n="phoneLocal">Local</span></div>
+              <div class="screen-row"><span data-i18n="phoneLocation">Location</span><span data-i18n="phoneOptional">Optional</span></div>
+              <div class="screen-row"><span data-i18n="phoneTracking">Tracking</span><span data-i18n="phoneNone">None</span></div>
             </div>
           </div>
         </div>
@@ -904,75 +1082,174 @@
   <main id="main">
     <section id="features" class="section">
       <div class="container">
-        <div class="section-header">
-          <p class="kicker">Was SolarScope bietet</p>
-          <h2>Eine ruhige, klare Oberfläche für komplexe Daten.</h2>
-          <p class="section-lead">
-            Die Webseite beschreibt nur Funktionen, die aus der bisherigen Datenschutzerklärung ableitbar sind.
-            Es werden keine zusätzlichen App-Funktionen erfunden.
-          </p>
+        <div data-lang-block="de">
+          <div class="section-header">
+            <p class="kicker">Was SolarScope bietet</p>
+            <h2>Eine klare Oberfläche für komplexe Funk- und Weltraumwetterdaten.</h2>
+            <p class="section-lead">
+              Die folgenden Funktionen wurden aus dem App-Code übernommen und in eine verständliche Webseite übersetzt,
+              ohne den bisherigen Stil der Seite zu verändern.
+            </p>
+          </div>
+
+          <div class="grid three">
+            <article class="card feature">
+              <div class="icon-bubble">☀</div>
+              <h3>Solar / Geomagnetik</h3>
+              <p>Übersicht über SFI, Sonnenflecken, A-/K-Index, X-Ray-Klasse, 304A, Protonen-/Elektronenfluss, Bz, Solarwind, Aurora, geomagnetisches Feld, Signalrauschen und Flare-Wahrscheinlichkeit.</p>
+              <p class="feature-card-footnote">Grundlage für viele HF- und VHF-Einschätzungen.</p>
+            </article>
+            <article class="card feature">
+              <div class="icon-bubble">≋</div>
+              <h3>HF-Bedingungen</h3>
+              <p>Qualitative Tag- und Nachtbewertung für die wichtigsten Amateurfunk-HF-Bandgruppen: 80–40 m, 30–20 m, 17–15 m und 12–10 m.</p>
+              <p class="feature-card-footnote">Schneller Überblick, welche Bänder gerade eher interessant sind.</p>
+            </article>
+            <article class="card feature">
+              <div class="icon-bubble">⌁</div>
+              <h3>VHF & VHF/Es-Watch</h3>
+              <p>Anzeige von Aurora-, Sporadic-E- und EME-Indikatoren sowie ein kompakter Watch-Modus für 6 m, 4 m und 2 m mit Ampel, Watch Items und letztem Trigger.</p>
+              <p class="feature-card-footnote">Optional mit externen Kartenlinks wie DXMAPS und KC2G.</p>
+            </article>
+            <article class="card feature">
+              <div class="icon-bubble">⌖</div>
+              <h3>Juliusruh-Ionosonde</h3>
+              <p>Anzeige ionosphärischer Messwerte wie foF2, MUFD, M(3000)F2, TEC, fmin, hmF2, foE, foEs und hEs inklusive Datenstand, Quelle und Qualitäts-/Vertrauenshinweisen.</p>
+              <p class="feature-card-footnote">Fachliche Datenbasis für Funk- und DX-Bewertungen.</p>
+            </article>
+            <article class="card feature">
+              <div class="icon-bubble">◎</div>
+              <h3>Local Radio Assessment</h3>
+              <p>Standortbezogene lokale Einschätzung mit aktuellem oder manuellem Locator, Sonnenphase, Grayline, HF-/VHF-Score, Bandempfehlungen, Aurora-Hinweisen, Tagesausblick und optionalem Höhenprofil.</p>
+              <p class="feature-card-footnote">Standortzugriff bleibt optional.</p>
+            </article>
+            <article class="card feature">
+              <div class="icon-bubble">↗</div>
+              <h3>DX Path Assessment</h3>
+              <p>Analyse eines Funkpfads zwischen Start und Ziel mit Entfernung, Azimut, Short-/Long-Path, Tages-/Nacht-/Grayline-Anteilen, Bandgruppen, Best-Now-Bewertung und optionalen stündlichen Fenstern.</p>
+              <p class="feature-card-footnote">Mit Auto- oder Experteneingaben für ionosphärische Parameter.</p>
+            </article>
+            <article class="card feature">
+              <div class="icon-bubble">⌬</div>
+              <h3>Solar- & Ionosonden-Trends</h3>
+              <p>Verläufe wichtiger Solar-, geomagnetischer und Juliusruh-Ionosondenwerte machen steigende, fallende oder stabile Entwicklungen sichtbar.</p>
+              <p class="feature-card-footnote">Hilft, Bedingungen nicht nur punktuell, sondern im Verlauf zu beurteilen.</p>
+            </article>
+            <article class="card feature">
+              <div class="icon-bubble">⇄</div>
+              <h3>Ham Converter Tools</h3>
+              <p>Lokale Tools für Frequenz, Wellenlänge, Leistung, Distanz, Temperatur, UTC, Maidenhead-Locator, Koordinaten, DMS, Bearing/Azimuth, Sonnenaufgang, Sonnenuntergang und Grayline.</p>
+              <p class="feature-card-footnote">Viele Umrechnungen laufen direkt lokal in der App.</p>
+            </article>
+            <article class="card feature">
+              <div class="icon-bubble">✓</div>
+              <h3>Lokale Alarme</h3>
+              <p>Solar- und Geomagnetik-Alarme mit Schwellenwerten, Vorlagen, HF-Zeitplan, Statusanzeige und Android-Benachrichtigungen bei neuen Treffern.</p>
+              <p class="feature-card-footnote">Zum Beispiel Aurora möglich, 10-m-Öffnung wahrscheinlich oder M-Flare und höher.</p>
+            </article>
+          </div>
+
+          <div class="mini-metrics">
+            <div class="mini-metric"><span class="value">Solar</span><span class="label">SFI, Kp, Bz, Wind, X-Ray, Aurora</span></div>
+            <div class="mini-metric"><span class="value">HF/VHF</span><span class="label">Bandgruppen, Es-Watch, EME, Aurora</span></div>
+            <div class="mini-metric"><span class="value">Geo</span><span class="label">Locator, Standort, Grayline, Höhenprofil</span></div>
+            <div class="mini-metric"><span class="value">Tools</span><span class="label">Converter, Trends, Alarme, externe Karten</span></div>
+          </div>
         </div>
 
-        <div class="grid three">
-          <article class="card feature">
-            <div class="icon-bubble">☀</div>
-            <h3>Solar and geomagnetic overview</h3>
-            <p>
-              SolarScope stellt solar- und geomagnetisch bezogene Mess- oder Prognosedaten übersichtlich dar.
+        <div data-lang-block="en" lang="en">
+          <div class="section-header">
+            <p class="kicker">What SolarScope offers</p>
+            <h2>A clear interface for complex radio and space-weather data.</h2>
+            <p class="section-lead">
+              The following feature overview was derived from the app code and translated into a readable website section,
+              while keeping the existing visual style intact.
             </p>
-          </article>
+          </div>
 
-          <article class="card feature">
-            <div class="icon-bubble">⌁</div>
-            <h3>Radio-related propagation data</h3>
-            <p>
-              Die App nutzt externe fachliche Datenquellen, um funkbezogene Informationen und Ionosonde-Daten anzuzeigen.
-            </p>
-          </article>
+          <div class="grid three">
+            <article class="card feature">
+              <div class="icon-bubble">☀</div>
+              <h3>Solar / Geomagnetic</h3>
+              <p>Overview of SFI, sunspots, A/K index, X-ray class, 304A, proton/electron flux, Bz, solar wind, aurora, geomagnetic field, signal noise level and flare probability.</p>
+              <p class="feature-card-footnote">A basis for many HF and VHF assessments.</p>
+            </article>
+            <article class="card feature">
+              <div class="icon-bubble">≋</div>
+              <h3>HF conditions</h3>
+              <p>Qualitative day and night outlook for the key amateur-radio HF band groups: 80–40 m, 30–20 m, 17–15 m and 12–10 m.</p>
+              <p class="feature-card-footnote">A quick view of which bands may be worth watching.</p>
+            </article>
+            <article class="card feature">
+              <div class="icon-bubble">⌁</div>
+              <h3>VHF & VHF/Es Watch</h3>
+              <p>Displays aurora, Sporadic-E and EME indicators plus a compact watch mode for 6 m, 4 m and 2 m with signal lights, watch items and last trigger.</p>
+              <p class="feature-card-footnote">Optionally with external map links such as DXMAPS and KC2G.</p>
+            </article>
+            <article class="card feature">
+              <div class="icon-bubble">⌖</div>
+              <h3>Juliusruh ionosonde</h3>
+              <p>Shows ionospheric measurements such as foF2, MUFD, M(3000)F2, TEC, fmin, hmF2, foE, foEs and hEs, including data time, source and confidence notes.</p>
+              <p class="feature-card-footnote">A technical data basis for propagation and DX assessment.</p>
+            </article>
+            <article class="card feature">
+              <div class="icon-bubble">◎</div>
+              <h3>Local Radio Assessment</h3>
+              <p>Location-based local assessment with current or manual locator, sun phase, grayline, HF/VHF score, band recommendations, aurora hints, daily outlook and optional elevation profile.</p>
+              <p class="feature-card-footnote">Location access remains optional.</p>
+            </article>
+            <article class="card feature">
+              <div class="icon-bubble">↗</div>
+              <h3>DX Path Assessment</h3>
+              <p>Analyzes a radio path between start and target with distance, azimuth, short/long path, day/night/grayline fractions, band groups, best-now rating and optional hourly windows.</p>
+              <p class="feature-card-footnote">Supports automatic or expert ionospheric inputs.</p>
+            </article>
+            <article class="card feature">
+              <div class="icon-bubble">⌬</div>
+              <h3>Solar & ionosonde trends</h3>
+              <p>History views for key solar, geomagnetic and Juliusruh ionosonde values make rising, falling or stable developments visible.</p>
+              <p class="feature-card-footnote">Useful for judging conditions over time, not only as a snapshot.</p>
+            </article>
+            <article class="card feature">
+              <div class="icon-bubble">⇄</div>
+              <h3>Ham Converter Tools</h3>
+              <p>Local tools for frequency, wavelength, power, distance, temperature, UTC, Maidenhead locator, coordinates, DMS, bearing/azimuth, sunrise, sunset and grayline.</p>
+              <p class="feature-card-footnote">Many conversions run directly and locally in the app.</p>
+            </article>
+            <article class="card feature">
+              <div class="icon-bubble">✓</div>
+              <h3>Local alarms</h3>
+              <p>Solar and geomagnetic alarms with thresholds, templates, HF schedule, status tracking and Android notifications for newly triggered matches.</p>
+              <p class="feature-card-footnote">Examples include aurora possible, likely 10 m opening or M-flare and higher.</p>
+            </article>
+          </div>
 
-          <article class="card feature">
-            <div class="icon-bubble">◎</div>
-            <h3>Local tools and converters</h3>
-            <p>
-              Bestimmte Einstellungen, Caches, Verlaufswerte und optionale Eingaben werden lokal auf dem Gerät gespeichert.
-            </p>
-          </article>
-
-          <article class="card feature">
-            <div class="icon-bubble">⌖</div>
-            <h3>Optional location features</h3>
-            <p>
-              Standortzugriff ist optional und wird nur für standortbezogene Funktionen benötigt. Eine allgemeine Nutzung ist auch ohne Standort möglich.
-            </p>
-          </article>
-
-          <article class="card feature">
-            <div class="icon-bubble">↗</div>
-            <h3>External scientific data sources</h3>
-            <p>
-              Je nach Funktion werden externe Quellen wie HAMQSL, Juliusruh / IAP / GIRO DIDBase, NOAA SWPC, Open-Meteo oder Nominatim genutzt.
-            </p>
-          </article>
-
-          <article class="card feature">
-            <div class="icon-bubble">✓</div>
-            <h3>No ads or analytics SDKs</h3>
-            <p>
-              Nach aktuellem App-Stand werden keine Werbe-SDKs, keine Analytics-SDKs und kein separates Crash-Reporting-SDK eingesetzt.
-            </p>
-          </article>
+          <div class="mini-metrics">
+            <div class="mini-metric"><span class="value">Solar</span><span class="label">SFI, Kp, Bz, wind, X-ray, aurora</span></div>
+            <div class="mini-metric"><span class="value">HF/VHF</span><span class="label">Band groups, Es watch, EME, aurora</span></div>
+            <div class="mini-metric"><span class="value">Geo</span><span class="label">Locator, location, grayline, elevation profile</span></div>
+            <div class="mini-metric"><span class="value">Tools</span><span class="label">Converters, trends, alarms, external maps</span></div>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="section compact">
       <div class="container">
-        <div class="notice">
+        <div class="notice" data-lang-block="de">
           <p class="strong">Transparenz-Hinweis</p>
           <p>
-            Diese Seite ist als statische, datenschutzfreundliche One-Page-Webseite aufgebaut: keine externen Fonts,
-            keine Tracking-Skripte, keine Analytics-Einbindung und keine Cookies im Quellcode dieser Datei.
-            Wenn später Dienste ergänzt werden, müssen Datenschutz- und Cookie-Hinweise angepasst werden.
+            Diese Seite bleibt eine statische, datenschutzfreundliche One-Page-Webseite: keine externen Fonts,
+            keine Tracking-Skripte, keine Analytics-Einbindung und keine Cookies im Quellcode. Nur wenn Sie oben
+            manuell eine Sprache auswählen, kann diese Sprachwahl lokal im Browser gespeichert werden.
+          </p>
+        </div>
+        <div class="notice" data-lang-block="en" lang="en">
+          <p class="strong">Transparency note</p>
+          <p>
+            This page remains a static, privacy-friendly one-page website: no external fonts, no tracking scripts,
+            no analytics integration and no cookies in the source code. Only if you manually choose a language above
+            may that language preference be stored locally in your browser.
           </p>
         </div>
       </div>
@@ -980,42 +1257,28 @@
 
     <section id="privacy" class="section">
       <div class="container legal-container">
-        <div class="section-header">
+        <div class="section-header" data-lang-block="de">
           <p class="kicker">Privacy Package</p>
           <h2>Datenschutz für SolarScope.</h2>
-          <p class="section-lead">
-            Hier finden Sie die Datenschutzerklärung zur SolarScope-App auf Deutsch und Englisch sowie eine kurze In-App-Zusammenfassung.
-          </p>
+          <p class="section-lead">Hier finden Sie die Datenschutzerklärung zur SolarScope-App sowie eine kurze In-App-Zusammenfassung.</p>
+        </div>
+        <div class="section-header" data-lang-block="en" lang="en">
+          <p class="kicker">Privacy Package</p>
+          <h2>Privacy for SolarScope.</h2>
+          <p class="section-lead">Here you will find the privacy policy for the SolarScope app and a short in-app summary.</p>
         </div>
 
-        <article class="legal-panel" aria-labelledby="privacy-overview-title">
-          <h2 id="privacy-overview-title">Privacy Policy / Datenschutzerklärung</h2>
-          <p>
-            Diese Seite enthält die englische Privacy Policy und die deutsche Datenschutzerklärung für die SolarScope-App.
-          </p>
-
+        <article class="legal-panel" aria-labelledby="privacy-overview-title" data-lang-block="de">
+          <h2 id="privacy-overview-title">Datenschutzerklärung</h2>
+          <p>Diese Seite enthält die deutsche Datenschutzerklärung für die SolarScope-App.</p>
           <div class="meta-grid">
-            <div class="meta-card">
-              <span class="label">Effective date / Stand</span>
-              <span class="value">April 4, 2026 / 4. April 2026</span>
-            </div>
-            <div class="meta-card">
-              <span class="label">App</span>
-              <span class="value">SolarScope Android / iOS</span>
-            </div>
-            <div class="meta-card">
-              <span class="label">Controller / Verantwortlicher</span>
-              <span class="value">Pedro Peraza Gonzalez</span>
-            </div>
-            <div class="meta-card">
-              <span class="label">Contact / Kontakt</span>
-              <span class="value"><a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a></span>
-            </div>
+            <div class="meta-card"><span class="label">Stand</span><span class="value">4. April 2026</span></div>
+            <div class="meta-card"><span class="label">App</span><span class="value">SolarScope Android / iOS</span></div>
+            <div class="meta-card"><span class="label">Verantwortlicher</span><span class="value">Pedro Peraza Gonzalez</span></div>
+            <div class="meta-card"><span class="label">Kontakt</span><span class="value"><a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a></span></div>
           </div>
-
           <ul class="toc" aria-label="Datenschutz-Navigation">
             <li><a href="#privacy-de">Deutsch</a></li>
-            <li><a href="#privacy-en">English</a></li>
             <li><a href="#short-summary-de">Kurzfassung</a></li>
             <li><a href="#website-privacy">Website-Datenschutz</a></li>
             <li><a href="#impressum">Impressum</a></li>
@@ -1023,7 +1286,25 @@
           </ul>
         </article>
 
-        <article id="privacy-de" class="legal-panel" aria-labelledby="privacy-de-title">
+        <article class="legal-panel" aria-labelledby="privacy-overview-title-en" data-lang-block="en" lang="en">
+          <h2 id="privacy-overview-title-en">Privacy Policy</h2>
+          <p>This page contains the English privacy policy for the SolarScope app.</p>
+          <div class="meta-grid">
+            <div class="meta-card"><span class="label">Effective date</span><span class="value">April 4, 2026</span></div>
+            <div class="meta-card"><span class="label">App</span><span class="value">SolarScope Android / iOS</span></div>
+            <div class="meta-card"><span class="label">Controller</span><span class="value">Pedro Peraza Gonzalez</span></div>
+            <div class="meta-card"><span class="label">Contact</span><span class="value"><a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a></span></div>
+          </div>
+          <ul class="toc" aria-label="Privacy navigation">
+            <li><a href="#privacy-en">English</a></li>
+            <li><a href="#short-summary-en">Short summary</a></li>
+            <li><a href="#website-privacy">Website privacy</a></li>
+            <li><a href="#impressum">Legal notice</a></li>
+            <li><a href="#support">Support</a></li>
+          </ul>
+        </article>
+
+<article id="privacy-de" data-lang-block="de" class="legal-panel" aria-labelledby="privacy-de-title">
           <p class="kicker">Deutsch</p>
           <h2 id="privacy-de-title">Datenschutzerklärung für die SolarScope-App</h2>
 
@@ -1207,7 +1488,7 @@
           </p>
         </article>
 
-        <article id="privacy-en" class="legal-panel" aria-labelledby="privacy-en-title" lang="en">
+<article id="privacy-en" data-lang-block="en" class="legal-panel" aria-labelledby="privacy-en-title" lang="en">
           <p class="kicker">English</p>
           <h2 id="privacy-en-title">Privacy Policy for the SolarScope App</h2>
 
@@ -1387,7 +1668,7 @@
           </p>
         </article>
 
-        <article id="short-summary-de" class="legal-panel" aria-labelledby="summary-title">
+<article id="short-summary-de" data-lang-block="de" class="legal-panel" aria-labelledby="summary-title">
           <p class="kicker">Kurzfassung</p>
           <h2 id="summary-title">Kurze In-App-Kurzfassung</h2>
           <div class="summary-box">
@@ -1402,97 +1683,115 @@
             </ul>
           </div>
         </article>
+
+
+        <article id="short-summary-en" data-lang-block="en" class="legal-panel" aria-labelledby="summary-title-en" lang="en">
+          <p class="kicker">Short summary</p>
+          <h2 id="summary-title-en">Short in-app privacy summary</h2>
+          <div class="summary-box">
+            <ul>
+              <li>Based on the current app state, SolarScope does not use advertising, tracking, analytics or separate crash-reporting SDKs.</li>
+              <li>The app stores selected settings, caches, history values and an optional callsign locally on the device.</li>
+              <li>Location access is optional. Many app features remain usable without location permission.</li>
+              <li>When location-based features are used, coordinates may be sent to external services such as Open-Meteo and/or Nominatim.</li>
+              <li>Solar, ionosonde and radio-related data are requested directly from external sources such as HAMQSL, Juliusruh / GIRO DIDBase or NOAA; those providers may receive technical connection data.</li>
+              <li>External links only become active when opened and then lead directly to third-party websites.</li>
+              <li>The operator does not sell personal data. Juliusruh, HAMQSL and similar sources are used only as scientific or technical data sources.</li>
+            </ul>
+          </div>
+        </article>
+
       </div>
     </section>
 
     <section id="website-privacy" class="section compact">
       <div class="container legal-container">
-        <article class="legal-panel" aria-labelledby="website-privacy-title">
+        <article class="legal-panel" aria-labelledby="website-privacy-title" data-lang-block="de">
           <p class="kicker">Website Privacy</p>
           <h2 id="website-privacy-title">Datenschutzhinweise für diese Webseite</h2>
-
           <h3>1. Geltungsbereich</h3>
-          <p>
-            Diese Hinweise betreffen den Besuch dieser SolarScope-Webseite. Die App-Datenschutzerklärung oben betrifft dagegen
-            die Nutzung der SolarScope-App selbst.
-          </p>
-
+          <p>Diese Hinweise betreffen den Besuch dieser SolarScope-Webseite. Die App-Datenschutzerklärung oben betrifft dagegen die Nutzung der SolarScope-App selbst.</p>
           <h3>2. Hosting und technische Zugriffsdaten</h3>
-          <p>
-            Diese Seite ist als statische Webseite aufgebaut. Wenn sie über GitHub Pages oder einen vergleichbaren statischen
-            Hosting-Anbieter bereitgestellt wird, können beim Aufruf der Webseite technisch erforderliche Zugriffsdaten verarbeitet werden,
-            zum Beispiel IP-Adresse, Zeitpunkt des Abrufs, angeforderte Datei, Browser- und Geräteinformationen sowie technische Logdaten.
-          </p>
-          <p>
-            Zweck dieser Verarbeitung ist die Auslieferung der Webseite, die technische Stabilität, die Sicherheit und die Fehleranalyse.
-            Rechtsgrundlage ist, soweit personenbezogene Daten betroffen sind, Art. 6 Abs. 1 lit. f DSGVO.
-          </p>
+          <p>Diese Seite ist als statische Webseite aufgebaut. Wenn sie über GitHub Pages oder einen vergleichbaren statischen Hosting-Anbieter bereitgestellt wird, können beim Aufruf der Webseite technisch erforderliche Zugriffsdaten verarbeitet werden, zum Beispiel IP-Adresse, Zeitpunkt des Abrufs, angeforderte Datei, Browser- und Geräteinformationen sowie technische Logdaten.</p>
+          <p>Zweck dieser Verarbeitung ist die Auslieferung der Webseite, die technische Stabilität, die Sicherheit und die Fehleranalyse. Rechtsgrundlage ist, soweit personenbezogene Daten betroffen sind, Art. 6 Abs. 1 lit. f DSGVO.</p>
+          <h3>3. Spracheinstellung</h3>
+          <p>Beim ersten Aufruf erkennt die Webseite die bevorzugte Browsersprache. Ist diese Deutsch, wird die Seite auf Deutsch angezeigt. In allen anderen Fällen wird Englisch verwendet. Wenn Sie die Sprache oben manuell ändern, kann diese Auswahl lokal im Browser gespeichert werden, damit die Seite beim nächsten Besuch wieder in der gewählten Sprache erscheint.</p>
+          <h3>4. Keine Cookies, kein Tracking und keine Analytics in dieser Datei</h3>
+          <p>Der Quellcode dieser Webseite bindet keine Tracking-Skripte, keine Analytics-Dienste, keine Werbenetzwerke und keine externen Fonts ein. Diese Webseite setzt im vorliegenden Stand selbst keine Cookies.</p>
+          <p>Wenn später externe Dienste, Analysewerkzeuge, Karten, Videos, Kontaktformulare, Newsletter-Funktionen oder Cookies ergänzt werden, müssen diese Datenschutzhinweise entsprechend aktualisiert werden.</p>
+          <h3>5. E-Mail-Kontakt</h3>
+          <p>Wenn Sie per E-Mail Kontakt aufnehmen, werden die von Ihnen übermittelten Angaben verarbeitet, um die Anfrage zu beantworten. Dazu können insbesondere Ihre E-Mail-Adresse, Ihr Name, der Inhalt der Nachricht sowie technische Versanddaten gehören.</p>
+          <h3>6. Keine Kontaktformulare und kein Newsletter</h3>
+          <p>Diese Webseite enthält derzeit kein Kontaktformular und keine Newsletter-Anmeldung. Eine Kontaktaufnahme erfolgt ausschließlich über die angegebene E-Mail-Adresse.</p>
+        </article>
 
-
-          <h3>3. Keine Cookies, kein Tracking und keine Analytics in dieser Datei</h3>
-          <p>
-            Der Quellcode dieser Webseite bindet keine Tracking-Skripte, keine Analytics-Dienste, keine Werbenetzwerke und keine externen Fonts ein.
-            Diese Webseite setzt im vorliegenden Stand selbst keine Cookies.
-          </p>
-          <p>
-            Wenn später externe Dienste, Analysewerkzeuge, Karten, Videos, Kontaktformulare, Newsletter-Funktionen oder Cookies ergänzt werden,
-            müssen diese Datenschutzhinweise entsprechend aktualisiert werden.
-          </p>
-
-          <h3>4. E-Mail-Kontakt</h3>
-          <p>
-            Wenn Sie per E-Mail Kontakt aufnehmen, werden die von Ihnen übermittelten Angaben verarbeitet, um die Anfrage zu beantworten.
-            Dazu können insbesondere Ihre E-Mail-Adresse, Ihr Name, der Inhalt der Nachricht sowie technische Versanddaten gehören.
-          </p>
-
-          <h3>5. Keine Kontaktformulare und kein Newsletter</h3>
-          <p>
-            Diese Webseite enthält derzeit kein Kontaktformular und keine Newsletter-Anmeldung. Eine Kontaktaufnahme erfolgt ausschließlich
-            über die angegebene E-Mail-Adresse.
-          </p>
+        <article class="legal-panel" aria-labelledby="website-privacy-title-en" data-lang-block="en" lang="en">
+          <p class="kicker">Website Privacy</p>
+          <h2 id="website-privacy-title-en">Privacy notes for this website</h2>
+          <h3>1. Scope</h3>
+          <p>These notes apply to visits to this SolarScope website. The app privacy policy above applies to the use of the SolarScope app itself.</p>
+          <h3>2. Hosting and technical access data</h3>
+          <p>This page is built as a static website. If it is provided via GitHub Pages or a comparable static hosting provider, technically required access data may be processed when the website is opened, for example IP address, access time, requested file, browser and device information and technical log data.</p>
+          <p>The purpose is delivery of the website, technical stability, security and error analysis. Where personal data are involved, the legal basis is Art. 6(1)(f) GDPR.</p>
+          <h3>3. Language setting</h3>
+          <p>On the first visit, the website detects the preferred browser language. If it is German, the page is shown in German. In all other cases English is used. If you manually change the language above, this choice may be stored locally in your browser so the selected language can be restored on your next visit.</p>
+          <h3>4. No cookies, no tracking and no analytics in this file</h3>
+          <p>The source code of this website does not include tracking scripts, analytics services, advertising networks or external fonts. In its current state, this website itself does not set cookies.</p>
+          <p>If external services, analytics tools, maps, videos, contact forms, newsletter features or cookies are added later, these privacy notes must be updated accordingly.</p>
+          <h3>5. Email contact</h3>
+          <p>If you contact us by email, the information you provide will be processed in order to answer your request. This may include your email address, your name, the message content and technical sending data.</p>
+          <h3>6. No contact forms and no newsletter</h3>
+          <p>This website currently does not contain a contact form or newsletter subscription. Contact is possible only via the email address provided.</p>
         </article>
       </div>
     </section>
 
     <section id="data-sources" class="section compact">
       <div class="container legal-container">
-        <article class="legal-panel" aria-labelledby="data-sources-title">
+        <article class="legal-panel" aria-labelledby="data-sources-title" data-lang-block="de">
           <p class="kicker">Data Sources & Attribution</p>
           <h2 id="data-sources-title">Datenquellen & Hinweise</h2>
-          <p>
-            SolarScope nutzt externe fachliche Datenquellen ausschließlich, um wissenschaftliche, technische und funkbezogene
-            Mess- oder Prognosedaten in der App anzuzeigen. Die Daten können verzögert, unvollständig oder vorübergehend nicht verfügbar sein.
-          </p>
-
+          <p>SolarScope nutzt externe fachliche Datenquellen ausschließlich, um wissenschaftliche, technische und funkbezogene Mess- oder Prognosedaten in der App anzuzeigen. Die Daten können verzögert, unvollständig oder vorübergehend nicht verfügbar sein.</p>
           <ul class="source-list">
-            <li><strong>HAMQSL</strong><span>Externe Quelle für solar- und funkbezogene Daten.</span></li>
-            <li><strong>Juliusruh / IAP</strong><span>Fachliche Quelle im Zusammenhang mit Ionosonde- bzw. ionosphärischen Daten.</span></li>
+            <li><strong>HAMQSL</strong><span>Externe Quelle für Solar-, Geomagnetik-, HF- und VHF-Ausbreitungsdaten.</span></li>
+            <li><strong>NOAA SWPC</strong><span>Space-Weather-Daten, aktuelle Werte und historische Solar-/Geomagnetik-Verläufe.</span></li>
+            <li><strong>Juliusruh / IAP</strong><span>Fachliche Quelle im Zusammenhang mit Juliusruh-Ionosondenwerten.</span></li>
             <li><strong>GIRO DIDBase</strong><span>Externe Fachquelle für Ionosonde-Daten.</span></li>
-            <li><strong>NOAA SWPC</strong><span>Externe Quelle für Space-Weather- bzw. Solar-/Geomagnetikdaten.</span></li>
-            <li><strong>Open-Meteo</strong><span>Kann für standortbezogene Werte, insbesondere Höheninformationen, genutzt werden.</span></li>
-            <li><strong>Nominatim / OpenStreetMap</strong><span>Kann für Ortssuche, Reverse-Geocoding und OpenStreetMap-Attributionen genutzt werden.</span></li>
-            <li><strong>prop.kc2g.com/stations/</strong><span>Nach bisheriger Beschreibung nur externer Link in der App, keine aktiv aus der App abgefragte Datenquelle.</span></li>
+            <li><strong>Open-Meteo</strong><span>Kann für standortbezogene Werte, insbesondere Höhen- und Höhenprofilinformationen, genutzt werden.</span></li>
+            <li><strong>Nominatim / OpenStreetMap</strong><span>Kann für Ortssuche, Reverse-Geocoding, Kartenauswahl und OpenStreetMap-Attributionen genutzt werden.</span></li>
+            <li><strong>DXMAPS / KC2G</strong><span>Externe Kartenlinks für zusätzliche Funk- und VHF/Es-Beobachtung; Inhalte werden nicht eingebettet oder kopiert.</span></li>
+            <li><strong>Lokaler Gerätespeicher</strong><span>Speichert Einstellungen, Caches, Verlauf, Callsign, Locator und Alarmdaten lokal auf dem Gerät.</span></li>
           </ul>
-
           <h3>Hinweis zur Verfügbarkeit und Richtigkeit</h3>
-          <p>
-            SolarScope übernimmt keine Gewähr für die Vollständigkeit, Richtigkeit, Aktualität oder ständige Verfügbarkeit externer Daten.
-            Externe Anbieter haben eigene Datenschutz- und Nutzungsbedingungen. Der Betreiber verkauft keine personenbezogenen Daten.
-          </p>
+          <p>SolarScope übernimmt keine Gewähr für die Vollständigkeit, Richtigkeit, Aktualität oder ständige Verfügbarkeit externer Daten. Externe Anbieter haben eigene Datenschutz- und Nutzungsbedingungen. Der Betreiber verkauft keine personenbezogenen Daten.</p>
+        </article>
+
+        <article class="legal-panel" aria-labelledby="data-sources-title-en" data-lang-block="en" lang="en">
+          <p class="kicker">Data Sources & Attribution</p>
+          <h2 id="data-sources-title-en">Data sources & notes</h2>
+          <p>SolarScope uses external specialist data sources only to display scientific, technical and radio-related measurements or forecast data in the app. Data may be delayed, incomplete or temporarily unavailable.</p>
+          <ul class="source-list">
+            <li><strong>HAMQSL</strong><span>External source for solar, geomagnetic, HF and VHF propagation data.</span></li>
+            <li><strong>NOAA SWPC</strong><span>Space-weather data, current values and historical solar/geomagnetic trends.</span></li>
+            <li><strong>Juliusruh / IAP</strong><span>Specialist source related to Juliusruh ionosonde values.</span></li>
+            <li><strong>GIRO DIDBase</strong><span>External specialist source for ionosonde data.</span></li>
+            <li><strong>Open-Meteo</strong><span>May be used for location-based values, especially elevation and elevation profile information.</span></li>
+            <li><strong>Nominatim / OpenStreetMap</strong><span>May be used for place search, reverse geocoding, map selection and OpenStreetMap attributions.</span></li>
+            <li><strong>DXMAPS / KC2G</strong><span>External map links for additional radio and VHF/Es observation; content is not embedded or copied.</span></li>
+            <li><strong>Local device storage</strong><span>Stores settings, caches, history, callsign, locator and alarm data locally on the device.</span></li>
+          </ul>
+          <h3>Availability and accuracy note</h3>
+          <p>SolarScope does not guarantee completeness, accuracy, timeliness or permanent availability of external data. External providers have their own privacy and usage terms. The operator does not sell personal data.</p>
         </article>
       </div>
     </section>
 
     <section id="support" class="section compact">
       <div class="container legal-container">
-        <article class="legal-panel" aria-labelledby="support-title">
+        <article class="legal-panel" aria-labelledby="support-title" data-lang-block="de">
           <p class="kicker">Support</p>
           <h2 id="support-title">SolarScope Support</h2>
-          <p>
-            Bei Fragen, technischen Problemen oder Feedback zur SolarScope-App können Sie per E-Mail Kontakt aufnehmen:
-            <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a>.
-          </p>
-
+          <p>Bei Fragen, technischen Problemen oder Feedback zur SolarScope-App können Sie per E-Mail Kontakt aufnehmen: <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a>.</p>
           <div class="grid two">
             <div class="card">
               <h3>Bitte bei Fehlern mitsenden</h3>
@@ -1506,109 +1805,99 @@
             </div>
             <div class="card">
               <h3>Kontakt</h3>
-              <p>
-                E-Mail: <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a>
-              </p>
-              <p>
-                Diese Support-Seite kann als Support-URL für App Store Connect und vergleichbare App-Store-Angaben verwendet werden.
-              </p>
+              <p>E-Mail: <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a></p>
+              <p>Diese Support-Seite kann als Support-URL für App Store Connect und vergleichbare App-Store-Angaben verwendet werden.</p>
             </div>
           </div>
-
           <h3>FAQ</h3>
-          <details>
-            <summary>Braucht SolarScope Standortzugriff?</summary>
-            <p>
-              Standortzugriff ist optional und nur für standortbezogene Funktionen erforderlich. Die allgemeine Nutzung der App ist auch ohne Standortzugriff möglich.
-            </p>
-          </details>
-          <details>
-            <summary>Werden personenbezogene Daten verkauft?</summary>
-            <p>
-              Nein. Nach aktueller Beschreibung verkauft der Betreiber keine personenbezogenen Daten und betreibt keinen Handel mit Nutzerdaten.
-            </p>
-          </details>
-          <details>
-            <summary>Funktioniert die App ohne Standort?</summary>
-            <p>
-              Ja, viele Funktionen bleiben ohne Standortzugriff nutzbar. Nur bestimmte standortbezogene Funktionen benötigen eine Freigabe.
-            </p>
-          </details>
-          <details>
-            <summary>Warum werden externe Datenquellen verwendet?</summary>
-            <p>
-              SolarScope nutzt externe Fachquellen, um wissenschaftliche, technische und funkbezogene Mess- oder Prognosedaten in der App anzuzeigen.
-            </p>
-          </details>
-          <details>
-            <summary>Was kann ich tun, wenn Daten nicht geladen werden?</summary>
-            <p>
-              Prüfen Sie Ihre Internetverbindung und versuchen Sie es später erneut. Externe Datenquellen können zeitweise nicht erreichbar sein oder verzögerte Daten liefern.
-            </p>
-          </details>
+          <details><summary>Braucht SolarScope Standortzugriff?</summary><p>Standortzugriff ist optional und nur für standortbezogene Funktionen erforderlich. Die allgemeine Nutzung der App ist auch ohne Standortzugriff möglich.</p></details>
+          <details><summary>Welche Funktionen nutzen den Standort?</summary><p>Zum Beispiel aktuelle Position, Locator, Local Radio Assessment, VHF/Es-Watch, Ortssuche, Reverse-Geocoding und Höhen- bzw. Höhenprofilfunktionen.</p></details>
+          <details><summary>Funktionieren die Converter offline?</summary><p>Viele Converter sind lokale Tools. Funktionen mit Ortssuche, Karten, aktuellen Standortdaten oder externen Datenquellen benötigen jedoch Internet oder Systemfreigaben.</p></details>
+          <details><summary>Warum werden externe Datenquellen verwendet?</summary><p>SolarScope nutzt externe Fachquellen, um wissenschaftliche, technische und funkbezogene Mess- oder Prognosedaten in der App anzuzeigen.</p></details>
+          <details><summary>Werden personenbezogene Daten verkauft?</summary><p>Nein. Nach aktueller Beschreibung verkauft der Betreiber keine personenbezogenen Daten und betreibt keinen Handel mit Nutzerdaten.</p></details>
+        </article>
+
+        <article class="legal-panel" aria-labelledby="support-title-en" data-lang-block="en" lang="en">
+          <p class="kicker">Support</p>
+          <h2 id="support-title-en">SolarScope Support</h2>
+          <p>For questions, technical problems or feedback about the SolarScope app, you can contact: <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a>.</p>
+          <div class="grid two">
+            <div class="card">
+              <h3>Please include for bug reports</h3>
+              <ul class="status-list">
+                <li><span class="check">✓</span><span>App version</span></li>
+                <li><span class="check">✓</span><span>Operating system: Android or iOS</span></li>
+                <li><span class="check">✓</span><span>Device model</span></li>
+                <li><span class="check">✓</span><span>Short description of the problem</span></li>
+                <li><span class="check">✓</span><span>Screenshot, if helpful</span></li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Contact</h3>
+              <p>Email: <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a></p>
+              <p>This support page can be used as the support URL for App Store Connect and similar app-store listings.</p>
+            </div>
+          </div>
+          <h3>FAQ</h3>
+          <details><summary>Does SolarScope need location access?</summary><p>Location access is optional and only required for location-based features. General use of the app is possible without location access.</p></details>
+          <details><summary>Which features use location?</summary><p>Examples include current position, locator, Local Radio Assessment, VHF/Es Watch, place search, reverse geocoding and elevation or elevation-profile features.</p></details>
+          <details><summary>Do the converters work offline?</summary><p>Many converters are local tools. Features with place search, maps, current location or external data sources require internet or system permissions.</p></details>
+          <details><summary>Why are external data sources used?</summary><p>SolarScope uses external specialist sources to display scientific, technical and radio-related measurements or forecast data in the app.</p></details>
+          <details><summary>Are personal data sold?</summary><p>No. According to the current description, the operator does not sell personal data and does not trade user data.</p></details>
         </article>
       </div>
     </section>
 
     <section id="disclaimer" class="section compact">
       <div class="container legal-container">
-        <article class="legal-panel" aria-labelledby="disclaimer-title">
+        <article class="legal-panel" aria-labelledby="disclaimer-title" data-lang-block="de">
           <p class="kicker">Disclaimer</p>
           <h2 id="disclaimer-title">Rechtlicher Hinweis</h2>
-          <p>
-            SolarScope dient der Information und Visualisierung von Solar-, geomagnetischen, ionosphärischen und funkbezogenen Daten.
-            Die Inhalte werden ohne Gewähr bereitgestellt. Es besteht keine Garantie für Aktualität, Vollständigkeit, Richtigkeit oder ständige Verfügbarkeit.
-          </p>
-          <p>
-            Die App und diese Webseite sind nicht für sicherheitskritische Entscheidungen bestimmt. Externe Datenquellen können ausfallen,
-            verzögert reagieren oder abweichende Werte liefern.
-          </p>
+          <p>SolarScope dient der Information und Visualisierung von Solar-, geomagnetischen, ionosphärischen und funkbezogenen Daten. Die Inhalte werden ohne Gewähr bereitgestellt. Es besteht keine Garantie für Aktualität, Vollständigkeit, Richtigkeit oder ständige Verfügbarkeit.</p>
+          <p>Die App und diese Webseite sind nicht für sicherheitskritische Entscheidungen bestimmt. Externe Datenquellen können ausfallen, verzögert reagieren oder abweichende Werte liefern.</p>
+        </article>
+        <article class="legal-panel" aria-labelledby="disclaimer-title-en" data-lang-block="en" lang="en">
+          <p class="kicker">Disclaimer</p>
+          <h2 id="disclaimer-title-en">Legal disclaimer</h2>
+          <p>SolarScope is intended for information and visualization of solar, geomagnetic, ionospheric and radio-related data. The content is provided without warranty. No guarantee is given for timeliness, completeness, accuracy or permanent availability.</p>
+          <p>The app and this website are not intended for safety-critical decisions. External data sources may fail, respond with delay or provide differing values.</p>
         </article>
       </div>
     </section>
 
     <section id="impressum" class="section compact">
       <div class="container legal-container">
-        <article class="legal-panel" aria-labelledby="impressum-title">
+        <article class="legal-panel" aria-labelledby="impressum-title" data-lang-block="de">
           <p class="kicker">Legal Notice</p>
           <h2 id="impressum-title">Impressum</h2>
-
           <h3>Angaben gemäß § 5 DDG</h3>
-          <p>
-            Pedro Peraza Gonzalez<br>
-            Eichendorffstraße 23<br>
-            57482 Wenden<br>
-            Deutschland
-          </p>
-
+          <p>Pedro Peraza Gonzalez<br>Eichendorffstraße 23<br>57482 Wenden<br>Deutschland</p>
           <h3>Kontakt</h3>
-          <p>
-            E-Mail: <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a>
-          </p>
-
+          <p>E-Mail: <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a></p>
           <h3>Verantwortlich für den Inhalt</h3>
-          <p>
-            Pedro Peraza Gonzalez, Anschrift wie oben.
-          </p>
-
+          <p>Pedro Peraza Gonzalez, Anschrift wie oben.</p>
           <h3>Haftung für Inhalte</h3>
-          <p>
-            Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
-            Eine Verpflichtung zur Überwachung übermittelter oder gespeicherter fremder Informationen besteht jedoch nur nach Maßgabe der gesetzlichen Vorschriften.
-          </p>
-
+          <p>Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Eine Verpflichtung zur Überwachung übermittelter oder gespeicherter fremder Informationen besteht jedoch nur nach Maßgabe der gesetzlichen Vorschriften.</p>
           <h3>Haftung für Links</h3>
-          <p>
-            Diese Webseite und die App können Links zu externen Webseiten Dritter enthalten. Auf deren Inhalte haben wir keinen Einfluss.
-            Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
-          </p>
-
+          <p>Diese Webseite und die App können Links zu externen Webseiten Dritter enthalten. Auf deren Inhalte haben wir keinen Einfluss. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.</p>
           <h3>Urheberrecht</h3>
-          <p>
-            Die durch den Seitenbetreiber erstellten Inhalte und Werke auf dieser Webseite unterliegen dem deutschen Urheberrecht.
-            Beiträge Dritter sind als solche gekennzeichnet. Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung
-            außerhalb der Grenzen des Urheberrechts bedürfen der Zustimmung des jeweiligen Rechteinhabers.
-          </p>
+          <p>Die durch den Seitenbetreiber erstellten Inhalte und Werke auf dieser Webseite unterliegen dem deutschen Urheberrecht. Beiträge Dritter sind als solche gekennzeichnet. Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der Zustimmung des jeweiligen Rechteinhabers.</p>
+        </article>
+        <article class="legal-panel" aria-labelledby="impressum-title-en" data-lang-block="en" lang="en">
+          <p class="kicker">Legal Notice</p>
+          <h2 id="impressum-title-en">Legal notice</h2>
+          <h3>Information according to § 5 DDG</h3>
+          <p>Pedro Peraza Gonzalez<br>Eichendorffstraße 23<br>57482 Wenden<br>Germany</p>
+          <h3>Contact</h3>
+          <p>Email: <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a></p>
+          <h3>Responsible for content</h3>
+          <p>Pedro Peraza Gonzalez, address as above.</p>
+          <h3>Liability for content</h3>
+          <p>As a service provider, we are responsible for our own content on these pages in accordance with general laws. An obligation to monitor transmitted or stored third-party information exists only as required by statutory provisions.</p>
+          <h3>Liability for links</h3>
+          <p>This website and the app may contain links to external third-party websites. We have no influence on their content. The respective provider or operator of the linked pages is always responsible for their content.</p>
+          <h3>Copyright</h3>
+          <p>The content and works created by the site operator on this website are subject to German copyright law. Third-party contributions are marked as such. Reproduction, editing, distribution and any type of use beyond the limits of copyright require the consent of the respective rights holder.</p>
         </article>
       </div>
     </section>
@@ -1617,25 +1906,151 @@
   <footer class="footer">
     <div class="container footer-grid">
       <div>
-        <a class="brand" href="#home" aria-label="Zurück zur Startseite">
+        <a class="brand" href="#home" aria-label="Back to home" data-i18n-aria-label="footerHome">
           <span class="brand-mark" aria-hidden="true"><img src="icon.png" alt=""></span>
           <span>SolarScope</span>
         </a>
-        <p class="small">
-          Offizielle Informationsseite zur SolarScope-App. Keine Cookies, keine Tracking-Skripte und keine externen Fonts in dieser statischen Datei.
-        </p>
+        <p class="small" data-lang-block="de">Offizielle Informationsseite zur SolarScope-App. Keine Cookies, keine Tracking-Skripte und keine externen Fonts in dieser statischen Datei.</p>
+        <p class="small" data-lang-block="en" lang="en">Official information page for the SolarScope app. No cookies, no tracking scripts and no external fonts in this static file.</p>
       </div>
-      <div class="footer-links" aria-label="Footer Links">
-        <a href="#privacy">Datenschutz</a>
-        <a href="#website-privacy">Website-Datenschutz</a>
-        <a href="#impressum">Impressum</a>
-        <a href="#support">Support</a>
-        <a href="#data-sources">Datenquellen</a>
+      <div class="footer-links" aria-label="Footer links">
+        <a href="#privacy" data-i18n="navPrivacy">Privacy</a>
+        <a href="#website-privacy" data-i18n="navWebsitePrivacy">Website privacy</a>
+        <a href="#impressum" data-i18n="navLegal">Legal notice</a>
+        <a href="#support" data-i18n="navSupport">Support</a>
+        <a href="#data-sources" data-i18n="navSources">Data sources</a>
         <a href="#disclaimer">Disclaimer</a>
       </div>
     </div>
   </footer>
 
-  <a class="top-link" href="#home" aria-label="Nach oben">↑</a>
+  <a class="top-link" href="#home" aria-label="Back to top" data-i18n-aria-label="backToTop">↑</a>
+
+  <script>
+    (function () {
+      var storageKey = 'solarscope.website.language.v1';
+      var translations = {
+        de: {
+          title: 'SolarScope — App, Datenschutz, Support & Impressum',
+          description: 'Offizielle Informationsseite zur SolarScope-App mit Funktionen, Datenschutz, Support, Impressum und Datenquellen.',
+          ogTitle: 'SolarScope — App, Datenschutz, Support und Impressum',
+          ogDescription: 'Offizielle Informationsseite zur SolarScope-App mit Funktionen, Datenschutz, Support, Impressum und Datenquellen.',
+          ogLocale: 'de_DE',
+          skipLink: 'Zum Inhalt springen',
+          mainNavigation: 'Hauptnavigation',
+          brandHome: 'SolarScope Startseite',
+          languageSwitchLabel: 'Sprachauswahl',
+          navFeatures: 'Features',
+          navPrivacy: 'Datenschutz',
+          navWebsite: 'Website',
+          navWebsitePrivacy: 'Website-Datenschutz',
+          navSources: 'Datenquellen',
+          navSupport: 'Support',
+          navLegal: 'Impressum',
+          appPreview: 'SolarScope App Vorschau',
+          phoneSubtitle: 'Eine klare Übersicht für Solar- und Funkbedingungen.',
+          phoneSolar: 'Solardaten',
+          phoneLive: 'Live-Ansicht',
+          phoneHF: 'HF-Bedingungen',
+          phoneVHF: 'VHF/Es-Watch',
+          phoneDX: 'DX-Pfad',
+          phoneAssess: 'Analyse',
+          phoneConverters: 'Converter',
+          phoneLocal: 'Lokal',
+          phoneLocation: 'Standort',
+          phoneOptional: 'Optional',
+          phoneTracking: 'Tracking',
+          phoneNone: 'Keins',
+          footerHome: 'Zurück zur Startseite',
+          backToTop: 'Nach oben'
+        },
+        en: {
+          title: 'SolarScope — App, Privacy, Support & Legal Notice',
+          description: 'Official SolarScope information page with app features, privacy policy, support, legal notice and data sources.',
+          ogTitle: 'SolarScope — App, Privacy, Support & Legal Notice',
+          ogDescription: 'Official SolarScope information page with privacy, support, legal notice, data sources and app features.',
+          ogLocale: 'en_US',
+          skipLink: 'Skip to content',
+          mainNavigation: 'Main navigation',
+          brandHome: 'SolarScope home',
+          languageSwitchLabel: 'Language selection',
+          navFeatures: 'Features',
+          navPrivacy: 'Privacy',
+          navWebsite: 'Website',
+          navWebsitePrivacy: 'Website privacy',
+          navSources: 'Data sources',
+          navSupport: 'Support',
+          navLegal: 'Legal notice',
+          appPreview: 'SolarScope App preview',
+          phoneSubtitle: 'A clean overview for solar and radio-related conditions.',
+          phoneSolar: 'Solar data',
+          phoneLive: 'Live view',
+          phoneHF: 'HF conditions',
+          phoneVHF: 'VHF/Es Watch',
+          phoneDX: 'DX path',
+          phoneAssess: 'Assessment',
+          phoneConverters: 'Converters',
+          phoneLocal: 'Local',
+          phoneLocation: 'Location',
+          phoneOptional: 'Optional',
+          phoneTracking: 'Tracking',
+          phoneNone: 'None',
+          footerHome: 'Back to home',
+          backToTop: 'Back to top'
+        }
+      };
+
+      function normalizeLanguage(lang) {
+        return lang === 'de' ? 'de' : 'en';
+      }
+
+      function setMeta(name, value, propertyMode) {
+        var selector = propertyMode ? 'meta[property="' + name + '"]' : 'meta[name="' + name + '"]';
+        var element = document.querySelector(selector);
+        if (element) element.setAttribute('content', value);
+      }
+
+      function applyLanguage(lang, persist) {
+        lang = normalizeLanguage(lang);
+        var t = translations[lang];
+        document.documentElement.lang = lang;
+        document.documentElement.setAttribute('data-lang', lang);
+        document.title = t.title;
+        setMeta('description', t.description, false);
+        setMeta('og:title', t.ogTitle, true);
+        setMeta('og:description', t.ogDescription, true);
+        setMeta('og:locale', t.ogLocale, true);
+
+        document.querySelectorAll('[data-i18n]').forEach(function (node) {
+          var key = node.getAttribute('data-i18n');
+          if (key && Object.prototype.hasOwnProperty.call(t, key)) node.textContent = t[key];
+        });
+
+        document.querySelectorAll('[data-i18n-aria-label]').forEach(function (node) {
+          var key = node.getAttribute('data-i18n-aria-label');
+          if (key && Object.prototype.hasOwnProperty.call(t, key)) node.setAttribute('aria-label', t[key]);
+        });
+
+        document.querySelectorAll('[data-lang-switch]').forEach(function (button) {
+          var active = button.getAttribute('data-lang-switch') === lang;
+          button.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+
+        if (persist) {
+          try { window.localStorage.setItem(storageKey, lang); } catch (error) {}
+        }
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        var initial = document.documentElement.getAttribute('data-lang') || 'en';
+        applyLanguage(initial, false);
+        document.querySelectorAll('[data-lang-switch]').forEach(function (button) {
+          button.addEventListener('click', function () {
+            applyLanguage(button.getAttribute('data-lang-switch'), true);
+          });
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
