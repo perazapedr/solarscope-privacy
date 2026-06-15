@@ -3,33 +3,107 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0b1220">
-  <meta name="description" content="Privacy Policy / Datenschutzerklärung for SolarScope">
-  <title>SolarScope Privacy Policy / Datenschutzerklärung</title>
+  <meta name="theme-color" content="#f7f9ff">
+  <meta name="description" content="SolarScope ist eine App zur übersichtlichen Anzeige von Solar-, geomagnetischen, ionosphärischen und funkbezogenen Daten. Hier finden Sie Datenschutz, Support, Impressum und Datenquellen.">
+  <meta name="robots" content="index,follow">
+  <meta property="og:title" content="SolarScope — App, Datenschutz, Support und Impressum">
+  <meta property="og:description" content="Offizielle Informationsseite zur SolarScope-App mit Datenschutz, Support, Impressum und Datenquellen.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <title>SolarScope — App, Datenschutz, Support & Impressum</title>
+
+  <!--
+    SolarScope Website
+    Single-file static website.
+    No external fonts, no analytics, no tracking scripts, no cookies.
+
+    TODO: Replace placeholder App Store / Google Play links after publication.
+    TODO: If you do not use GitHub Pages, adjust the Website Privacy section under "Hosting".
+    TODO: If you add analytics, external fonts, contact forms or cookies later, update the privacy notices.
+  -->
+
   <style>
     :root {
-      --bg: #f6f8fb;
-      --card: #ffffff;
-      --text: #18212f;
-      --muted: #5b6678;
-      --line: #dbe3ee;
-      --accent: #1f5eff;
-      --accent-soft: #edf3ff;
-      --shadow: 0 8px 24px rgba(16, 24, 40, 0.08);
-      --radius: 16px;
-      --max: 980px;
+      color-scheme: light;
+      --bg: #f6f8fc;
+      --bg-soft: #ffffff;
+      --bg-glass: rgba(255, 255, 255, 0.76);
+      --text: #111827;
+      --muted: #64748b;
+      --muted-strong: #475569;
+      --line: rgba(148, 163, 184, 0.28);
+      --line-strong: rgba(100, 116, 139, 0.35);
+      --accent: #0b5cff;
+      --accent-2: #21c6ff;
+      --accent-3: #f6b73c;
+      --ok: #16a34a;
+      --warning: #b45309;
+      --danger: #dc2626;
+      --card: rgba(255, 255, 255, 0.88);
+      --card-solid: #ffffff;
+      --shadow: 0 24px 70px rgba(15, 23, 42, 0.10);
+      --shadow-soft: 0 12px 34px rgba(15, 23, 42, 0.07);
+      --radius-xl: 34px;
+      --radius-lg: 26px;
+      --radius: 18px;
+      --radius-sm: 12px;
+      --max: 1160px;
+      --legal-max: 920px;
+      --nav-h: 72px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        color-scheme: dark;
+        --bg: #070b12;
+        --bg-soft: #0b1220;
+        --bg-glass: rgba(11, 18, 32, 0.74);
+        --text: #f8fafc;
+        --muted: #94a3b8;
+        --muted-strong: #cbd5e1;
+        --line: rgba(148, 163, 184, 0.22);
+        --line-strong: rgba(203, 213, 225, 0.32);
+        --accent: #62a0ff;
+        --accent-2: #35d5ff;
+        --accent-3: #f8c45e;
+        --card: rgba(15, 23, 42, 0.86);
+        --card-solid: #111827;
+        --shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+        --shadow-soft: 0 14px 36px rgba(0, 0, 0, 0.26);
+      }
     }
 
     * { box-sizing: border-box; }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-h) + 22px);
+    }
 
     body {
       margin: 0;
+      min-width: 320px;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      line-height: 1.7;
+      line-height: 1.68;
       color: var(--text);
-      background: linear-gradient(180deg, #eef3fb 0%, var(--bg) 220px, var(--bg) 100%);
+      background:
+        radial-gradient(circle at top left, rgba(33, 198, 255, 0.22), transparent 34rem),
+        radial-gradient(circle at 86% 8%, rgba(246, 183, 60, 0.20), transparent 28rem),
+        linear-gradient(180deg, var(--bg-soft) 0%, var(--bg) 34rem, var(--bg) 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.55), transparent 56%);
+      z-index: -1;
     }
 
     a {
@@ -39,620 +113,1535 @@
 
     a:hover { text-decoration: underline; }
 
-    .container {
-      width: min(var(--max), calc(100% - 32px));
-      margin: 0 auto;
+    a:focus-visible,
+    button:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid color-mix(in srgb, var(--accent) 55%, transparent);
+      outline-offset: 3px;
+      border-radius: 10px;
     }
 
-    header { padding: 40px 0 24px; }
+    img { max-width: 100%; }
+
+    .container {
+      width: min(var(--max), calc(100% - 34px));
+      margin-inline: auto;
+    }
+
+    .legal-container {
+      width: min(var(--legal-max), 100%);
+      margin-inline: auto;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      transform: translateY(-140%);
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: var(--card-solid);
+      color: var(--text);
+      box-shadow: var(--shadow-soft);
+      z-index: 999;
+    }
+
+    .skip-link:focus { transform: translateY(0); }
+
+    .site-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      min-height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      background: var(--bg-glass);
+      backdrop-filter: blur(22px) saturate(1.4);
+      -webkit-backdrop-filter: blur(22px) saturate(1.4);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding-block: 12px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
+      font-weight: 760;
+      letter-spacing: -0.025em;
+      white-space: nowrap;
+    }
+
+    .brand:hover { text-decoration: none; }
+
+    .brand-mark {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background:
+        radial-gradient(circle at 35% 30%, rgba(255,255,255,0.9), transparent 28%),
+        linear-gradient(135deg, #0b5cff, #21c6ff 55%, #f6b73c);
+      box-shadow: 0 10px 24px rgba(11, 92, 255, 0.18);
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 6px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav-links a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 8px 11px;
+      border-radius: 999px;
+      color: var(--muted-strong);
+      font-size: 0.94rem;
+      line-height: 1.1;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      background: color-mix(in srgb, var(--accent) 8%, transparent);
+      text-decoration: none;
+    }
 
     .hero {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      box-shadow: var(--shadow);
-      padding: 28px;
+      padding: 72px 0 34px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(290px, 0.72fr);
+      align-items: center;
+      gap: 42px;
     }
 
     .eyebrow {
-      display: inline-block;
-      font-size: 0.92rem;
-      color: var(--accent);
-      background: var(--accent-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 34px;
       padding: 6px 12px;
+      border: 1px solid var(--line);
       border-radius: 999px;
-      margin-bottom: 12px;
+      background: color-mix(in srgb, var(--card-solid) 82%, transparent);
+      color: var(--muted-strong);
+      font-weight: 650;
+      font-size: 0.93rem;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 14%, transparent);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      letter-spacing: -0.045em;
+      line-height: 1.08;
+      color: var(--text);
     }
 
     h1 {
-      margin: 0 0 10px;
-      font-size: clamp(1.8rem, 2.5vw, 2.7rem);
-      line-height: 1.2;
+      margin: 18px 0 14px;
+      max-width: 12ch;
+      font-size: clamp(3.05rem, 9vw, 6.9rem);
+      font-weight: 820;
     }
 
-    .lead {
+    .hero-lead {
+      max-width: 68ch;
       margin: 0;
-      color: var(--muted);
-      max-width: 70ch;
+      font-size: clamp(1.12rem, 2vw, 1.42rem);
+      line-height: 1.48;
+      color: var(--muted-strong);
     }
 
-    .meta {
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 12px 18px;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      font-weight: 720;
+      line-height: 1.1;
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      text-decoration: none;
+    }
+
+    .button.primary {
+      color: #ffffff;
+      background: linear-gradient(135deg, #0b5cff, #0077ff 48%, #21c6ff);
+      box-shadow: 0 18px 42px rgba(11, 92, 255, 0.26);
+    }
+
+    .button.secondary {
+      color: var(--text);
+      background: var(--card-solid);
+      border-color: var(--line);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .button.ghost {
+      color: var(--accent);
+      background: color-mix(in srgb, var(--accent) 9%, transparent);
+      border-color: color-mix(in srgb, var(--accent) 18%, transparent);
+    }
+
+    .availability-note {
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .device-card {
+      position: relative;
+      min-height: 520px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background:
+        radial-gradient(circle at 32% 18%, rgba(33, 198, 255, 0.28), transparent 26%),
+        radial-gradient(circle at 72% 20%, rgba(246, 183, 60, 0.22), transparent 28%),
+        linear-gradient(180deg, color-mix(in srgb, var(--card-solid) 94%, transparent), color-mix(in srgb, var(--card-solid) 72%, transparent));
+      box-shadow: var(--shadow);
+      padding: 28px;
+      overflow: hidden;
+    }
+
+    .device-card::after {
+      content: "";
+      position: absolute;
+      inset: auto -40px -80px -40px;
+      height: 180px;
+      background: radial-gradient(ellipse at center, rgba(11, 92, 255, 0.20), transparent 62%);
+      pointer-events: none;
+    }
+
+    .phone {
+      position: relative;
+      z-index: 1;
+      width: min(286px, 88%);
+      min-height: 480px;
+      margin-inline: auto;
+      padding: 14px;
+      border-radius: 44px;
+      border: 1px solid color-mix(in srgb, var(--line-strong) 78%, transparent);
+      background: linear-gradient(145deg, #111827, #020617);
+      box-shadow: 0 28px 80px rgba(2, 6, 23, 0.36);
+    }
+
+    .phone::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      width: 84px;
+      height: 23px;
+      transform: translateX(-50%);
+      border-radius: 999px;
+      background: #020617;
+      z-index: 3;
+    }
+
+    .phone-screen {
+      min-height: 452px;
+      border-radius: 34px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% -12%, rgba(246, 183, 60, 0.78), transparent 28%),
+        radial-gradient(circle at 18% 18%, rgba(33, 198, 255, 0.34), transparent 30%),
+        linear-gradient(180deg, #07111f 0%, #0a1630 52%, #121826 100%);
+      color: #ffffff;
+      padding: 48px 20px 20px;
+    }
+
+    .phone-icon {
+      width: 84px;
+      height: 84px;
+      margin: 0 auto 20px;
+      border-radius: 25px;
+      overflow: hidden;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 14px;
-      margin-top: 24px;
+      place-items: center;
+      background:
+        radial-gradient(circle at 36% 28%, rgba(255,255,255,0.9), transparent 24%),
+        linear-gradient(135deg, #0b5cff, #21c6ff 56%, #f6b73c);
+      box-shadow: 0 20px 48px rgba(33, 198, 255, 0.24);
+    }
+
+    .phone-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .screen-title {
+      margin: 0 0 4px;
+      text-align: center;
+      font-size: 1.42rem;
+      font-weight: 780;
+      letter-spacing: -0.04em;
+    }
+
+    .screen-subtitle {
+      margin: 0 auto 18px;
+      max-width: 210px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    .screen-card {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 22px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      margin-top: 12px;
+    }
+
+    .screen-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.9rem;
+    }
+
+    .screen-row:last-child { border-bottom: 0; }
+
+    .screen-row span:first-child { color: rgba(255, 255, 255, 0.70); }
+    .screen-row span:last-child { font-weight: 750; }
+
+    .section {
+      padding: 56px 0;
+    }
+
+    .section.compact { padding: 34px 0; }
+
+    .section-header {
+      max-width: 760px;
+      margin-bottom: 26px;
+    }
+
+    .kicker {
+      margin: 0 0 8px;
+      color: var(--accent);
+      font-size: 0.94rem;
+      font-weight: 760;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: clamp(2.05rem, 5vw, 4.1rem);
+      font-weight: 810;
+    }
+
+    .section-lead {
+      margin: 0;
+      color: var(--muted-strong);
+      font-size: clamp(1.02rem, 2vw, 1.2rem);
+      line-height: 1.56;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--card);
+      box-shadow: var(--shadow-soft);
+      padding: 24px;
+    }
+
+    .card.feature {
+      min-height: 214px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .icon-bubble {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 15%, transparent), color-mix(in srgb, var(--accent-2) 18%, transparent));
+      border: 1px solid color-mix(in srgb, var(--accent) 16%, transparent);
+      color: var(--accent);
+      font-weight: 820;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.18rem;
+      letter-spacing: -0.032em;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted-strong);
+    }
+
+    .card p:last-child { margin-bottom: 0; }
+
+    .status-list {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .status-list li {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 10px;
+      align-items: start;
+      color: var(--muted-strong);
+    }
+
+    .check {
+      width: 24px;
+      height: 24px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--ok) 14%, transparent);
+      color: var(--ok);
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .notice {
+      border: 1px solid color-mix(in srgb, var(--accent) 20%, var(--line));
+      border-radius: var(--radius-lg);
+      background:
+        radial-gradient(circle at 8% 0%, color-mix(in srgb, var(--accent-2) 13%, transparent), transparent 24rem),
+        color-mix(in srgb, var(--card-solid) 86%, transparent);
+      padding: 22px;
+    }
+
+    .notice p { color: var(--muted-strong); }
+    .notice p:last-child { margin-bottom: 0; }
+
+    .legal-panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background: var(--card);
+      box-shadow: var(--shadow);
+      padding: clamp(22px, 4vw, 42px);
+      margin-bottom: 22px;
+    }
+
+    .legal-panel h2 {
+      font-size: clamp(1.9rem, 4vw, 3.2rem);
+      margin-bottom: 18px;
+    }
+
+    .legal-panel h3 {
+      margin: 28px 0 10px;
+      font-size: 1.18rem;
+      letter-spacing: -0.022em;
+    }
+
+    .legal-panel p,
+    .legal-panel li {
+      color: var(--muted-strong);
+    }
+
+    .legal-panel ul {
+      margin: 0 0 16px 1.25rem;
+      padding: 0;
+    }
+
+    .legal-panel li + li { margin-top: 6px; }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 22px 0 0;
     }
 
     .meta-card {
       border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 14px 16px;
-      background: #fbfdff;
+      border-radius: 18px;
+      background: color-mix(in srgb, var(--card-solid) 78%, transparent);
+      padding: 15px;
     }
 
     .meta-card .label {
       display: block;
-      font-size: 0.9rem;
-      color: var(--muted);
       margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 0.88rem;
     }
 
-    nav { margin: 22px 0 10px; }
+    .meta-card .value {
+      font-weight: 700;
+      color: var(--text);
+      overflow-wrap: anywhere;
+    }
 
     .toc {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
       padding: 0;
-      margin: 0;
+      margin: 20px 0 0;
       list-style: none;
-      align-items: stretch;
-    }
-
-    .toc li {
-      display: flex;
     }
 
     .toc a {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 42px;
-      padding: 9px 12px;
+      min-height: 40px;
+      padding: 8px 12px;
       border: 1px solid var(--line);
       border-radius: 999px;
-      background: #fff;
+      background: var(--card-solid);
+      color: var(--muted-strong);
+      font-size: 0.94rem;
+    }
+
+    .toc a:hover {
       color: var(--text);
-      font-size: 0.95rem;
-      line-height: 1.2;
-      white-space: nowrap;
+      text-decoration: none;
+      border-color: color-mix(in srgb, var(--accent) 32%, var(--line));
     }
 
-    main { padding-bottom: 48px; }
+    .summary-box {
+      border: 1px solid color-mix(in srgb, var(--ok) 22%, var(--line));
+      border-radius: var(--radius-lg);
+      background: color-mix(in srgb, var(--ok) 7%, var(--card-solid));
+      padding: 22px;
+    }
 
-    .panel {
-      background: var(--card);
+    .source-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      padding: 0;
+      margin: 18px 0 0;
+      list-style: none;
+    }
+
+    .source-list li {
       border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 28px;
-      margin-bottom: 22px;
+      border-radius: 18px;
+      background: color-mix(in srgb, var(--card-solid) 72%, transparent);
+      padding: 16px;
     }
 
-    .lang-switch {
+    .source-list strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--text);
+    }
+
+    details {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: color-mix(in srgb, var(--card-solid) 72%, transparent);
+      padding: 0;
+      overflow: hidden;
+    }
+
+    details + details { margin-top: 10px; }
+
+    summary {
+      cursor: pointer;
+      padding: 16px 18px;
+      font-weight: 740;
+      color: var(--text);
+      list-style-position: inside;
+    }
+
+    details p {
+      padding: 0 18px 18px;
+      margin: 0;
+    }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 34px 0 44px;
+      color: var(--muted);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .footer-links {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 20px;
-      align-items: stretch;
+      justify-content: flex-end;
+      gap: 10px 14px;
     }
 
-    .lang-switch a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 42px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: #fff;
-      color: var(--text);
-      line-height: 1.2;
-      white-space: nowrap;
-    }
-
-    h2 {
-      margin: 0 0 18px;
-      font-size: 1.7rem;
-      line-height: 1.3;
-    }
-
-    h3 {
-      margin-top: 28px;
-      margin-bottom: 8px;
-      font-size: 1.15rem;
-      line-height: 1.4;
-    }
-
-    p { margin: 0 0 12px; }
-
-    ul {
-      margin: 0 0 14px 1.25rem;
-      padding: 0;
-    }
-
-    li + li { margin-top: 6px; }
+    .footer-links a { color: var(--muted-strong); }
 
     .small {
       font-size: 0.94rem;
       color: var(--muted);
     }
 
-    code {
-      background: #f2f5fa;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 0.1em 0.4em;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: 0.92em;
+    .muted { color: var(--muted); }
+    .strong { color: var(--text); font-weight: 760; }
+
+    .top-link {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 40;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--bg-glass);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-soft);
+      color: var(--text);
+      font-weight: 900;
     }
 
-    footer {
-      color: var(--muted);
-      font-size: 0.95rem;
-      padding: 8px 0 40px;
-    }
+    .top-link:hover { text-decoration: none; }
 
-    @media (max-width: 640px) {
-      .hero,
-      .panel {
-        padding: 20px;
+    @media (max-width: 980px) {
+      .hero-grid,
+      .grid.two,
+      .grid.three,
+      .footer-grid {
+        grid-template-columns: 1fr;
       }
 
-      .container {
-        width: min(var(--max), calc(100% - 20px));
+      .device-card { min-height: auto; }
+      .meta-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .footer-links { justify-content: flex-start; }
+    }
+
+    @media (max-width: 740px) {
+      :root { --nav-h: 64px; }
+
+      .site-nav { position: static; }
+
+      .nav-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+        overflow-x: auto;
+        width: 100%;
+        flex-wrap: nowrap;
+        padding-bottom: 2px;
+      }
+
+      .nav-links a { white-space: nowrap; }
+
+      .hero { padding-top: 46px; }
+      h1 { max-width: 10ch; }
+      .hero-actions { flex-direction: column; align-items: stretch; }
+      .button { width: 100%; }
+      .meta-grid { grid-template-columns: 1fr; }
+      .source-list { grid-template-columns: 1fr; }
+      .top-link { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
       }
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <div class="container">
-      <div class="hero">
-        <div class="eyebrow">SolarScope</div>
-        <h1>Privacy Policy / Datenschutzerklärung</h1>
-        <p class="lead">
-          This page contains the English privacy policy and the German Datenschutzerklärung for the SolarScope app.
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <nav class="site-nav" aria-label="Hauptnavigation">
+    <div class="container nav-inner">
+      <a class="brand" href="#home" aria-label="SolarScope Startseite">
+        <span class="brand-mark" aria-hidden="true">
+          <!-- Place icon.png in the same folder as this index.html. If unavailable, the gradient background remains visible. -->
+          <img src="icon.png" alt="" loading="eager">
+        </span>
+        <span>SolarScope</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#privacy">Datenschutz</a></li>
+        <li><a href="#website-privacy">Website</a></li>
+        <li><a href="#data-sources">Datenquellen</a></li>
+        <li><a href="#support">Support</a></li>
+        <li><a href="#impressum">Impressum</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header id="home" class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow">Solar, geomagnetic & radio data</span>
+        <h1>SolarScope</h1>
+        <p class="hero-lead">
+          SolarScope ist eine mobile App zur übersichtlichen Anzeige von Solar-, geomagnetischen,
+          ionosphärischen und funkbezogenen Mess- und Prognosedaten. Ergänzend bietet die App lokale
+          Converter- und optional standortbezogene Funktionen.
         </p>
 
-        <div class="meta">
-          <div class="meta-card">
-            <span class="label">Effective date / Stand</span>
-            <span>April 4, 2026 / 4. April 2026</span>
-          </div>
-          <div class="meta-card">
-            <span class="label">App</span>
-            <span>SolarScope (Android / iOS)</span>
-          </div>
-          <div class="meta-card">
-            <span class="label">Controller / Verantwortlicher</span>
-            <span>Pedro Peraza Gonzalez</span>
-          </div>
-          <div class="meta-card">
-            <span class="label">Contact / Kontakt</span>
-            <span><a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a></span>
+        <div class="hero-actions" aria-label="App-Links und rechtliche Informationen">
+          <!-- TODO: Replace # with the real App Store URL once the iOS app is published. -->
+          <a class="button primary" href="#" aria-label="Download on the App Store placeholder">Download on the App Store</a>
+          <!-- TODO: Replace # with the real Google Play URL once available. -->
+          <a class="button secondary" href="#" aria-label="Get it on Google Play placeholder">Get it on Google Play</a>
+          <a class="button ghost" href="#privacy">Privacy ansehen</a>
+        </div>
+        <p class="availability-note">
+          TODO: App-Store- und Google-Play-Links nach Veröffentlichung ersetzen.
+        </p>
+      </div>
+
+      <div class="device-card" aria-label="SolarScope App Vorschau">
+        <div class="phone" aria-hidden="true">
+          <div class="phone-screen">
+            <div class="phone-icon">
+              <img src="icon.png" alt="">
+            </div>
+            <p class="screen-title">SolarScope</p>
+            <p class="screen-subtitle">A clean overview for solar and radio-related conditions.</p>
+            <div class="screen-card">
+              <div class="screen-row"><span>Solar data</span><span>Live view</span></div>
+              <div class="screen-row"><span>Geomagnetic</span><span>Overview</span></div>
+              <div class="screen-row"><span>Ionosonde</span><span>External</span></div>
+              <div class="screen-row"><span>Location</span><span>Optional</span></div>
+            </div>
+            <div class="screen-card">
+              <div class="screen-row"><span>Tracking</span><span>None</span></div>
+              <div class="screen-row"><span>Ads</span><span>No SDK</span></div>
+              <div class="screen-row"><span>Accounts</span><span>No login</span></div>
+            </div>
           </div>
         </div>
-
-        <nav aria-label="Table of contents">
-          <ul class="toc">
-            <li><a href="#privacy-en">English</a></li>
-            <li><a href="#privacy-de">Deutsch</a></li>
-            <li><a href="#short-summary-de">Kurzfassung</a></li>
-          </ul>
-        </nav>
       </div>
     </div>
   </header>
 
-  <main class="container">
-    <section id="privacy-en" class="panel" aria-labelledby="privacy-en-title">
-      <div class="lang-switch">
-        <a href="#privacy-en">English version</a>
-        <a href="#privacy-de">Zur deutschen Version</a>
+  <main id="main">
+    <section id="features" class="section">
+      <div class="container">
+        <div class="section-header">
+          <p class="kicker">Was SolarScope bietet</p>
+          <h2>Eine ruhige, klare Oberfläche für komplexe Daten.</h2>
+          <p class="section-lead">
+            Die Webseite beschreibt nur Funktionen, die aus der bisherigen Datenschutzerklärung ableitbar sind.
+            Es werden keine zusätzlichen App-Funktionen erfunden.
+          </p>
+        </div>
+
+        <div class="grid three">
+          <article class="card feature">
+            <div class="icon-bubble">☀</div>
+            <h3>Solar and geomagnetic overview</h3>
+            <p>
+              SolarScope stellt solar- und geomagnetisch bezogene Mess- oder Prognosedaten übersichtlich dar.
+            </p>
+          </article>
+
+          <article class="card feature">
+            <div class="icon-bubble">⌁</div>
+            <h3>Radio-related propagation data</h3>
+            <p>
+              Die App nutzt externe fachliche Datenquellen, um funkbezogene Informationen und Ionosonde-Daten anzuzeigen.
+            </p>
+          </article>
+
+          <article class="card feature">
+            <div class="icon-bubble">◎</div>
+            <h3>Local tools and converters</h3>
+            <p>
+              Bestimmte Einstellungen, Caches, Verlaufswerte und optionale Eingaben werden lokal auf dem Gerät gespeichert.
+            </p>
+          </article>
+
+          <article class="card feature">
+            <div class="icon-bubble">⌖</div>
+            <h3>Optional location features</h3>
+            <p>
+              Standortzugriff ist optional und wird nur für standortbezogene Funktionen benötigt. Eine allgemeine Nutzung ist auch ohne Standort möglich.
+            </p>
+          </article>
+
+          <article class="card feature">
+            <div class="icon-bubble">↗</div>
+            <h3>External scientific data sources</h3>
+            <p>
+              Je nach Funktion werden externe Quellen wie HAMQSL, Juliusruh / IAP / GIRO DIDBase, NOAA SWPC, Open-Meteo oder Nominatim genutzt.
+            </p>
+          </article>
+
+          <article class="card feature">
+            <div class="icon-bubble">✓</div>
+            <h3>No ads or analytics SDKs</h3>
+            <p>
+              Nach aktuellem App-Stand werden keine Werbe-SDKs, keine Analytics-SDKs und kein separates Crash-Reporting-SDK eingesetzt.
+            </p>
+          </article>
+        </div>
       </div>
-
-      <h2 id="privacy-en-title">Privacy Policy (English)</h2>
-
-      <p>
-        <strong>Effective date:</strong> April 4, 2026<br>
-        <strong>App:</strong> SolarScope (Android / iOS)<br>
-        <strong>Controller:</strong> Pedro Peraza Gonzalez<br>
-        <strong>Postal address:</strong> Eichendorffstraße 23, 57482 Wenden, Germany<br>
-        <strong>Email:</strong> <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a>
-      </p>
-
-      <h3>1. Controller</h3>
-      <p>
-        The controller for the processing described in this app is Pedro Peraza Gonzalez,
-        Eichendorffstraße 23, 57482 Wenden, Germany,
-        email: <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a>.
-      </p>
-
-      <h3>2. Contact</h3>
-      <p>
-        If you have questions about data protection, you can contact
-        <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a>.
-      </p>
-
-      <h3>3. General information about the app and scope</h3>
-      <p>
-        SolarScope is a mobile app used to display solar, geomagnetic and radio-related measurement or forecast data
-        and to provide local converter and location-based features. These notices apply to the app itself.
-        External websites and third-party providers are subject to their own privacy terms.
-      </p>
-
-      <h3>4. What data may be processed when using the app</h3>
-      <p>
-        Depending on the feature used, the app may process technical connection data for network requests,
-        optional location data, search terms and coordinates for place search or reverse geocoding,
-        user-entered content such as a callsign, locator or place name, and locally stored settings,
-        cache and history data.
-      </p>
-      <p>
-        Based on the current state of the app, there are no user accounts, no login function, no user profiles,
-        no advertising SDKs, no analytics SDKs and no separate crash-reporting SDK in use.
-      </p>
-
-      <h3>5. App permissions</h3>
-      <p>
-        According to the current app setup, the app uses Internet access and may request location access
-        when you actively use location-based features. Location access is feature-specific and is not required
-        for general use of the app.
-      </p>
-
-      <h3>6. Local storage on the device</h3>
-      <p>
-        The app stores several items locally on the device, including an optional callsign, UI and convenience settings,
-        local caches for solar and ionosonde data, local trend history, geocoding caches and Local Radio Assessment settings
-        including a manual locator and the last locally saved current position.
-      </p>
-      <p>
-        According to the current app behavior, these local data are not automatically uploaded to the operator.
-        Where no fixed retention period exists in the app logic, the data remain stored until overwritten,
-        deleted in the app, or removed by clearing app data or uninstalling the app.
-      </p>
-
-      <h3>7. Use of external data sources and third parties</h3>
-      <p>
-        The app directly requests content from external data sources. Depending on the feature used,
-        these may include HAMQSL, Juliusruh / IAP / GIRO DIDBase, NOAA SWPC, Open-Meteo and Nominatim / OpenStreetMap.
-        When such direct requests are made, the relevant providers may process technically required connection data
-        in order to answer the request.
-      </p>
-
-      <h3>8. Location data / altitude feature / current position</h3>
-      <p>
-        Location data are processed only if you actively use location-based features and grant the relevant permission.
-        General use of the app is possible without location access. According to the current app behavior,
-        location is not tracked in the background.
-      </p>
-      <p>
-        The altitude feature is not purely local. GPS or system values may be processed locally, but the app may also
-        transmit current coordinates to Open-Meteo for online terrain elevation fallback or cross-checking.
-        The app operator does not use this feature to create movement profiles.
-      </p>
-
-      <h3>9. Geocoding / place search / nearest place</h3>
-      <p>
-        For place search and reverse geocoding, the app may use Nominatim at
-        <a href="https://nominatim.openstreetmap.org/" target="_blank" rel="noopener noreferrer">nominatim.openstreetmap.org</a>.
-        Depending on the feature, place names, search terms, coordinates, language settings and technical request metadata
-        may be transmitted. Results may be cached locally on the device.
-      </p>
-
-      <h3>10. Juliusruh / ionosonde / HAMQSL / other radio-related data sources</h3>
-      <p>
-        SolarScope uses external specialist data sources exclusively to display scientific, technical and radio-related
-        measurement or forecast data in the app.
-      </p>
-      <p>
-        Important: The app operator does not sell personal data. The app does not engage in data trading.
-        Juliusruh, GIRO, HAMQSL, NOAA and comparable sources are used as specialist or measurement data sources for display,
-        not as purchased personal user data. The app operator does not instruct these sources to market users' personal data
-        for advertising or sale.
-      </p>
-      <p>
-        The website
-        <a href="https://prop.kc2g.com/stations/" target="_blank" rel="noopener noreferrer">prop.kc2g.com/stations/</a>
-        linked in the app is only an external link and not a data source actively fetched by the app.
-      </p>
-
-      <h3>11. External links inside the app</h3>
-      <p>
-        The app contains external links, for example to HAMQSL, prop.kc2g.com, Juliusruh / IAP,
-        OpenStreetMap attribution pages and the browser version of this privacy policy.
-        If you open such a link, a direct connection will be established between your device and the relevant third-party provider.
-      </p>
-
-      <h3>12. Legal bases for processing</h3>
-      <p>
-        Where personal data or data linkable to a person are processed, the current assessment mainly relies on
-        Art. 6(1)(b) GDPR for app features actively requested by you and Art. 6(1)(f) GDPR for technically necessary
-        local storage, caching, UI persistence and reliable app operation. Email enquiries may rely on Art. 6(1)(b)
-        or Art. 6(1)(f) GDPR depending on the content of the enquiry.
-      </p>
-
-      <h3>13. Recipients / categories of recipients</h3>
-      <p>
-        Depending on the feature used, data may be transmitted to external data sources and API providers,
-        to providers of external websites, or to involved email providers.
-        According to the current app structure, there is no own user database and no dedicated backend service
-        for these processing activities.
-      </p>
-
-      <h3>14. International transfers</h3>
-      <p>
-        For third-party providers accessed directly by the app, it cannot be ruled out that data may also be processed
-        outside the EU / EEA. This may in particular apply to providers located in the United States.
-        Direct external links and direct external requests remain subject to the privacy practices of the respective provider.
-      </p>
-
-      <h3>15. Storage period / deletion</h3>
-      <p>
-        According to the current app logic, locally stored settings, caches, history values, callsign data,
-        a stored manual locator and a locally stored last current position remain on the device until they are overwritten,
-        deleted in the app, removed by clearing app data, or removed by uninstalling the app.
-        Runtime-only values are held only for the duration of active use.
-      </p>
-
-      <h3>16. Security</h3>
-      <p>
-        Based on the current implementation, the app attempts to use HTTPS for external requests wherever supported
-        by the relevant provider. However, absolute security cannot be guaranteed.
-      </p>
-
-      <h3>17. Rights of data subjects</h3>
-      <p>
-        Where the GDPR applies, you may in particular have rights of access, rectification, erasure,
-        restriction of processing, data portability and objection. For direct third-party requests,
-        the relevant third-party provider may also need to be contacted.
-      </p>
-
-      <h3>18. Right to lodge a complaint with a supervisory authority</h3>
-      <p>
-        You have the right to lodge a complaint with a data protection supervisory authority,
-        in particular in the Member State of your habitual residence, place of work or the place of the alleged infringement.
-      </p>
-
-      <h3>19. Requirement to provide data</h3>
-      <p>
-        There is no legal or contractual obligation to provide personal data for general use of the app.
-        However, some data may be technically required if you want to use specific features,
-        for example location data for location-based functions, search terms for place search,
-        coordinates for reverse geocoding or a callsign for optional local display in the app.
-      </p>
-
-      <h3>20. Children and young people</h3>
-      <p>
-        The app is not specifically directed at children. The current app design does not indicate any deliberate
-        collection of children's personal data.
-      </p>
     </section>
 
-    <section id="privacy-de" class="panel" aria-labelledby="privacy-de-title">
-      <div class="lang-switch">
-        <a href="#privacy-en">Back to English</a>
-        <a href="#privacy-de">Deutsche Version</a>
+    <section class="section compact">
+      <div class="container">
+        <div class="notice">
+          <p class="strong">Transparenz-Hinweis</p>
+          <p>
+            Diese Seite ist als statische, datenschutzfreundliche One-Page-Webseite aufgebaut: keine externen Fonts,
+            keine Tracking-Skripte, keine Analytics-Einbindung und keine Cookies im Quellcode dieser Datei.
+            Wenn später Dienste ergänzt werden, müssen Datenschutz- und Cookie-Hinweise angepasst werden.
+          </p>
+        </div>
       </div>
-
-      <h2 id="privacy-de-title">Datenschutzerklärung (Deutsch)</h2>
-
-      <p>
-        <strong>Stand:</strong> 4. April 2026<br>
-        <strong>App:</strong> SolarScope (Android / iOS)<br>
-        <strong>Verantwortlicher:</strong> Pedro Peraza Gonzalez<br>
-        <strong>Anschrift:</strong> Eichendorffstraße 23, 57482 Wenden<br>
-        <strong>E-Mail:</strong> <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a>
-      </p>
-
-      <h3>1. Verantwortlicher</h3>
-      <p>
-        Verantwortlicher für die in dieser App beschriebene Datenverarbeitung ist Pedro Peraza Gonzalez,
-        Eichendorffstraße 23, 57482 Wenden,
-        E-Mail: <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a>.
-      </p>
-
-      <h3>2. Kontakt</h3>
-      <p>
-        Bei Fragen zum Datenschutz können Sie uns unter
-        <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a>
-        kontaktieren.
-      </p>
-
-      <h3>3. Allgemeines zur App und zum Geltungsbereich</h3>
-      <p>
-        SolarScope ist eine mobile App zur Anzeige von Solar-, geomagnetischen und funkbezogenen Mess- und Prognosedaten
-        sowie für lokale Converter- und Standortfunktionen. Diese Hinweise betreffen die App selbst.
-        Für externe Websites und Drittanbieter gelten deren eigene Datenschutzbedingungen.
-      </p>
-
-      <h3>4. Welche Daten bei der Nutzung der App verarbeitet werden</h3>
-      <p>
-        Je nach genutzter Funktion verarbeitet die App technische Verbindungsdaten bei Netzwerkanfragen,
-        optionale Standortdaten, Suchbegriffe und Koordinaten bei Ortssuche bzw. Reverse-Geocoding,
-        vom Nutzer eingegebene Inhalte wie Callsign, Locator oder Ortsbezeichnungen sowie lokal gespeicherte
-        Einstellungs-, Cache- und Verlaufsdaten.
-      </p>
-      <p>
-        Nach aktuellem App-Stand werden keine Nutzerkonten, keine Login-Funktion, keine Nutzerprofile,
-        keine Werbe-SDKs, keine Analytics-SDKs und kein gesondertes Crash-Reporting-SDK eingesetzt.
-      </p>
-
-      <h3>5. Berechtigungen der App</h3>
-      <p>
-        Die App nutzt Internetzugriff und kann eine Standortfreigabe anfragen, wenn Sie standortbezogene Funktionen
-        aktiv verwenden. Die Standortberechtigung ist funktionsbezogen und für die allgemeine Nutzung der App
-        nicht zwingend erforderlich.
-      </p>
-
-      <h3>6. Lokale Speicherung auf dem Endgerät</h3>
-      <p>
-        Die App speichert lokal auf dem Endgerät insbesondere ein optionales Callsign, UI- und Komforteinstellungen,
-        lokale Caches für Solar- und Ionosonde-Daten, lokale Verlaufsdaten, Geocoding-Caches sowie Einstellungen
-        der Local-Radio-Assessment-Funktion einschließlich eines manuellen Locators und der zuletzt lokal gespeicherten
-        aktuellen Position.
-      </p>
-      <p>
-        Diese Daten werden nach aktuellem App-Verhalten nicht automatisch an den Betreiber hochgeladen.
-        Soweit keine feste Frist vorgesehen ist, bleiben sie gespeichert, bis sie überschrieben,
-        in der App gelöscht, durch Löschen der App-Daten entfernt oder durch Deinstallation beseitigt werden.
-      </p>
-
-      <h3>7. Nutzung externer Datenquellen und Drittanbieter</h3>
-      <p>
-        Die App ruft Inhalte direkt von externen Datenquellen ab. Je nach genutzter Funktion können dazu insbesondere
-        HAMQSL, Juliusruh / IAP / GIRO DIDBase, NOAA SWPC, Open-Meteo sowie Nominatim / OpenStreetMap gehören.
-        Bei solchen direkten Abrufen können die jeweiligen Anbieter technisch erforderliche Verbindungsdaten verarbeiten,
-        um die Anfrage zu beantworten.
-      </p>
-
-      <h3>8. Standortdaten / Höhenfunktion / aktuelle Position</h3>
-      <p>
-        Standortdaten werden nur verarbeitet, wenn Sie standortbezogene Funktionen aktiv nutzen und die entsprechende
-        Freigabe erteilen. Die allgemeine Nutzung der App ist auch ohne Standortzugriff möglich.
-        Nach aktuellem App-Verhalten erfolgt keine Standortverfolgung im Hintergrund.
-      </p>
-      <p>
-        Die Höhenfunktion ist nicht ausschließlich lokal. GPS- oder Systemwerte können lokal verarbeitet werden;
-        zusätzlich kann die App aktuelle Koordinaten an Open-Meteo übermitteln, um eine Online-Geländehöhe
-        zu bestimmen oder Werte abzugleichen. Die Funktion dient nicht dazu, Bewegungsprofile zu erstellen.
-      </p>
-
-      <h3>9. Geocoding / Place Search / Nearest Place</h3>
-      <p>
-        Für Ortssuche und Reverse-Geocoding kann die App Nominatim unter
-        <a href="https://nominatim.openstreetmap.org/" target="_blank" rel="noopener noreferrer">nominatim.openstreetmap.org</a>
-        verwenden. Dabei können je nach Funktion Suchbegriffe, Koordinaten, Spracheinstellungen
-        und technische Request-Metadaten übermittelt werden. Ergebnisse können lokal auf dem Gerät gecacht werden.
-      </p>
-
-      <h3>10. Juliusruh / Ionosonde / HAMQSL / weitere Funkdatenquellen</h3>
-      <p>
-        SolarScope nutzt externe fachliche Datenquellen ausschließlich, um wissenschaftliche, technische
-        und funkbezogene Mess- oder Prognosedaten in der App anzuzeigen.
-      </p>
-      <p>
-        Wichtig: Der App-Betreiber verkauft keine personenbezogenen Daten. Die App betreibt keinen Handel mit Nutzerdaten.
-        Juliusruh-, GIRO-, HAMQSL-, NOAA- und vergleichbare Quellen werden als Fach- bzw. Messdatenquellen zur Anzeige genutzt,
-        nicht als gekaufte personenbezogene Nutzerdaten. Der App-Betreiber beauftragt diese Quellen nicht damit,
-        personenbezogene Daten der Nutzer zu Werbe- oder Verkaufszwecken zu vermarkten.
-      </p>
-      <p>
-        Die in der App verlinkte Website
-        <a href="https://prop.kc2g.com/stations/" target="_blank" rel="noopener noreferrer">prop.kc2g.com/stations/</a>
-        ist nur ein externer Link und keine aktiv aus der App abgefragte Datenquelle.
-      </p>
-
-      <h3>11. Externe Links innerhalb der App</h3>
-      <p>
-        Die App enthält externe Links, z. B. zu HAMQSL, prop.kc2g.com, Juliusruh / IAP,
-        OpenStreetMap-Attributionen und zur Browser-Version dieser Datenschutzerklärung.
-        Wenn Sie einen solchen Link öffnen, wird eine direkte Verbindung zwischen Ihrem Endgerät
-        und dem jeweiligen Drittanbieter aufgebaut.
-      </p>
-
-      <h3>12. Rechtsgrundlagen der Verarbeitung</h3>
-      <p>
-        Soweit personenbezogene oder personenbeziehbare Daten verarbeitet werden, stützen wir die Verarbeitung
-        nach aktueller Einordnung insbesondere auf Art. 6 Abs. 1 lit. b DSGVO für aktiv von Ihnen genutzte App-Funktionen
-        sowie auf Art. 6 Abs. 1 lit. f DSGVO für technisch notwendige lokale Speicherung, Cache-Nutzung,
-        UI-Persistenz und die zuverlässige Bereitstellung der App. Für E-Mail-Anfragen kommt je nach Inhalt
-        Art. 6 Abs. 1 lit. b oder lit. f DSGVO in Betracht.
-      </p>
-
-      <h3>13. Empfänger / Kategorien von Empfängern</h3>
-      <p>
-        Je nach Funktion können Daten an externe Datenquellen und API-Anbieter, an Anbieter externer Websites
-        oder an beteiligte E-Mail-Provider übermittelt werden. Eine eigene Nutzer-Datenbank oder ein eigener
-        Backend-Dienst für diese Verarbeitungen besteht nach aktuellem App-Aufbau nicht.
-      </p>
-
-      <h3>14. Drittlandübermittlungen</h3>
-      <p>
-        Bei direkt aus der App aufgerufenen Drittanbietern kann nicht ausgeschlossen werden,
-        dass Daten auch außerhalb der EU / des EWR verarbeitet werden. Dies kann insbesondere
-        für Anbieter mit Sitz in den USA gelten. Direkte externe Links und direkte externe Abrufe
-        unterliegen den Datenschutzpraktiken des jeweiligen Anbieters.
-      </p>
-
-      <h3>15. Speicherdauer / Löschung</h3>
-      <p>
-        Nach aktueller App-Logik bleiben lokal gespeicherte Einstellungen, Caches, Verlaufswerte,
-        Callsign-Daten, ein gespeicherter manueller Locator und eine lokal gespeicherte letzte aktuelle Position
-        auf dem Gerät, bis sie überschrieben, in der App gelöscht, durch Löschen der App-Daten entfernt
-        oder durch Deinstallation beseitigt werden. Reine Laufzeitwerte werden nur während der aktiven Nutzung im Speicher gehalten.
-      </p>
-
-      <h3>16. Datensicherheit</h3>
-      <p>
-        Die App versucht externe Abrufe nach aktuellem Stand über HTTPS durchzuführen,
-        soweit dies vom jeweiligen Anbieter unterstützt wird. Gleichwohl kann keine absolute Sicherheit garantiert werden.
-      </p>
-
-      <h3>17. Rechte der betroffenen Personen</h3>
-      <p>
-        Soweit die Voraussetzungen der DSGVO vorliegen, haben Sie insbesondere Rechte auf Auskunft,
-        Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch.
-        Bei direkten Drittanfragen können zusätzlich die jeweiligen Drittanbieter Ansprechpartner sein.
-      </p>
-
-      <h3>18. Beschwerderecht bei einer Aufsichtsbehörde</h3>
-      <p>
-        Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren,
-        insbesondere in dem Mitgliedstaat Ihres gewöhnlichen Aufenthalts, Ihres Arbeitsplatzes
-        oder des Orts des mutmaßlichen Verstoßes.
-      </p>
-
-      <h3>19. Pflicht zur Bereitstellung von Daten</h3>
-      <p>
-        Es besteht keine gesetzliche oder vertragliche Pflicht, personenbezogene Daten für die allgemeine Nutzung
-        der App bereitzustellen. Wenn Sie bestimmte Funktionen nutzen möchten, können einzelne Daten jedoch technisch
-        erforderlich sein, z. B. Standortdaten für standortbezogene Funktionen, Suchbegriffe für Ortssuche,
-        Koordinaten für Reverse-Geocoding oder ein Callsign für die optionale lokale Anzeige in der App.
-      </p>
-
-      <h3>20. Kinder und Jugendliche</h3>
-      <p>
-        Die App ist nicht speziell an Kinder gerichtet. Nach aktuellem App-Aufbau ist keine bewusste Erhebung
-        personenbezogener Daten von Kindern vorgesehen.
-      </p>
     </section>
 
-    <section id="short-summary-de" class="panel" aria-labelledby="short-summary-title">
-      <h2 id="short-summary-title">Kurze In-App-Kurzfassung (Deutsch)</h2>
-      <ul>
-        <li>Nach aktuellem App-Stand werden keine Werbe-, Tracking-, Analytics- oder Crash-Reporting-SDKs eingesetzt.</li>
-        <li>Die App speichert bestimmte Einstellungen, Caches, Verlaufswerte und ein optionales Callsign lokal auf dem Gerät.</li>
-        <li>Standortzugriff ist optional. Ohne Standort bleiben viele Funktionen der App nutzbar.</li>
-        <li>Wenn standortbezogene Funktionen genutzt werden, können Koordinaten an externe Dienste wie Open-Meteo und/oder Nominatim übermittelt werden.</li>
-        <li>Solar- und Funkdaten werden je nach Funktion direkt von externen Quellen wie HAMQSL, Juliusruh / GIRO DIDBase oder NOAA abgerufen; diese Anbieter können technische Verbindungsdaten sehen.</li>
-        <li>Externe Links werden erst bei Öffnung aktiv und führen dann direkt zu Angeboten Dritter.</li>
-        <li>Der Betreiber verkauft keine personenbezogenen Daten. Juliusruh, HAMQSL und weitere Quellen werden nur als technische bzw. wissenschaftliche Datenquellen genutzt.</li>
-      </ul>
+    <section id="privacy" class="section">
+      <div class="container legal-container">
+        <div class="section-header">
+          <p class="kicker">Privacy Package</p>
+          <h2>Datenschutz für SolarScope.</h2>
+          <p class="section-lead">
+            Hier finden Sie die Datenschutzerklärung zur SolarScope-App auf Deutsch und Englisch sowie eine kurze In-App-Zusammenfassung.
+          </p>
+        </div>
 
-      <p>
-        <a href="https://perazapedr.github.io/solarscope-privacy/" target="_blank" rel="noopener noreferrer">
-          Open Full Privacy Package in Browser
-        </a>
-      </p>
+        <article class="legal-panel" aria-labelledby="privacy-overview-title">
+          <h2 id="privacy-overview-title">Privacy Policy / Datenschutzerklärung</h2>
+          <p>
+            Diese Seite enthält die englische Privacy Policy und die deutsche Datenschutzerklärung für die SolarScope-App.
+          </p>
+
+          <div class="meta-grid">
+            <div class="meta-card">
+              <span class="label">Effective date / Stand</span>
+              <span class="value">April 4, 2026 / 4. April 2026</span>
+            </div>
+            <div class="meta-card">
+              <span class="label">App</span>
+              <span class="value">SolarScope Android / iOS</span>
+            </div>
+            <div class="meta-card">
+              <span class="label">Controller / Verantwortlicher</span>
+              <span class="value">Pedro Peraza Gonzalez</span>
+            </div>
+            <div class="meta-card">
+              <span class="label">Contact / Kontakt</span>
+              <span class="value"><a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a></span>
+            </div>
+          </div>
+
+          <ul class="toc" aria-label="Datenschutz-Navigation">
+            <li><a href="#privacy-de">Deutsch</a></li>
+            <li><a href="#privacy-en">English</a></li>
+            <li><a href="#short-summary-de">Kurzfassung</a></li>
+            <li><a href="#website-privacy">Website-Datenschutz</a></li>
+            <li><a href="#impressum">Impressum</a></li>
+            <li><a href="#support">Support</a></li>
+          </ul>
+        </article>
+
+        <article id="privacy-de" class="legal-panel" aria-labelledby="privacy-de-title">
+          <p class="kicker">Deutsch</p>
+          <h2 id="privacy-de-title">Datenschutzerklärung für die SolarScope-App</h2>
+
+          <p>
+            <span class="strong">Stand:</span> 4. April 2026<br>
+            <span class="strong">App:</span> SolarScope Android / iOS<br>
+            <span class="strong">Verantwortlicher:</span> Pedro Peraza Gonzalez<br>
+            <span class="strong">Anschrift:</span> Eichendorffstraße 23, 57482 Wenden, Deutschland<br>
+            <span class="strong">E-Mail:</span> <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a>
+          </p>
+
+          <h3>1. Verantwortlicher</h3>
+          <p>
+            Verantwortlicher für die in dieser App beschriebene Datenverarbeitung ist Pedro Peraza Gonzalez,
+            Eichendorffstraße 23, 57482 Wenden, Deutschland,
+            E-Mail: <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a>.
+          </p>
+
+          <h3>2. Kontakt</h3>
+          <p>
+            Bei Fragen zum Datenschutz können Sie uns unter
+            <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a> kontaktieren.
+          </p>
+
+          <h3>3. Allgemeines zur App und zum Geltungsbereich</h3>
+          <p>
+            SolarScope ist eine mobile App zur Anzeige von Solar-, geomagnetischen und funkbezogenen Mess- und Prognosedaten
+            sowie für lokale Converter- und Standortfunktionen. Diese Hinweise betreffen die App selbst.
+            Für externe Websites und Drittanbieter gelten deren eigene Datenschutzbedingungen.
+          </p>
+
+          <h3>4. Welche Daten bei der Nutzung der App verarbeitet werden</h3>
+          <p>
+            Je nach genutzter Funktion verarbeitet die App technische Verbindungsdaten bei Netzwerkanfragen,
+            optionale Standortdaten, Suchbegriffe und Koordinaten bei Ortssuche bzw. Reverse-Geocoding,
+            vom Nutzer eingegebene Inhalte wie Callsign, Locator oder Ortsbezeichnungen sowie lokal gespeicherte
+            Einstellungs-, Cache- und Verlaufsdaten.
+          </p>
+          <p>
+            Nach aktuellem App-Stand werden keine Nutzerkonten, keine Login-Funktion, keine Nutzerprofile,
+            keine Werbe-SDKs, keine Analytics-SDKs und kein gesondertes Crash-Reporting-SDK eingesetzt.
+          </p>
+
+          <h3>5. Berechtigungen der App</h3>
+          <p>
+            Die App nutzt Internetzugriff und kann eine Standortfreigabe anfragen, wenn Sie standortbezogene Funktionen
+            aktiv verwenden. Die Standortberechtigung ist funktionsbezogen und für die allgemeine Nutzung der App
+            nicht zwingend erforderlich.
+          </p>
+
+          <h3>6. Lokale Speicherung auf dem Endgerät</h3>
+          <p>
+            Die App speichert lokal auf dem Endgerät insbesondere ein optionales Callsign, UI- und Komforteinstellungen,
+            lokale Caches für Solar- und Ionosonde-Daten, lokale Verlaufsdaten, Geocoding-Caches sowie Einstellungen
+            der Local-Radio-Assessment-Funktion einschließlich eines manuellen Locators und der zuletzt lokal gespeicherten
+            aktuellen Position.
+          </p>
+          <p>
+            Diese Daten werden nach aktuellem App-Verhalten nicht automatisch an den Betreiber hochgeladen.
+            Soweit keine feste Frist vorgesehen ist, bleiben sie gespeichert, bis sie überschrieben,
+            in der App gelöscht, durch Löschen der App-Daten entfernt oder durch Deinstallation beseitigt werden.
+          </p>
+
+          <h3>7. Nutzung externer Datenquellen und Drittanbieter</h3>
+          <p>
+            Die App ruft Inhalte direkt von externen Datenquellen ab. Je nach genutzter Funktion können dazu insbesondere
+            HAMQSL, Juliusruh / IAP / GIRO DIDBase, NOAA SWPC, Open-Meteo sowie Nominatim / OpenStreetMap gehören.
+            Bei solchen direkten Abrufen können die jeweiligen Anbieter technisch erforderliche Verbindungsdaten verarbeiten,
+            um die Anfrage zu beantworten.
+          </p>
+
+          <h3>8. Standortdaten / Höhenfunktion / aktuelle Position</h3>
+          <p>
+            Standortdaten werden nur verarbeitet, wenn Sie standortbezogene Funktionen aktiv nutzen und die entsprechende
+            Freigabe erteilen. Die allgemeine Nutzung der App ist auch ohne Standortzugriff möglich.
+            Nach aktuellem App-Verhalten erfolgt keine Standortverfolgung im Hintergrund.
+          </p>
+          <p>
+            Die Höhenfunktion ist nicht ausschließlich lokal. GPS- oder Systemwerte können lokal verarbeitet werden;
+            zusätzlich kann die App aktuelle Koordinaten an Open-Meteo übermitteln, um eine Online-Geländehöhe
+            zu bestimmen oder Werte abzugleichen. Die Funktion dient nicht dazu, Bewegungsprofile zu erstellen.
+          </p>
+
+          <h3>9. Geocoding / Place Search / Nearest Place</h3>
+          <p>
+            Für Ortssuche und Reverse-Geocoding kann die App Nominatim unter
+            <a href="https://nominatim.openstreetmap.org/" target="_blank" rel="noopener noreferrer">nominatim.openstreetmap.org</a>
+            verwenden. Dabei können je nach Funktion Suchbegriffe, Koordinaten, Spracheinstellungen
+            und technische Request-Metadaten übermittelt werden. Ergebnisse können lokal auf dem Gerät gecacht werden.
+          </p>
+
+          <h3>10. Juliusruh / Ionosonde / HAMQSL / weitere Funkdatenquellen</h3>
+          <p>
+            SolarScope nutzt externe fachliche Datenquellen ausschließlich, um wissenschaftliche, technische
+            und funkbezogene Mess- oder Prognosedaten in der App anzuzeigen.
+          </p>
+          <p>
+            Wichtig: Der App-Betreiber verkauft keine personenbezogenen Daten. Die App betreibt keinen Handel mit Nutzerdaten.
+            Juliusruh-, GIRO-, HAMQSL-, NOAA- und vergleichbare Quellen werden als Fach- bzw. Messdatenquellen zur Anzeige genutzt,
+            nicht als gekaufte personenbezogene Nutzerdaten. Der App-Betreiber beauftragt diese Quellen nicht damit,
+            personenbezogene Daten der Nutzer zu Werbe- oder Verkaufszwecken zu vermarkten.
+          </p>
+          <p>
+            Die in der App verlinkte Website
+            <a href="https://prop.kc2g.com/stations/" target="_blank" rel="noopener noreferrer">prop.kc2g.com/stations/</a>
+            ist nur ein externer Link und keine aktiv aus der App abgefragte Datenquelle.
+          </p>
+
+          <h3>11. Externe Links innerhalb der App</h3>
+          <p>
+            Die App enthält externe Links, z. B. zu HAMQSL, prop.kc2g.com, Juliusruh / IAP,
+            OpenStreetMap-Attributionen und zur Browser-Version dieser Datenschutzerklärung.
+            Wenn Sie einen solchen Link öffnen, wird eine direkte Verbindung zwischen Ihrem Endgerät
+            und dem jeweiligen Drittanbieter aufgebaut.
+          </p>
+
+          <h3>12. Rechtsgrundlagen der Verarbeitung</h3>
+          <p>
+            Soweit personenbezogene oder personenbeziehbare Daten verarbeitet werden, stützen wir die Verarbeitung
+            nach aktueller Einordnung insbesondere auf Art. 6 Abs. 1 lit. b DSGVO für aktiv von Ihnen genutzte App-Funktionen
+            sowie auf Art. 6 Abs. 1 lit. f DSGVO für technisch notwendige lokale Speicherung, Cache-Nutzung,
+            UI-Persistenz und die zuverlässige Bereitstellung der App. Für E-Mail-Anfragen kommt je nach Inhalt
+            Art. 6 Abs. 1 lit. b oder lit. f DSGVO in Betracht.
+          </p>
+
+          <h3>13. Empfänger / Kategorien von Empfängern</h3>
+          <p>
+            Je nach Funktion können Daten an externe Datenquellen und API-Anbieter, an Anbieter externer Websites
+            oder an beteiligte E-Mail-Provider übermittelt werden. Eine eigene Nutzer-Datenbank oder ein eigener
+            Backend-Dienst für diese Verarbeitungen besteht nach aktuellem App-Aufbau nicht.
+          </p>
+
+          <h3>14. Drittlandübermittlungen</h3>
+          <p>
+            Bei direkt aus der App aufgerufenen Drittanbietern kann nicht ausgeschlossen werden,
+            dass Daten auch außerhalb der EU / des EWR verarbeitet werden. Dies kann insbesondere
+            für Anbieter mit Sitz in den USA gelten. Direkte externe Links und direkte externe Abrufe
+            unterliegen den Datenschutzpraktiken des jeweiligen Anbieters.
+          </p>
+
+          <h3>15. Speicherdauer / Löschung</h3>
+          <p>
+            Nach aktueller App-Logik bleiben lokal gespeicherte Einstellungen, Caches, Verlaufswerte,
+            Callsign-Daten, ein gespeicherter manueller Locator und eine lokal gespeicherte letzte aktuelle Position
+            auf dem Gerät, bis sie überschrieben, in der App gelöscht, durch Löschen der App-Daten entfernt
+            oder durch Deinstallation beseitigt werden. Reine Laufzeitwerte werden nur während der aktiven Nutzung im Speicher gehalten.
+          </p>
+
+          <h3>16. Datensicherheit</h3>
+          <p>
+            Die App versucht externe Abrufe nach aktuellem Stand über HTTPS durchzuführen,
+            soweit dies vom jeweiligen Anbieter unterstützt wird. Gleichwohl kann keine absolute Sicherheit garantiert werden.
+          </p>
+
+          <h3>17. Rechte der betroffenen Personen</h3>
+          <p>
+            Soweit die Voraussetzungen der DSGVO vorliegen, haben Sie insbesondere Rechte auf Auskunft,
+            Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch.
+            Bei direkten Drittanfragen können zusätzlich die jeweiligen Drittanbieter Ansprechpartner sein.
+          </p>
+
+          <h3>18. Beschwerderecht bei einer Aufsichtsbehörde</h3>
+          <p>
+            Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren,
+            insbesondere in dem Mitgliedstaat Ihres gewöhnlichen Aufenthalts, Ihres Arbeitsplatzes
+            oder des Orts des mutmaßlichen Verstoßes.
+          </p>
+
+          <h3>19. Pflicht zur Bereitstellung von Daten</h3>
+          <p>
+            Es besteht keine gesetzliche oder vertragliche Pflicht, personenbezogene Daten für die allgemeine Nutzung
+            der App bereitzustellen. Wenn Sie bestimmte Funktionen nutzen möchten, können einzelne Daten jedoch technisch
+            erforderlich sein, z. B. Standortdaten für standortbezogene Funktionen, Suchbegriffe für Ortssuche,
+            Koordinaten für Reverse-Geocoding oder ein Callsign für die optionale lokale Anzeige in der App.
+          </p>
+
+          <h3>20. Kinder und Jugendliche</h3>
+          <p>
+            Die App ist nicht speziell an Kinder gerichtet. Nach aktuellem App-Aufbau ist keine bewusste Erhebung
+            personenbezogener Daten von Kindern vorgesehen.
+          </p>
+        </article>
+
+        <article id="privacy-en" class="legal-panel" aria-labelledby="privacy-en-title" lang="en">
+          <p class="kicker">English</p>
+          <h2 id="privacy-en-title">Privacy Policy for the SolarScope App</h2>
+
+          <p>
+            <span class="strong">Effective date:</span> April 4, 2026<br>
+            <span class="strong">App:</span> SolarScope Android / iOS<br>
+            <span class="strong">Controller:</span> Pedro Peraza Gonzalez<br>
+            <span class="strong">Postal address:</span> Eichendorffstraße 23, 57482 Wenden, Germany<br>
+            <span class="strong">Email:</span> <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a>
+          </p>
+
+          <h3>1. Controller</h3>
+          <p>
+            The controller for the processing described in this app is Pedro Peraza Gonzalez,
+            Eichendorffstraße 23, 57482 Wenden, Germany,
+            email: <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a>.
+          </p>
+
+          <h3>2. Contact</h3>
+          <p>
+            If you have questions about data protection, you can contact
+            <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a>.
+          </p>
+
+          <h3>3. General information about the app and scope</h3>
+          <p>
+            SolarScope is a mobile app used to display solar, geomagnetic and radio-related measurement or forecast data
+            and to provide local converter and location-based features. These notices apply to the app itself.
+            External websites and third-party providers are subject to their own privacy terms.
+          </p>
+
+          <h3>4. What data may be processed when using the app</h3>
+          <p>
+            Depending on the feature used, the app may process technical connection data for network requests,
+            optional location data, search terms and coordinates for place search or reverse geocoding,
+            user-entered content such as a callsign, locator or place name, and locally stored settings,
+            cache and history data.
+          </p>
+          <p>
+            Based on the current state of the app, there are no user accounts, no login function, no user profiles,
+            no advertising SDKs, no analytics SDKs and no separate crash-reporting SDK in use.
+          </p>
+
+          <h3>5. App permissions</h3>
+          <p>
+            According to the current app setup, the app uses Internet access and may request location access
+            when you actively use location-based features. Location access is feature-specific and is not required
+            for general use of the app.
+          </p>
+
+          <h3>6. Local storage on the device</h3>
+          <p>
+            The app stores several items locally on the device, including an optional callsign, UI and convenience settings,
+            local caches for solar and ionosonde data, local trend history, geocoding caches and Local Radio Assessment settings
+            including a manual locator and the last locally saved current position.
+          </p>
+          <p>
+            According to the current app behavior, these local data are not automatically uploaded to the operator.
+            Where no fixed retention period exists in the app logic, the data remain stored until overwritten,
+            deleted in the app, or removed by clearing app data or uninstalling the app.
+          </p>
+
+          <h3>7. Use of external data sources and third parties</h3>
+          <p>
+            The app directly requests content from external data sources. Depending on the feature used,
+            these may include HAMQSL, Juliusruh / IAP / GIRO DIDBase, NOAA SWPC, Open-Meteo and Nominatim / OpenStreetMap.
+            When such direct requests are made, the relevant providers may process technically required connection data
+            in order to answer the request.
+          </p>
+
+          <h3>8. Location data / altitude feature / current position</h3>
+          <p>
+            Location data are processed only if you actively use location-based features and grant the relevant permission.
+            General use of the app is possible without location access. According to the current app behavior,
+            location is not tracked in the background.
+          </p>
+          <p>
+            The altitude feature is not purely local. GPS or system values may be processed locally, but the app may also
+            transmit current coordinates to Open-Meteo for online terrain elevation fallback or cross-checking.
+            The app operator does not use this feature to create movement profiles.
+          </p>
+
+          <h3>9. Geocoding / place search / nearest place</h3>
+          <p>
+            For place search and reverse geocoding, the app may use Nominatim at
+            <a href="https://nominatim.openstreetmap.org/" target="_blank" rel="noopener noreferrer">nominatim.openstreetmap.org</a>.
+            Depending on the feature, place names, search terms, coordinates, language settings and technical request metadata
+            may be transmitted. Results may be cached locally on the device.
+          </p>
+
+          <h3>10. Juliusruh / ionosonde / HAMQSL / other radio-related data sources</h3>
+          <p>
+            SolarScope uses external specialist data sources exclusively to display scientific, technical and radio-related
+            measurement or forecast data in the app.
+          </p>
+          <p>
+            Important: The app operator does not sell personal data. The app does not engage in data trading.
+            Juliusruh, GIRO, HAMQSL, NOAA and comparable sources are used as specialist or measurement data sources for display,
+            not as purchased personal user data. The app operator does not instruct these sources to market users' personal data
+            for advertising or sale.
+          </p>
+          <p>
+            The website
+            <a href="https://prop.kc2g.com/stations/" target="_blank" rel="noopener noreferrer">prop.kc2g.com/stations/</a>
+            linked in the app is only an external link and not a data source actively fetched by the app.
+          </p>
+
+          <h3>11. External links inside the app</h3>
+          <p>
+            The app contains external links, for example to HAMQSL, prop.kc2g.com, Juliusruh / IAP,
+            OpenStreetMap attribution pages and the browser version of this privacy policy.
+            If you open such a link, a direct connection will be established between your device and the relevant third-party provider.
+          </p>
+
+          <h3>12. Legal bases for processing</h3>
+          <p>
+            Where personal data or data linkable to a person are processed, the current assessment mainly relies on
+            Art. 6(1)(b) GDPR for app features actively requested by you and Art. 6(1)(f) GDPR for technically necessary
+            local storage, caching, UI persistence and reliable app operation. Email enquiries may rely on Art. 6(1)(b)
+            or Art. 6(1)(f) GDPR depending on the content of the enquiry.
+          </p>
+
+          <h3>13. Recipients / categories of recipients</h3>
+          <p>
+            Depending on the feature used, data may be transmitted to external data sources and API providers,
+            to providers of external websites, or to involved email providers.
+            According to the current app structure, there is no own user database and no dedicated backend service
+            for these processing activities.
+          </p>
+
+          <h3>14. International transfers</h3>
+          <p>
+            For third-party providers accessed directly by the app, it cannot be ruled out that data may also be processed
+            outside the EU / EEA. This may in particular apply to providers located in the United States.
+            Direct external links and direct external requests remain subject to the privacy practices of the respective provider.
+          </p>
+
+          <h3>15. Storage period / deletion</h3>
+          <p>
+            According to the current app logic, locally stored settings, caches, history values, callsign data,
+            a stored manual locator and a locally stored last current position remain on the device until they are overwritten,
+            deleted in the app, removed by clearing app data, or removed by uninstalling the app.
+            Runtime-only values are held only for the duration of active use.
+          </p>
+
+          <h3>16. Security</h3>
+          <p>
+            Based on the current implementation, the app attempts to use HTTPS for external requests wherever supported
+            by the relevant provider. However, absolute security cannot be guaranteed.
+          </p>
+
+          <h3>17. Rights of data subjects</h3>
+          <p>
+            Where the GDPR applies, you may in particular have rights of access, rectification, erasure,
+            restriction of processing, data portability and objection. For direct third-party requests,
+            the relevant third-party provider may also need to be contacted.
+          </p>
+
+          <h3>18. Right to lodge a complaint with a supervisory authority</h3>
+          <p>
+            You have the right to lodge a complaint with a data protection supervisory authority,
+            in particular in the Member State of your habitual residence, place of work or the place of the alleged infringement.
+          </p>
+
+          <h3>19. Requirement to provide data</h3>
+          <p>
+            There is no legal or contractual obligation to provide personal data for general use of the app.
+            However, some data may be technically required if you want to use specific features,
+            for example location data for location-based functions, search terms for place search,
+            coordinates for reverse geocoding or a callsign for optional local display in the app.
+          </p>
+
+          <h3>20. Children and young people</h3>
+          <p>
+            The app is not specifically directed at children. The current app design does not indicate any deliberate
+            collection of children's personal data.
+          </p>
+        </article>
+
+        <article id="short-summary-de" class="legal-panel" aria-labelledby="summary-title">
+          <p class="kicker">Kurzfassung</p>
+          <h2 id="summary-title">Kurze In-App-Kurzfassung</h2>
+          <div class="summary-box">
+            <ul>
+              <li>Nach aktuellem App-Stand werden keine Werbe-, Tracking-, Analytics- oder Crash-Reporting-SDKs eingesetzt.</li>
+              <li>Die App speichert bestimmte Einstellungen, Caches, Verlaufswerte und ein optionales Callsign lokal auf dem Gerät.</li>
+              <li>Standortzugriff ist optional. Ohne Standort bleiben viele Funktionen der App nutzbar.</li>
+              <li>Wenn standortbezogene Funktionen genutzt werden, können Koordinaten an externe Dienste wie Open-Meteo und/oder Nominatim übermittelt werden.</li>
+              <li>Solar- und Funkdaten werden je nach Funktion direkt von externen Quellen wie HAMQSL, Juliusruh / GIRO DIDBase oder NOAA abgerufen; diese Anbieter können technische Verbindungsdaten sehen.</li>
+              <li>Externe Links werden erst bei Öffnung aktiv und führen dann direkt zu Angeboten Dritter.</li>
+              <li>Der Betreiber verkauft keine personenbezogenen Daten. Juliusruh, HAMQSL und weitere Quellen werden nur als technische bzw. wissenschaftliche Datenquellen genutzt.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
     </section>
 
-    <footer>
-      <p class="small">
-        SolarScope Privacy Page
-      </p>
-    </footer>
+    <section id="website-privacy" class="section compact">
+      <div class="container legal-container">
+        <article class="legal-panel" aria-labelledby="website-privacy-title">
+          <p class="kicker">Website Privacy</p>
+          <h2 id="website-privacy-title">Datenschutzhinweise für diese Webseite</h2>
+
+          <h3>1. Geltungsbereich</h3>
+          <p>
+            Diese Hinweise betreffen den Besuch dieser SolarScope-Webseite. Die App-Datenschutzerklärung oben betrifft dagegen
+            die Nutzung der SolarScope-App selbst.
+          </p>
+
+          <h3>2. Hosting und technische Zugriffsdaten</h3>
+          <p>
+            Diese Seite ist als statische Webseite aufgebaut. Wenn sie über GitHub Pages oder einen vergleichbaren statischen
+            Hosting-Anbieter bereitgestellt wird, können beim Aufruf der Webseite technisch erforderliche Zugriffsdaten verarbeitet werden,
+            zum Beispiel IP-Adresse, Zeitpunkt des Abrufs, angeforderte Datei, Browser- und Geräteinformationen sowie technische Logdaten.
+          </p>
+          <p>
+            Zweck dieser Verarbeitung ist die Auslieferung der Webseite, die technische Stabilität, die Sicherheit und die Fehleranalyse.
+            Rechtsgrundlage ist, soweit personenbezogene Daten betroffen sind, Art. 6 Abs. 1 lit. f DSGVO.
+          </p>
+          <p>
+            TODO: Falls diese Webseite nicht über GitHub Pages oder statisches Hosting bereitgestellt wird, bitte diesen Abschnitt an den tatsächlichen Hosting-Anbieter anpassen.
+          </p>
+
+          <h3>3. Keine Cookies, kein Tracking und keine Analytics in dieser Datei</h3>
+          <p>
+            Der Quellcode dieser Webseite bindet keine Tracking-Skripte, keine Analytics-Dienste, keine Werbenetzwerke und keine externen Fonts ein.
+            Diese Webseite setzt im vorliegenden Stand selbst keine Cookies.
+          </p>
+          <p>
+            Wenn später externe Dienste, Analysewerkzeuge, Karten, Videos, Kontaktformulare, Newsletter-Funktionen oder Cookies ergänzt werden,
+            müssen diese Datenschutzhinweise entsprechend aktualisiert werden.
+          </p>
+
+          <h3>4. E-Mail-Kontakt</h3>
+          <p>
+            Wenn Sie per E-Mail Kontakt aufnehmen, werden die von Ihnen übermittelten Angaben verarbeitet, um die Anfrage zu beantworten.
+            Dazu können insbesondere Ihre E-Mail-Adresse, Ihr Name, der Inhalt der Nachricht sowie technische Versanddaten gehören.
+          </p>
+
+          <h3>5. Keine Kontaktformulare und kein Newsletter</h3>
+          <p>
+            Diese Webseite enthält derzeit kein Kontaktformular und keine Newsletter-Anmeldung. Eine Kontaktaufnahme erfolgt ausschließlich
+            über die angegebene E-Mail-Adresse.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="data-sources" class="section compact">
+      <div class="container legal-container">
+        <article class="legal-panel" aria-labelledby="data-sources-title">
+          <p class="kicker">Data Sources & Attribution</p>
+          <h2 id="data-sources-title">Datenquellen & Hinweise</h2>
+          <p>
+            SolarScope nutzt externe fachliche Datenquellen ausschließlich, um wissenschaftliche, technische und funkbezogene
+            Mess- oder Prognosedaten in der App anzuzeigen. Die Daten können verzögert, unvollständig oder vorübergehend nicht verfügbar sein.
+          </p>
+
+          <ul class="source-list">
+            <li><strong>HAMQSL</strong><span>Externe Quelle für solar- und funkbezogene Daten.</span></li>
+            <li><strong>Juliusruh / IAP</strong><span>Fachliche Quelle im Zusammenhang mit Ionosonde- bzw. ionosphärischen Daten.</span></li>
+            <li><strong>GIRO DIDBase</strong><span>Externe Fachquelle für Ionosonde-Daten.</span></li>
+            <li><strong>NOAA SWPC</strong><span>Externe Quelle für Space-Weather- bzw. Solar-/Geomagnetikdaten.</span></li>
+            <li><strong>Open-Meteo</strong><span>Kann für standortbezogene Werte, insbesondere Höheninformationen, genutzt werden.</span></li>
+            <li><strong>Nominatim / OpenStreetMap</strong><span>Kann für Ortssuche, Reverse-Geocoding und OpenStreetMap-Attributionen genutzt werden.</span></li>
+            <li><strong>prop.kc2g.com/stations/</strong><span>Nach bisheriger Beschreibung nur externer Link in der App, keine aktiv aus der App abgefragte Datenquelle.</span></li>
+          </ul>
+
+          <h3>Hinweis zur Verfügbarkeit und Richtigkeit</h3>
+          <p>
+            SolarScope übernimmt keine Gewähr für die Vollständigkeit, Richtigkeit, Aktualität oder ständige Verfügbarkeit externer Daten.
+            Externe Anbieter haben eigene Datenschutz- und Nutzungsbedingungen. Der Betreiber verkauft keine personenbezogenen Daten.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="support" class="section compact">
+      <div class="container legal-container">
+        <article class="legal-panel" aria-labelledby="support-title">
+          <p class="kicker">Support</p>
+          <h2 id="support-title">SolarScope Support</h2>
+          <p>
+            Bei Fragen, technischen Problemen oder Feedback zur SolarScope-App können Sie per E-Mail Kontakt aufnehmen:
+            <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a>.
+          </p>
+
+          <div class="grid two">
+            <div class="card">
+              <h3>Bitte bei Fehlern mitsenden</h3>
+              <ul class="status-list">
+                <li><span class="check">✓</span><span>App-Version</span></li>
+                <li><span class="check">✓</span><span>Betriebssystem: Android oder iOS</span></li>
+                <li><span class="check">✓</span><span>Geräte-Modell</span></li>
+                <li><span class="check">✓</span><span>Kurze Beschreibung des Problems</span></li>
+                <li><span class="check">✓</span><span>Screenshot, falls hilfreich</span></li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Kontakt</h3>
+              <p>
+                E-Mail: <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a>
+              </p>
+              <p>
+                Diese Support-Seite kann als Support-URL für App Store Connect und vergleichbare App-Store-Angaben verwendet werden.
+              </p>
+            </div>
+          </div>
+
+          <h3>FAQ</h3>
+          <details>
+            <summary>Braucht SolarScope Standortzugriff?</summary>
+            <p>
+              Standortzugriff ist optional und nur für standortbezogene Funktionen erforderlich. Die allgemeine Nutzung der App ist auch ohne Standortzugriff möglich.
+            </p>
+          </details>
+          <details>
+            <summary>Werden personenbezogene Daten verkauft?</summary>
+            <p>
+              Nein. Nach aktueller Beschreibung verkauft der Betreiber keine personenbezogenen Daten und betreibt keinen Handel mit Nutzerdaten.
+            </p>
+          </details>
+          <details>
+            <summary>Funktioniert die App ohne Standort?</summary>
+            <p>
+              Ja, viele Funktionen bleiben ohne Standortzugriff nutzbar. Nur bestimmte standortbezogene Funktionen benötigen eine Freigabe.
+            </p>
+          </details>
+          <details>
+            <summary>Warum werden externe Datenquellen verwendet?</summary>
+            <p>
+              SolarScope nutzt externe Fachquellen, um wissenschaftliche, technische und funkbezogene Mess- oder Prognosedaten in der App anzuzeigen.
+            </p>
+          </details>
+          <details>
+            <summary>Was kann ich tun, wenn Daten nicht geladen werden?</summary>
+            <p>
+              Prüfen Sie Ihre Internetverbindung und versuchen Sie es später erneut. Externe Datenquellen können zeitweise nicht erreichbar sein oder verzögerte Daten liefern.
+            </p>
+          </details>
+        </article>
+      </div>
+    </section>
+
+    <section id="disclaimer" class="section compact">
+      <div class="container legal-container">
+        <article class="legal-panel" aria-labelledby="disclaimer-title">
+          <p class="kicker">Disclaimer</p>
+          <h2 id="disclaimer-title">Rechtlicher Hinweis</h2>
+          <p>
+            SolarScope dient der Information und Visualisierung von Solar-, geomagnetischen, ionosphärischen und funkbezogenen Daten.
+            Die Inhalte werden ohne Gewähr bereitgestellt. Es besteht keine Garantie für Aktualität, Vollständigkeit, Richtigkeit oder ständige Verfügbarkeit.
+          </p>
+          <p>
+            Die App und diese Webseite sind nicht für sicherheitskritische Entscheidungen bestimmt. Externe Datenquellen können ausfallen,
+            verzögert reagieren oder abweichende Werte liefern.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="impressum" class="section compact">
+      <div class="container legal-container">
+        <article class="legal-panel" aria-labelledby="impressum-title">
+          <p class="kicker">Legal Notice</p>
+          <h2 id="impressum-title">Impressum</h2>
+
+          <h3>Angaben gemäß § 5 DDG</h3>
+          <p>
+            Pedro Peraza Gonzalez<br>
+            Eichendorffstraße 23<br>
+            57482 Wenden<br>
+            Deutschland
+          </p>
+
+          <h3>Kontakt</h3>
+          <p>
+            E-Mail: <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a>
+          </p>
+          <p>
+            TODO: Falls eine Telefonnummer, Umsatzsteuer-ID oder weitere gesetzlich erforderliche Angaben vorhanden bzw. erforderlich sind,
+            bitte hier ergänzen. Es wurden keine nicht angegebenen Daten erfunden.
+          </p>
+
+          <h3>Verantwortlich für den Inhalt</h3>
+          <p>
+            Pedro Peraza Gonzalez, Anschrift wie oben.
+          </p>
+
+          <h3>Haftung für Inhalte</h3>
+          <p>
+            Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
+            Eine Verpflichtung zur Überwachung übermittelter oder gespeicherter fremder Informationen besteht jedoch nur nach Maßgabe der gesetzlichen Vorschriften.
+          </p>
+
+          <h3>Haftung für Links</h3>
+          <p>
+            Diese Webseite und die App können Links zu externen Webseiten Dritter enthalten. Auf deren Inhalte haben wir keinen Einfluss.
+            Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+          </p>
+
+          <h3>Urheberrecht</h3>
+          <p>
+            Die durch den Seitenbetreiber erstellten Inhalte und Werke auf dieser Webseite unterliegen dem deutschen Urheberrecht.
+            Beiträge Dritter sind als solche gekennzeichnet. Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung
+            außerhalb der Grenzen des Urheberrechts bedürfen der Zustimmung des jeweiligen Rechteinhabers.
+          </p>
+        </article>
+      </div>
+    </section>
   </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a class="brand" href="#home" aria-label="Zurück zur Startseite">
+          <span class="brand-mark" aria-hidden="true"><img src="icon.png" alt=""></span>
+          <span>SolarScope</span>
+        </a>
+        <p class="small">
+          Offizielle Informationsseite zur SolarScope-App. Keine Cookies, keine Tracking-Skripte und keine externen Fonts in dieser statischen Datei.
+        </p>
+      </div>
+      <div class="footer-links" aria-label="Footer Links">
+        <a href="#privacy">Datenschutz</a>
+        <a href="#website-privacy">Website-Datenschutz</a>
+        <a href="#impressum">Impressum</a>
+        <a href="#support">Support</a>
+        <a href="#data-sources">Datenquellen</a>
+        <a href="#disclaimer">Disclaimer</a>
+      </div>
+    </div>
+  </footer>
+
+  <a class="top-link" href="#home" aria-label="Nach oben">↑</a>
 </body>
 </html>
