@@ -1,11 +1,12 @@
 <!doctype html>
+
 <html lang="de">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b1220">
-  <meta name="description" content="Privacy Policy / Datenschutzerklärung for SolarScope">
-  <title>SolarScope Privacy Policy / Datenschutzerklärung</title>
+  <meta name="description" content="Datenschutzerklärung, Support und Impressum für SolarScope.">
+  <title>SolarScope – Datenschutzerklärung</title>
 
   <style>
     :root {
@@ -43,6 +44,10 @@
 
     a {
       color: inherit;
+    }
+
+    button {
+      font: inherit;
     }
 
     .hero {
@@ -85,6 +90,14 @@
       letter-spacing: -0.02em;
     }
 
+    .nav-right {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
     .nav-links {
       display: flex;
       flex-wrap: wrap;
@@ -104,6 +117,38 @@
     .nav-links a:hover {
       color: #ffffff;
       background: rgba(255, 255, 255, 0.10);
+    }
+
+    .language-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.10);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .lang-btn {
+      border: 0;
+      color: rgba(255, 255, 255, 0.78);
+      background: transparent;
+      cursor: pointer;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      transition: background 0.18s ease, color 0.18s ease;
+    }
+
+    .lang-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.10);
+    }
+
+    .lang-btn.active {
+      color: #0b1220;
+      background: #ffffff;
     }
 
     .hero-inner {
@@ -381,12 +426,6 @@
       margin: 0;
     }
 
-    .meta {
-      color: var(--muted);
-      font-size: 14px;
-      margin-top: 20px;
-    }
-
     footer {
       max-width: var(--max);
       margin: 0 auto;
@@ -411,6 +450,10 @@
         flex-direction: column;
       }
 
+      .nav-right {
+        justify-content: flex-start;
+      }
+
       .nav-links {
         justify-content: flex-start;
       }
@@ -432,288 +475,607 @@
       }
     }
   </style>
+
 </head>
 
 <body>
   <header class="hero">
-    <nav class="nav" aria-label="Hauptnavigation">
-      <a class="brand" href="#top" aria-label="SolarScope Startseite">
-        <img class="brand-logo" src="icon.png" alt="SolarScope App Icon">
+    <nav class="nav" aria-label="Hauptnavigation" data-i18n-aria="navAria">
+      <a class="brand" href="#top" aria-label="SolarScope Startseite" data-i18n-aria="brandAria">
+        <img class="brand-logo" src="icon.png" alt="SolarScope App-Icon" data-i18n-alt="logoAlt">
         <span class="brand-name">SolarScope</span>
       </a>
 
-      <div class="nav-links">
-        <a href="#features">Features</a>
-        <a href="#privacy">Datenschutz</a>
-        <a href="#support">Support</a>
-        <a href="#impressum">Impressum</a>
-      </div>
-    </nav>
+```
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="#features" data-i18n="navFeatures">Funktionen</a>
+      <a href="#privacy" data-i18n="navPrivacy">Datenschutz</a>
+      <a href="#support" data-i18n="navSupport">Support</a>
+      <a href="#impressum" data-i18n="navLegal">Impressum</a>
+    </div>
 
-    <div class="hero-inner" id="top">
-      <div>
-        <div class="eyebrow">Solar analysis for your location</div>
-        <h1>SolarScope</h1>
-        <p>
-          SolarScope hilft dir dabei, Sonnenstand, Standortdaten und Solarbedingungen verständlich einzuschätzen.
-          Diese Seite enthält Informationen zur App, zur Datenschutzerklärung und zum Anbieter.
-        </p>
+    <div class="language-switch" aria-label="Sprache auswählen" data-i18n-aria="languageSwitchAria">
+      <button type="button" class="lang-btn active" data-lang="de" aria-pressed="true" onclick="applyLanguage('de')">
+        Deutsch
+      </button>
+      <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" onclick="applyLanguage('en')">
+        English
+      </button>
+    </div>
+  </div>
+</nav>
 
-        <div class="cta-row" aria-label="Download-Bereich">
-          <a
-            class="store-btn store-primary"
-            href="https://play.google.com/store/apps/details?id=de.pedroperazagonzalez.solarscope"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="SolarScope bei Google Play herunterladen">
-            <span class="store-small">Download in</span>
-            <span>Google Play</span>
-          </a>
+<div class="hero-inner" id="top">
+  <div>
+    <div class="eyebrow" data-i18n="heroEyebrow">Solaranalyse für deinen Standort</div>
+    <h1>SolarScope</h1>
+    <p data-i18n="heroText">
+      SolarScope hilft dir dabei, Sonnenstand, Standortdaten und Solarbedingungen verständlich einzuschätzen.
+      Diese Seite enthält Informationen zur App, zur Datenschutzerklärung und zum Anbieter.
+    </p>
 
-          <span
-            class="store-btn store-muted"
-            role="button"
-            aria-disabled="true"
-            aria-label="SolarScope bald im Apple App Store erhältlich">
-            <span class="store-small">Bald erhältlich im</span>
-            <span>Apple App Store</span>
-          </span>
-        </div>
-      </div>
+    <div class="cta-row" aria-label="Download-Bereich" data-i18n-aria="downloadAreaAria">
+      <a
+        class="store-btn store-primary"
+        href="https://play.google.com/store/apps/details?id=de.pedroperazagonzalez.solarscope"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="SolarScope bei Google Play herunterladen"
+        data-i18n-aria="googlePlayAria">
+        <span class="store-small" data-i18n="googlePlaySmall">Download in</span>
+        <span>Google Play</span>
+      </a>
 
-      <div class="hero-card" aria-label="App Vorschau">
-        <div class="phone-preview">
-          <div class="phone-top">
-            <div class="app-mini">
-              <img src="icon.png" alt="SolarScope Icon">
-              <div>
-                <span>SolarScope</span>
-                <small>Solar & Standort</small>
-              </div>
-            </div>
-            <div class="pill">Live</div>
-          </div>
+      <span
+        class="store-btn store-muted"
+        role="button"
+        aria-disabled="true"
+        aria-label="SolarScope bald im Apple App Store erhältlich"
+        data-i18n-aria="appStoreAria">
+        <span class="store-small" data-i18n="appStoreSmall">Bald erhältlich im</span>
+        <span>Apple App Store</span>
+      </span>
+    </div>
+  </div>
 
-          <div class="metric">
-            <small>Estimated solar conditions</small>
-            <strong>Clear view</strong>
-          </div>
-
-          <div class="metric">
-            <small>Sunlight potential</small>
-            <strong>82%</strong>
-          </div>
-
-          <div class="bars" aria-hidden="true">
-            <div class="bar"><span style="width: 82%;"></span></div>
-            <div class="bar"><span style="width: 64%;"></span></div>
-            <div class="bar"><span style="width: 48%;"></span></div>
+  <div class="hero-card" aria-label="App-Vorschau" data-i18n-aria="appPreviewAria">
+    <div class="phone-preview">
+      <div class="phone-top">
+        <div class="app-mini">
+          <img src="icon.png" alt="SolarScope Icon" data-i18n-alt="smallLogoAlt">
+          <div>
+            <span>SolarScope</span>
+            <small data-i18n="appMiniSubtitle">Solar & Standort</small>
           </div>
         </div>
+        <div class="pill" data-i18n="livePill">Live</div>
+      </div>
+
+      <div class="metric">
+        <small data-i18n="metricOneLabel">Geschätzte Solarbedingungen</small>
+        <strong data-i18n="metricOneValue">Klare Sicht</strong>
+      </div>
+
+      <div class="metric">
+        <small data-i18n="metricTwoLabel">Sonnenlicht-Potenzial</small>
+        <strong>82%</strong>
+      </div>
+
+      <div class="bars" aria-hidden="true">
+        <div class="bar"><span style="width: 82%;"></span></div>
+        <div class="bar"><span style="width: 64%;"></span></div>
+        <div class="bar"><span style="width: 48%;"></span></div>
       </div>
     </div>
+  </div>
+</div>
+```
+
   </header>
 
   <main>
     <section class="section" id="features">
-      <h2>Was SolarScope macht</h2>
-      <p>
+      <h2 data-i18n="featuresTitle">Was SolarScope macht</h2>
+      <p data-i18n="featuresIntro">
         SolarScope ist eine App zur verständlichen Einschätzung von Solarbedingungen. Die App kann Standortdaten,
         Sonneninformationen und weitere öffentlich verfügbare bzw. technisch notwendige Informationen verwenden,
         um Nutzern eine einfache Orientierung zu geben.
       </p>
 
-      <div class="grid">
-        <div class="feature">
-          <div class="feature-icon">☀️</div>
-          <h3>Sonnenanalyse</h3>
-          <p>Übersichtliche Darstellung relevanter Sonnen- und Standortinformationen.</p>
-        </div>
+```
+  <div class="grid">
+    <div class="feature">
+      <div class="feature-icon">☀️</div>
+      <h3 data-i18n="featureOneTitle">Sonnenanalyse</h3>
+      <p data-i18n="featureOneText">Übersichtliche Darstellung relevanter Sonnen- und Standortinformationen.</p>
+    </div>
 
-        <div class="feature">
-          <div class="feature-icon">📍</div>
-          <h3>Standortbezug</h3>
-          <p>Standortdaten können genutzt werden, um die Ergebnisse für deinen Ort zu verbessern.</p>
-        </div>
+    <div class="feature">
+      <div class="feature-icon">📍</div>
+      <h3 data-i18n="featureTwoTitle">Standortbezug</h3>
+      <p data-i18n="featureTwoText">Standortdaten können genutzt werden, um die Ergebnisse für deinen Ort zu verbessern.</p>
+    </div>
 
-        <div class="feature">
-          <div class="feature-icon">🔒</div>
-          <h3>Datenschutz</h3>
-          <p>Die App ist auf Datensparsamkeit ausgelegt und verarbeitet nur erforderliche Daten.</p>
-        </div>
-      </div>
-    </section>
+    <div class="feature">
+      <div class="feature-icon">🔒</div>
+      <h3 data-i18n="featureThreeTitle">Datenschutz</h3>
+      <p data-i18n="featureThreeText">Die App ist auf Datensparsamkeit ausgelegt und verarbeitet nur erforderliche Daten.</p>
+    </div>
+  </div>
+</section>
 
-    <section class="section" id="privacy">
-      <h2>Datenschutzerklärung</h2>
+<section class="section" id="privacy">
+  <h2 data-i18n="privacyTitle">Datenschutzerklärung</h2>
 
-      <p>
-        Diese Datenschutzerklärung informiert darüber, welche personenbezogenen Daten bei der Nutzung der App
-        SolarScope und dieser Webseite verarbeitet werden können.
-      </p>
+  <p data-i18n="privacyIntro">
+    Diese Datenschutzerklärung informiert darüber, welche personenbezogenen Daten bei der Nutzung der App
+    SolarScope und dieser Webseite verarbeitet werden können.
+  </p>
 
-      <h3>1. Verantwortlicher</h3>
-      <p>
-        Verantwortlich für die Datenverarbeitung im Zusammenhang mit SolarScope ist:
-      </p>
-      <p>
-        Pedro Lázaro Peraza Gonzalez<br>
-        [Deine ladungsfähige Anschrift einfügen]<br>
-        E-Mail: [Deine Kontakt-E-Mail-Adresse einfügen]
-      </p>
+  <h3 data-i18n="privacyResponsibleTitle">1. Verantwortlicher</h3>
+  <p data-i18n="privacyResponsibleText">
+    Verantwortlich für die Datenverarbeitung im Zusammenhang mit SolarScope ist:
+  </p>
+  <p data-i18n="privacyResponsibleAddress">
+    Pedro Lázaro Peraza Gonzalez<br>
+    [Deine ladungsfähige Anschrift einfügen]<br>
+    E-Mail: [Deine Kontakt-E-Mail-Adresse einfügen]
+  </p>
 
-      <h3>2. Verarbeitung in der App</h3>
-      <p>
-        SolarScope kann technische Informationen verarbeiten, die für den Betrieb der App notwendig sind.
-        Je nach Nutzung können hierzu insbesondere Geräteinformationen, App-Version, Betriebssystem,
-        Spracheinstellungen und technische Fehlerdaten gehören.
-      </p>
+  <h3 data-i18n="privacyAppTitle">2. Verarbeitung in der App</h3>
+  <p data-i18n="privacyAppText">
+    SolarScope kann technische Informationen verarbeiten, die für den Betrieb der App notwendig sind.
+    Je nach Nutzung können hierzu insbesondere Geräteinformationen, App-Version, Betriebssystem,
+    Spracheinstellungen und technische Fehlerdaten gehören.
+  </p>
 
-      <h3>3. Standortdaten</h3>
-      <p>
-        Wenn du Standortfunktionen verwendest, kann SolarScope Standortdaten verarbeiten, um solarbezogene
-        Informationen für deinen aktuellen oder ausgewählten Standort bereitzustellen. Standortdaten werden nur
-        verwendet, wenn dies für die jeweilige Funktion erforderlich ist oder du eine entsprechende Berechtigung erteilt hast.
-      </p>
+  <h3 data-i18n="privacyLocationTitle">3. Standortdaten</h3>
+  <p data-i18n="privacyLocationText">
+    Wenn du Standortfunktionen verwendest, kann SolarScope Standortdaten verarbeiten, um solarbezogene
+    Informationen für deinen aktuellen oder ausgewählten Standort bereitzustellen. Standortdaten werden nur
+    verwendet, wenn dies für die jeweilige Funktion erforderlich ist oder du eine entsprechende Berechtigung erteilt hast.
+  </p>
 
-      <h3>4. Berechtigungen</h3>
-      <p>
-        Die App kann abhängig von der verwendeten Funktion Berechtigungen deines Geräts anfragen, zum Beispiel
-        für Standortfunktionen. Du kannst Berechtigungen jederzeit in den Einstellungen deines Geräts ändern oder widerrufen.
-      </p>
+  <h3 data-i18n="privacyPermissionsTitle">4. Berechtigungen</h3>
+  <p data-i18n="privacyPermissionsText">
+    Die App kann abhängig von der verwendeten Funktion Berechtigungen deines Geräts anfragen, zum Beispiel
+    für Standortfunktionen. Du kannst Berechtigungen jederzeit in den Einstellungen deines Geräts ändern oder widerrufen.
+  </p>
 
-      <h3>5. Externe Dienste</h3>
-      <p>
-        Die App kann externe Dienste oder Schnittstellen verwenden, um Daten wie Standort-, Wetter- oder Solarinformationen
-        bereitzustellen. Dabei können technisch notwendige Anfragedaten an den jeweiligen Anbieter übermittelt werden.
-      </p>
+  <h3 data-i18n="privacyExternalTitle">5. Externe Dienste</h3>
+  <p data-i18n="privacyExternalText">
+    Die App kann externe Dienste oder Schnittstellen verwenden, um Daten wie Standort-, Wetter- oder Solarinformationen
+    bereitzustellen. Dabei können technisch notwendige Anfragedaten an den jeweiligen Anbieter übermittelt werden.
+  </p>
 
-      <h3>6. Google Play</h3>
-      <p>
-        Wenn du SolarScope über Google Play herunterlädst oder aktualisierst, gelten zusätzlich die Datenschutzbestimmungen
-        und Nutzungsbedingungen von Google. Auf die Datenverarbeitung durch Google im Rahmen von Google Play hat der
-        Anbieter dieser App keinen unmittelbaren Einfluss.
-      </p>
+  <h3 data-i18n="privacyGoogleTitle">6. Google Play</h3>
+  <p data-i18n="privacyGoogleText">
+    Wenn du SolarScope über Google Play herunterlädst oder aktualisierst, gelten zusätzlich die Datenschutzbestimmungen
+    und Nutzungsbedingungen von Google. Auf die Datenverarbeitung durch Google im Rahmen von Google Play hat der
+    Anbieter dieser App keinen unmittelbaren Einfluss.
+  </p>
 
-      <h3>7. Webseite</h3>
-      <p>
-        Beim Aufruf dieser Webseite können technisch notwendige Zugriffsdaten verarbeitet werden, zum Beispiel IP-Adresse,
-        Datum und Uhrzeit des Abrufs, Browsertyp, Betriebssystem und aufgerufene Dateien. Diese Daten dienen der technischen
-        Bereitstellung, Sicherheit und Stabilität der Webseite.
-      </p>
+  <h3 data-i18n="privacyWebsiteTitle">7. Webseite</h3>
+  <p data-i18n="privacyWebsiteText">
+    Beim Aufruf dieser Webseite können technisch notwendige Zugriffsdaten verarbeitet werden, zum Beispiel IP-Adresse,
+    Datum und Uhrzeit des Abrufs, Browsertyp, Betriebssystem und aufgerufene Dateien. Diese Daten dienen der technischen
+    Bereitstellung, Sicherheit und Stabilität der Webseite.
+  </p>
 
-      <h3>8. Cookies und Tracking</h3>
-      <p>
-        Diese Webseite verwendet in der vorliegenden statischen Form keine eigenen Tracking-Cookies und kein eigenes
-        Analyse-Tracking.
-      </p>
+  <h3 data-i18n="privacyCookiesTitle">8. Cookies und Tracking</h3>
+  <p data-i18n="privacyCookiesText">
+    Diese Webseite verwendet in der vorliegenden statischen Form keine eigenen Tracking-Cookies und kein eigenes
+    Analyse-Tracking.
+  </p>
 
-      <h3>9. Speicherdauer</h3>
-      <p>
-        Personenbezogene Daten werden nur so lange gespeichert, wie dies für den jeweiligen Zweck erforderlich ist oder
-        gesetzliche Aufbewahrungspflichten bestehen.
-      </p>
+  <h3 data-i18n="privacyStorageTitle">9. Speicherdauer</h3>
+  <p data-i18n="privacyStorageText">
+    Personenbezogene Daten werden nur so lange gespeichert, wie dies für den jeweiligen Zweck erforderlich ist oder
+    gesetzliche Aufbewahrungspflichten bestehen.
+  </p>
 
-      <h3>10. Rechtsgrundlagen</h3>
-      <p>
-        Die Verarbeitung personenbezogener Daten erfolgt, soweit anwendbar, auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO
-        zur Bereitstellung der App-Funktionen, Art. 6 Abs. 1 lit. f DSGVO zur technischen Sicherheit und Stabilität sowie
-        Art. 6 Abs. 1 lit. a DSGVO, sofern eine Einwilligung erforderlich ist.
-      </p>
+  <h3 data-i18n="privacyLegalBasisTitle">10. Rechtsgrundlagen</h3>
+  <p data-i18n="privacyLegalBasisText">
+    Die Verarbeitung personenbezogener Daten erfolgt, soweit anwendbar, auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO
+    zur Bereitstellung der App-Funktionen, Art. 6 Abs. 1 lit. f DSGVO zur technischen Sicherheit und Stabilität sowie
+    Art. 6 Abs. 1 lit. a DSGVO, sofern eine Einwilligung erforderlich ist.
+  </p>
 
-      <h3>11. Deine Rechte</h3>
-      <p>
-        Du hast im Rahmen der gesetzlichen Voraussetzungen das Recht auf Auskunft, Berichtigung, Löschung,
-        Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch gegen bestimmte Verarbeitungen.
-        Wenn eine Verarbeitung auf Einwilligung beruht, kannst du diese Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.
-      </p>
+  <h3 data-i18n="privacyRightsTitle">11. Deine Rechte</h3>
+  <p data-i18n="privacyRightsText">
+    Du hast im Rahmen der gesetzlichen Voraussetzungen das Recht auf Auskunft, Berichtigung, Löschung,
+    Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch gegen bestimmte Verarbeitungen.
+    Wenn eine Verarbeitung auf Einwilligung beruht, kannst du diese Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.
+  </p>
 
-      <h3>12. Kontakt zum Datenschutz</h3>
-      <p>
-        Bei Fragen zum Datenschutz kannst du dich an folgende E-Mail-Adresse wenden:
-        [Deine Kontakt-E-Mail-Adresse einfügen]
-      </p>
+  <h3 data-i18n="privacyContactTitle">12. Kontakt zum Datenschutz</h3>
+  <p data-i18n="privacyContactText">
+    Bei Fragen zum Datenschutz kannst du dich an folgende E-Mail-Adresse wenden:
+    [Deine Kontakt-E-Mail-Adresse einfügen]
+  </p>
 
-      <div class="notice">
-        <p>
-          Stand: Juni 2026
-        </p>
-      </div>
-    </section>
+  <div class="notice">
+    <p data-i18n="privacyDate">Stand: Juni 2026</p>
+  </div>
+</section>
 
-    <section class="section" id="support">
-      <h2>Support</h2>
-      <p>
-        Wenn du Fragen zu SolarScope hast, einen Fehler melden möchtest oder Unterstützung benötigst,
-        kannst du dich per E-Mail melden.
-      </p>
+<section class="section" id="support">
+  <h2 data-i18n="supportTitle">Support</h2>
+  <p data-i18n="supportText">
+    Wenn du Fragen zu SolarScope hast, einen Fehler melden möchtest oder Unterstützung benötigst,
+    kannst du dich per E-Mail melden.
+  </p>
 
-      <p>
-        Support-E-Mail: [Deine Support-E-Mail-Adresse einfügen]
-      </p>
-    </section>
+  <p data-i18n="supportEmail">
+    Support-E-Mail: [Deine Support-E-Mail-Adresse einfügen]
+  </p>
+</section>
 
-    <section class="section" id="disclaimer">
-      <h2>Hinweis zur Nutzung</h2>
-      <p>
-        SolarScope stellt Informationen zur Orientierung bereit. Die App ersetzt keine fachliche, technische,
-        bauliche, rechtliche oder wirtschaftliche Beratung. Für verbindliche Entscheidungen, insbesondere im Zusammenhang
-        mit Planung, Installation oder Wirtschaftlichkeit von Solaranlagen, sollten qualifizierte Fachpersonen hinzugezogen werden.
-      </p>
-    </section>
+<section class="section" id="disclaimer">
+  <h2 data-i18n="disclaimerTitle">Hinweis zur Nutzung</h2>
+  <p data-i18n="disclaimerText">
+    SolarScope stellt Informationen zur Orientierung bereit. Die App ersetzt keine fachliche, technische,
+    bauliche, rechtliche oder wirtschaftliche Beratung. Für verbindliche Entscheidungen, insbesondere im Zusammenhang
+    mit Planung, Installation oder Wirtschaftlichkeit von Solaranlagen, sollten qualifizierte Fachpersonen hinzugezogen werden.
+  </p>
+</section>
 
-    <section class="section" id="impressum">
-      <h2>Impressum</h2>
+<section class="section" id="impressum">
+  <h2 data-i18n="legalTitle">Impressum</h2>
 
-      <h3>Angaben gemäß § 5 DDG</h3>
-      <p>
-        Pedro Lázaro Peraza Gonzalez<br>
-        [Deine ladungsfähige Anschrift einfügen]
-      </p>
+  <h3 data-i18n="legalProviderTitle">Angaben gemäß § 5 DDG</h3>
+  <p data-i18n="legalProviderText">
+    Pedro Lázaro Peraza Gonzalez<br>
+    [Deine ladungsfähige Anschrift einfügen]
+  </p>
 
-      <h3>Kontakt</h3>
-      <p>
-        E-Mail: [Deine Kontakt-E-Mail-Adresse einfügen]
-      </p>
+  <h3 data-i18n="legalContactTitle">Kontakt</h3>
+  <p data-i18n="legalContactText">
+    E-Mail: [Deine Kontakt-E-Mail-Adresse einfügen]
+  </p>
 
-      <h3>Wirtschafts-Identifikationsnummer</h3>
-      <p>
-        Wirtschafts-Identifikationsnummer gemäß § 139c AO:<br>
-        DE462227789
-      </p>
+  <h3 data-i18n="legalWidTitle">Wirtschafts-Identifikationsnummer</h3>
+  <p data-i18n="legalWidText">
+    Wirtschafts-Identifikationsnummer gemäß § 139c AO:<br>
+    DE462227789
+  </p>
 
-      <h3>Verantwortlich für den Inhalt</h3>
-      <p>
-        Pedro Lázaro Peraza Gonzalez<br>
-        [Deine ladungsfähige Anschrift einfügen]
-      </p>
+  <h3 data-i18n="legalContentResponsibleTitle">Verantwortlich für den Inhalt</h3>
+  <p data-i18n="legalContentResponsibleText">
+    Pedro Lázaro Peraza Gonzalez<br>
+    [Deine ladungsfähige Anschrift einfügen]
+  </p>
 
-      <h3>Streitbeilegung</h3>
-      <p>
-        Zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle bin ich nicht verpflichtet
-        und nicht bereit.
-      </p>
+  <h3 data-i18n="legalDisputeTitle">Streitbeilegung</h3>
+  <p data-i18n="legalDisputeText">
+    Zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle bin ich nicht verpflichtet
+    und nicht bereit.
+  </p>
 
-      <h3>Haftung für Inhalte</h3>
-      <p>
-        Die Inhalte dieser Webseite wurden mit Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der
-        Inhalte kann jedoch keine Gewähr übernommen werden.
-      </p>
+  <h3 data-i18n="legalContentLiabilityTitle">Haftung für Inhalte</h3>
+  <p data-i18n="legalContentLiabilityText">
+    Die Inhalte dieser Webseite wurden mit Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der
+    Inhalte kann jedoch keine Gewähr übernommen werden.
+  </p>
 
-      <h3>Haftung für Links</h3>
-      <p>
-        Diese Webseite kann Links zu externen Webseiten enthalten. Auf deren Inhalte besteht kein Einfluss. Für die Inhalte
-        der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich.
-      </p>
-    </section>
+  <h3 data-i18n="legalLinksLiabilityTitle">Haftung für Links</h3>
+  <p data-i18n="legalLinksLiabilityText">
+    Diese Webseite kann Links zu externen Webseiten enthalten. Auf deren Inhalte besteht kein Einfluss. Für die Inhalte
+    der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich.
+  </p>
+</section>
+```
+
   </main>
 
   <footer>
     <p>
       © 2026 SolarScope ·
-      <a href="#privacy">Datenschutz</a> ·
-      <a href="#impressum">Impressum</a>
+      <a href="#privacy" data-i18n="footerPrivacy">Datenschutz</a> ·
+      <a href="#impressum" data-i18n="footerLegal">Impressum</a>
     </p>
   </footer>
+
+  <script>
+    const translations = {
+      de: {
+        pageTitle: "SolarScope – Datenschutzerklärung",
+        metaDescription: "Datenschutzerklärung, Support und Impressum für SolarScope.",
+
+        navAria: "Hauptnavigation",
+        brandAria: "SolarScope Startseite",
+        logoAlt: "SolarScope App-Icon",
+        smallLogoAlt: "SolarScope Icon",
+        languageSwitchAria: "Sprache auswählen",
+        downloadAreaAria: "Download-Bereich",
+        googlePlayAria: "SolarScope bei Google Play herunterladen",
+        appStoreAria: "SolarScope bald im Apple App Store erhältlich",
+        appPreviewAria: "App-Vorschau",
+
+        navFeatures: "Funktionen",
+        navPrivacy: "Datenschutz",
+        navSupport: "Support",
+        navLegal: "Impressum",
+
+        heroEyebrow: "Solaranalyse für deinen Standort",
+        heroText: "SolarScope hilft dir dabei, Sonnenstand, Standortdaten und Solarbedingungen verständlich einzuschätzen. Diese Seite enthält Informationen zur App, zur Datenschutzerklärung und zum Anbieter.",
+
+        googlePlaySmall: "Download in",
+        appStoreSmall: "Bald erhältlich im",
+
+        appMiniSubtitle: "Solar & Standort",
+        livePill: "Live",
+        metricOneLabel: "Geschätzte Solarbedingungen",
+        metricOneValue: "Klare Sicht",
+        metricTwoLabel: "Sonnenlicht-Potenzial",
+
+        featuresTitle: "Was SolarScope macht",
+        featuresIntro: "SolarScope ist eine App zur verständlichen Einschätzung von Solarbedingungen. Die App kann Standortdaten, Sonneninformationen und weitere öffentlich verfügbare bzw. technisch notwendige Informationen verwenden, um Nutzern eine einfache Orientierung zu geben.",
+        featureOneTitle: "Sonnenanalyse",
+        featureOneText: "Übersichtliche Darstellung relevanter Sonnen- und Standortinformationen.",
+        featureTwoTitle: "Standortbezug",
+        featureTwoText: "Standortdaten können genutzt werden, um die Ergebnisse für deinen Ort zu verbessern.",
+        featureThreeTitle: "Datenschutz",
+        featureThreeText: "Die App ist auf Datensparsamkeit ausgelegt und verarbeitet nur erforderliche Daten.",
+
+        privacyTitle: "Datenschutzerklärung",
+        privacyIntro: "Diese Datenschutzerklärung informiert darüber, welche personenbezogenen Daten bei der Nutzung der App SolarScope und dieser Webseite verarbeitet werden können.",
+
+        privacyResponsibleTitle: "1. Verantwortlicher",
+        privacyResponsibleText: "Verantwortlich für die Datenverarbeitung im Zusammenhang mit SolarScope ist:",
+        privacyResponsibleAddress: "Pedro Lázaro Peraza Gonzalez<br>[Deine ladungsfähige Anschrift einfügen]<br>E-Mail: [Deine Kontakt-E-Mail-Adresse einfügen]",
+
+        privacyAppTitle: "2. Verarbeitung in der App",
+        privacyAppText: "SolarScope kann technische Informationen verarbeiten, die für den Betrieb der App notwendig sind. Je nach Nutzung können hierzu insbesondere Geräteinformationen, App-Version, Betriebssystem, Spracheinstellungen und technische Fehlerdaten gehören.",
+
+        privacyLocationTitle: "3. Standortdaten",
+        privacyLocationText: "Wenn du Standortfunktionen verwendest, kann SolarScope Standortdaten verarbeiten, um solarbezogene Informationen für deinen aktuellen oder ausgewählten Standort bereitzustellen. Standortdaten werden nur verwendet, wenn dies für die jeweilige Funktion erforderlich ist oder du eine entsprechende Berechtigung erteilt hast.",
+
+        privacyPermissionsTitle: "4. Berechtigungen",
+        privacyPermissionsText: "Die App kann abhängig von der verwendeten Funktion Berechtigungen deines Geräts anfragen, zum Beispiel für Standortfunktionen. Du kannst Berechtigungen jederzeit in den Einstellungen deines Geräts ändern oder widerrufen.",
+
+        privacyExternalTitle: "5. Externe Dienste",
+        privacyExternalText: "Die App kann externe Dienste oder Schnittstellen verwenden, um Daten wie Standort-, Wetter- oder Solarinformationen bereitzustellen. Dabei können technisch notwendige Anfragedaten an den jeweiligen Anbieter übermittelt werden.",
+
+        privacyGoogleTitle: "6. Google Play",
+        privacyGoogleText: "Wenn du SolarScope über Google Play herunterlädst oder aktualisierst, gelten zusätzlich die Datenschutzbestimmungen und Nutzungsbedingungen von Google. Auf die Datenverarbeitung durch Google im Rahmen von Google Play hat der Anbieter dieser App keinen unmittelbaren Einfluss.",
+
+        privacyWebsiteTitle: "7. Webseite",
+        privacyWebsiteText: "Beim Aufruf dieser Webseite können technisch notwendige Zugriffsdaten verarbeitet werden, zum Beispiel IP-Adresse, Datum und Uhrzeit des Abrufs, Browsertyp, Betriebssystem und aufgerufene Dateien. Diese Daten dienen der technischen Bereitstellung, Sicherheit und Stabilität der Webseite.",
+
+        privacyCookiesTitle: "8. Cookies und Tracking",
+        privacyCookiesText: "Diese Webseite verwendet in der vorliegenden statischen Form keine eigenen Tracking-Cookies und kein eigenes Analyse-Tracking.",
+
+        privacyStorageTitle: "9. Speicherdauer",
+        privacyStorageText: "Personenbezogene Daten werden nur so lange gespeichert, wie dies für den jeweiligen Zweck erforderlich ist oder gesetzliche Aufbewahrungspflichten bestehen.",
+
+        privacyLegalBasisTitle: "10. Rechtsgrundlagen",
+        privacyLegalBasisText: "Die Verarbeitung personenbezogener Daten erfolgt, soweit anwendbar, auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO zur Bereitstellung der App-Funktionen, Art. 6 Abs. 1 lit. f DSGVO zur technischen Sicherheit und Stabilität sowie Art. 6 Abs. 1 lit. a DSGVO, sofern eine Einwilligung erforderlich ist.",
+
+        privacyRightsTitle: "11. Deine Rechte",
+        privacyRightsText: "Du hast im Rahmen der gesetzlichen Voraussetzungen das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch gegen bestimmte Verarbeitungen. Wenn eine Verarbeitung auf Einwilligung beruht, kannst du diese Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.",
+
+        privacyContactTitle: "12. Kontakt zum Datenschutz",
+        privacyContactText: "Bei Fragen zum Datenschutz kannst du dich an folgende E-Mail-Adresse wenden: [Deine Kontakt-E-Mail-Adresse einfügen]",
+
+        privacyDate: "Stand: Juni 2026",
+
+        supportTitle: "Support",
+        supportText: "Wenn du Fragen zu SolarScope hast, einen Fehler melden möchtest oder Unterstützung benötigst, kannst du dich per E-Mail melden.",
+        supportEmail: "Support-E-Mail: [Deine Support-E-Mail-Adresse einfügen]",
+
+        disclaimerTitle: "Hinweis zur Nutzung",
+        disclaimerText: "SolarScope stellt Informationen zur Orientierung bereit. Die App ersetzt keine fachliche, technische, bauliche, rechtliche oder wirtschaftliche Beratung. Für verbindliche Entscheidungen, insbesondere im Zusammenhang mit Planung, Installation oder Wirtschaftlichkeit von Solaranlagen, sollten qualifizierte Fachpersonen hinzugezogen werden.",
+
+        legalTitle: "Impressum",
+        legalProviderTitle: "Angaben gemäß § 5 DDG",
+        legalProviderText: "Pedro Lázaro Peraza Gonzalez<br>[Deine ladungsfähige Anschrift einfügen]",
+
+        legalContactTitle: "Kontakt",
+        legalContactText: "E-Mail: [Deine Kontakt-E-Mail-Adresse einfügen]",
+
+        legalWidTitle: "Wirtschafts-Identifikationsnummer",
+        legalWidText: "Wirtschafts-Identifikationsnummer gemäß § 139c AO:<br>DE462227789",
+
+        legalContentResponsibleTitle: "Verantwortlich für den Inhalt",
+        legalContentResponsibleText: "Pedro Lázaro Peraza Gonzalez<br>[Deine ladungsfähige Anschrift einfügen]",
+
+        legalDisputeTitle: "Streitbeilegung",
+        legalDisputeText: "Zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle bin ich nicht verpflichtet und nicht bereit.",
+
+        legalContentLiabilityTitle: "Haftung für Inhalte",
+        legalContentLiabilityText: "Die Inhalte dieser Webseite wurden mit Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann jedoch keine Gewähr übernommen werden.",
+
+        legalLinksLiabilityTitle: "Haftung für Links",
+        legalLinksLiabilityText: "Diese Webseite kann Links zu externen Webseiten enthalten. Auf deren Inhalte besteht kein Einfluss. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich.",
+
+        footerPrivacy: "Datenschutz",
+        footerLegal: "Impressum"
+      },
+
+      en: {
+        pageTitle: "SolarScope – Privacy Policy",
+        metaDescription: "Privacy policy, support and legal notice for SolarScope.",
+
+        navAria: "Main navigation",
+        brandAria: "SolarScope homepage",
+        logoAlt: "SolarScope app icon",
+        smallLogoAlt: "SolarScope icon",
+        languageSwitchAria: "Select language",
+        downloadAreaAria: "Download area",
+        googlePlayAria: "Download SolarScope on Google Play",
+        appStoreAria: "SolarScope will soon be available on the Apple App Store",
+        appPreviewAria: "App preview",
+
+        navFeatures: "Features",
+        navPrivacy: "Privacy",
+        navSupport: "Support",
+        navLegal: "Legal Notice",
+
+        heroEyebrow: "Solar analysis for your location",
+        heroText: "SolarScope helps you understand sun position, location data and solar conditions in a clear and accessible way. This page provides information about the app, the privacy policy and the provider.",
+
+        googlePlaySmall: "Download on",
+        appStoreSmall: "Coming soon to the",
+
+        appMiniSubtitle: "Solar & Location",
+        livePill: "Live",
+        metricOneLabel: "Estimated solar conditions",
+        metricOneValue: "Clear view",
+        metricTwoLabel: "Sunlight potential",
+
+        featuresTitle: "What SolarScope does",
+        featuresIntro: "SolarScope is an app for understanding solar conditions in a simple way. The app may use location data, sun-related information and other publicly available or technically required information to provide users with clear guidance.",
+        featureOneTitle: "Sun analysis",
+        featureOneText: "Clear presentation of relevant sun and location information.",
+        featureTwoTitle: "Location-based results",
+        featureTwoText: "Location data can be used to improve the results for your selected place.",
+        featureThreeTitle: "Privacy",
+        featureThreeText: "The app is designed with data minimization in mind and only processes data that is required.",
+
+        privacyTitle: "Privacy Policy",
+        privacyIntro: "This privacy policy explains which personal data may be processed when using the SolarScope app and this website.",
+
+        privacyResponsibleTitle: "1. Controller",
+        privacyResponsibleText: "The controller responsible for data processing in connection with SolarScope is:",
+        privacyResponsibleAddress: "Pedro Lázaro Peraza Gonzalez<br>[Insert your address for legal service here]<br>Email: [Insert your contact email address here]",
+
+        privacyAppTitle: "2. Processing in the app",
+        privacyAppText: "SolarScope may process technical information that is required for operating the app. Depending on how the app is used, this may include device information, app version, operating system, language settings and technical error data.",
+
+        privacyLocationTitle: "3. Location data",
+        privacyLocationText: "If you use location-based functions, SolarScope may process location data to provide solar-related information for your current or selected location. Location data is only used when it is required for the respective function or when you have granted the relevant permission.",
+
+        privacyPermissionsTitle: "4. Permissions",
+        privacyPermissionsText: "Depending on the function used, the app may request permissions on your device, for example for location features. You can change or revoke permissions at any time in your device settings.",
+
+        privacyExternalTitle: "5. External services",
+        privacyExternalText: "The app may use external services or interfaces to provide data such as location, weather or solar information. Technically required request data may be transmitted to the respective provider.",
+
+        privacyGoogleTitle: "6. Google Play",
+        privacyGoogleText: "If you download or update SolarScope through Google Play, Google's privacy policies and terms of use also apply. The provider of this app has no direct influence on data processing carried out by Google in connection with Google Play.",
+
+        privacyWebsiteTitle: "7. Website",
+        privacyWebsiteText: "When this website is accessed, technically necessary access data may be processed, for example IP address, date and time of access, browser type, operating system and requested files. This data is used for the technical provision, security and stability of the website.",
+
+        privacyCookiesTitle: "8. Cookies and tracking",
+        privacyCookiesText: "In its current static form, this website does not use its own tracking cookies and does not use its own analytics tracking.",
+
+        privacyStorageTitle: "9. Storage period",
+        privacyStorageText: "Personal data is stored only for as long as it is required for the respective purpose or as long as statutory retention obligations apply.",
+
+        privacyLegalBasisTitle: "10. Legal bases",
+        privacyLegalBasisText: "Where applicable, personal data is processed on the basis of Art. 6(1)(b) GDPR for providing app functions, Art. 6(1)(f) GDPR for technical security and stability, and Art. 6(1)(a) GDPR where consent is required.",
+
+        privacyRightsTitle: "11. Your rights",
+        privacyRightsText: "Within the scope of the statutory requirements, you have the right of access, rectification, erasure, restriction of processing, data portability and objection to certain processing activities. If processing is based on consent, you may withdraw that consent at any time with effect for the future.",
+
+        privacyContactTitle: "12. Privacy contact",
+        privacyContactText: "If you have any questions about privacy, you can contact: [Insert your contact email address here]",
+
+        privacyDate: "Last updated: June 2026",
+
+        supportTitle: "Support",
+        supportText: "If you have questions about SolarScope, want to report an issue or need support, you can contact us by email.",
+        supportEmail: "Support email: [Insert your support email address here]",
+
+        disclaimerTitle: "Usage notice",
+        disclaimerText: "SolarScope provides information for general orientation. The app does not replace professional, technical, construction-related, legal or financial advice. For binding decisions, especially in connection with the planning, installation or economic assessment of solar systems, qualified professionals should be consulted.",
+
+        legalTitle: "Legal Notice",
+        legalProviderTitle: "Information according to Section 5 of the German Digital Services Act (DDG)",
+        legalProviderText: "Pedro Lázaro Peraza Gonzalez<br>[Insert your address for legal service here]",
+
+        legalContactTitle: "Contact",
+        legalContactText: "Email: [Insert your contact email address here]",
+
+        legalWidTitle: "Business Identification Number",
+        legalWidText: "Business Identification Number according to Section 139c of the German Fiscal Code (AO):<br>DE462227789",
+
+        legalContentResponsibleTitle: "Responsible for content",
+        legalContentResponsibleText: "Pedro Lázaro Peraza Gonzalez<br>[Insert your address for legal service here]",
+
+        legalDisputeTitle: "Dispute resolution",
+        legalDisputeText: "I am neither obliged nor willing to participate in dispute resolution proceedings before a consumer arbitration board.",
+
+        legalContentLiabilityTitle: "Liability for content",
+        legalContentLiabilityText: "The contents of this website have been created with care. However, no guarantee can be given for the accuracy, completeness or timeliness of the content.",
+
+        legalLinksLiabilityTitle: "Liability for links",
+        legalLinksLiabilityText: "This website may contain links to external websites. The provider of this website has no influence on their content. The respective provider or operator of the linked pages is always responsible for their content.",
+
+        footerPrivacy: "Privacy",
+        footerLegal: "Legal Notice"
+      }
+    };
+
+    function applyLanguage(language) {
+      const dictionary = translations[language];
+
+      if (!dictionary) {
+        return;
+      }
+
+      document.documentElement.lang = language;
+      document.title = dictionary.pageTitle;
+
+      const description = document.querySelector('meta[name="description"]');
+      if (description) {
+        description.setAttribute("content", dictionary.metaDescription);
+      }
+
+      document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.getAttribute("data-i18n");
+        if (dictionary[key]) {
+          element.innerHTML = dictionary[key];
+        }
+      });
+
+      document.querySelectorAll("[data-i18n-aria]").forEach((element) => {
+        const key = element.getAttribute("data-i18n-aria");
+        if (dictionary[key]) {
+          element.setAttribute("aria-label", dictionary[key]);
+        }
+      });
+
+      document.querySelectorAll("[data-i18n-alt]").forEach((element) => {
+        const key = element.getAttribute("data-i18n-alt");
+        if (dictionary[key]) {
+          element.setAttribute("alt", dictionary[key]);
+        }
+      });
+
+      document.querySelectorAll(".lang-btn").forEach((button) => {
+        const isActive = button.getAttribute("data-lang") === language;
+        button.classList.toggle("active", isActive);
+        button.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+
+      try {
+        localStorage.setItem("solarscope-language", language);
+      } catch (error) {
+        // If localStorage is unavailable, the language switch still works for the current page view.
+      }
+    }
+
+    function initializeLanguage() {
+      let savedLanguage = "de";
+
+      try {
+        const storedLanguage = localStorage.getItem("solarscope-language");
+        if (storedLanguage === "de" || storedLanguage === "en") {
+          savedLanguage = storedLanguage;
+        }
+      } catch (error) {
+        savedLanguage = "de";
+      }
+
+      applyLanguage(savedLanguage);
+    }
+
+    initializeLanguage();
+  </script>
+
 </body>
 </html>
