@@ -34,7 +34,8 @@
         var primary = (navigator.languages && navigator.languages[0]) || navigator.language || navigator.userLanguage || '';
         return String(primary).toLowerCase().indexOf('de') === 0 ? 'de' : 'en';
       }
-      var lang = storedLanguage() || browserLanguage();
+      var anchored = /^(?:#privacy-|#short-summary-)(de|en)$/.exec(location.hash);
+      var lang = anchored ? anchored[1] : storedLanguage() || browserLanguage();
       document.documentElement.lang = lang;
       document.documentElement.setAttribute('data-lang', lang);
     })();
@@ -906,7 +907,7 @@
 
       .signal-field { display: none !important; }
     }
-  
+
 
     /* Language handling: browser detection + manual switch. */
     html[data-lang="de"] [data-lang-block="en"],
@@ -1047,6 +1048,9 @@
       .mini-metrics { grid-template-columns: 1fr; }
     }
 
+      .legal-panel { overflow-wrap: anywhere; }
+    h3[id], article[id] { scroll-margin-top: 7rem; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--accent, #2563eb); outline-offset: 3px; }
   </style>
 </head>
 
@@ -1058,7 +1062,7 @@
     <div class="container nav-inner">
       <a class="brand" href="#home" aria-label="SolarScope home" data-i18n-aria-label="brandHome">
         <span class="brand-mark" aria-hidden="true">
-          <img src="icon.png" alt="" loading="eager">
+          <img src="https://perazapedr.github.io/solarscope-privacy/icon.png" alt="" loading="eager">
         </span>
         <span>SolarScope</span>
       </a>
@@ -1122,7 +1126,7 @@
       <div class="device-card" aria-label="SolarScope App preview" data-i18n-aria-label="appPreview">
         <div class="phone" aria-hidden="true">
           <div class="phone-screen">
-            <div class="phone-icon"><img src="icon.png" alt=""></div>
+            <div class="phone-icon"><img src="https://perazapedr.github.io/solarscope-privacy/icon.png" alt=""></div>
             <p class="screen-title">SolarScope</p>
             <p class="screen-subtitle" data-i18n="phoneSubtitle">A clean overview for solar and radio-related conditions.</p>
             <div class="screen-card">
@@ -1134,7 +1138,7 @@
             <div class="screen-card">
               <div class="screen-row"><span data-i18n="phoneConverters">Converters</span><span data-i18n="phoneLocal">Local</span></div>
               <div class="screen-row"><span data-i18n="phoneLocation">Location</span><span data-i18n="phoneOptional">Optional</span></div>
-              <div class="screen-row"><span data-i18n="phoneTracking">Tracking</span><span data-i18n="phoneNone">None</span></div>
+              <div class="screen-row"><span data-i18n="phoneTracking">Analytics</span><span data-i18n="phoneNone">With consent</span></div>
             </div>
           </div>
         </div>
@@ -1321,7 +1325,7 @@
     <section id="privacy" class="section">
       <div class="container legal-container">
         <div class="section-header" data-lang-block="de">
-          <p class="kicker">Privacy Package</p>
+          <p class="kicker">Datenschutz</p>
           <h2>Datenschutz für SolarScope.</h2>
           <p class="section-lead">Hier finden Sie die Datenschutzerklärung zur SolarScope-App sowie eine kurze In-App-Zusammenfassung.</p>
         </div>
@@ -1335,9 +1339,9 @@
           <h2 id="privacy-overview-title">Datenschutzerklärung</h2>
           <p>Diese Seite enthält die deutsche Datenschutzerklärung für die SolarScope-App.</p>
           <div class="meta-grid">
-            <div class="meta-card"><span class="label">Stand</span><span class="value">4. April 2026</span></div>
+            <div class="meta-card"><span class="label">Stand</span><span class="value">22. Oktober 2026</span></div>
             <div class="meta-card"><span class="label">App</span><span class="value">SolarScope Android / iOS</span></div>
-            <div class="meta-card"><span class="label">Verantwortlicher</span><span class="value">Pedro Peraza Gonzalez</span></div>
+            <div class="meta-card"><span class="label">Verantwortlicher</span><span class="value">Pedro Lazaro Peraza Gonzalez</span></div>
             <div class="meta-card"><span class="label">Kontakt</span><span class="value"><a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a></span></div>
           </div>
           <ul class="toc" aria-label="Datenschutz-Navigation">
@@ -1353,9 +1357,9 @@
           <h2 id="privacy-overview-title-en">Privacy Policy</h2>
           <p>This page contains the English privacy policy for the SolarScope app.</p>
           <div class="meta-grid">
-            <div class="meta-card"><span class="label">Effective date</span><span class="value">April 4, 2026</span></div>
+            <div class="meta-card"><span class="label">Effective date</span><span class="value">22 October 2026</span></div>
             <div class="meta-card"><span class="label">App</span><span class="value">SolarScope Android / iOS</span></div>
-            <div class="meta-card"><span class="label">Controller</span><span class="value">Pedro Peraza Gonzalez</span></div>
+            <div class="meta-card"><span class="label">Controller</span><span class="value">Pedro Lazaro Peraza Gonzalez</span></div>
             <div class="meta-card"><span class="label">Contact</span><span class="value"><a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a></span></div>
           </div>
           <ul class="toc" aria-label="Privacy navigation">
@@ -1367,445 +1371,215 @@
           </ul>
         </article>
 
-<article id="privacy-de" data-lang-block="de" class="legal-panel" aria-labelledby="privacy-de-title">
-          <p class="kicker">Deutsch</p>
-          <h2 id="privacy-de-title">Datenschutzerklärung für die SolarScope-App</h2>
+<article id="privacy-de" data-lang-block="de" lang="de" class="legal-panel" aria-labelledby="privacy-de-title">
+<h2 id="privacy-de-title">Datenschutzerklärung für die SolarScope-App</h2>
+<p><time datetime="2026-10-22">22. Oktober 2026</time> · SolarScope</p>
+<nav aria-label="Inhalt"><ul class="toc"><li><a href="#web-privacy-de-controller">1. Verantwortlicher und Kontakt</a></li><li><a href="#web-privacy-de-local">2. Lokale Daten und Sicherungen</a></li><li><a href="#web-privacy-de-logbook">3. ADIF, Logbook Wrapped und Teilen</a></li><li><a href="#web-privacy-de-sources">4. Direkte Solar- und Ionosondenabrufe</a></li><li><a href="#web-privacy-de-location">5. Standort, Ortssuche, Karten und Höhen</a></li><li><a href="#web-privacy-de-permissions">6. Benachrichtigungen und Widgets</a></li><li><a href="#web-privacy-de-review">7. Lokaler Bewertungsdialog</a></li><li><a href="#web-privacy-de-analytics">8. Freiwillige Produktanalyse mit PostHog</a></li><li><a href="#web-privacy-de-events">9. Was Analytics misst – und was ausgeschlossen ist</a></li><li><a href="#web-privacy-de-withdrawal">10. Einwilligung ändern und widerrufen</a></li><li><a href="#web-privacy-de-safeguards">11. Technische Maßnahmen und ihre Grenzen</a></li><li><a href="#web-privacy-de-retention">12. Speicherdauer und Löschung</a></li><li><a href="#web-privacy-de-bases">13. Zwecke und weitere Rechtsgrundlagen</a></li><li><a href="#web-privacy-de-recipients">14. Empfänger, Auftragsverarbeitung und Drittlandtransfers</a></li><li><a href="#web-privacy-de-links">15. Externe Links und Online-Version</a></li><li><a href="#web-privacy-de-rights">16. Ihre Rechte und Beschwerden</a></li><li><a href="#web-privacy-de-accuracy">17. Datenqualität und sachliche Grenzen</a></li></ul></nav>
+<section aria-labelledby="web-privacy-de-controller"><h3 id="web-privacy-de-controller" tabindex="-1">1. Verantwortlicher und Kontakt</h3>
+<p>Verantwortlicher: Pedro Lazaro Peraza Gonzalez, Eichendorffstraße 23, 57482 Wenden, Deutschland. E-Mail: peraza.pedr@gmail.com. Diese Hinweise betreffen SolarScope für Android und die entsprechenden App-Funktionen auf iOS. Die optionale Analytics-Integration ist derzeit nur mit der unterstützten Android-Consent-Bridge aktivierbar.</p>
+<p>SolarScope zeigt Solar-, Geomagnetik-, Ionosonden- und Funkdaten und bietet lokale Werkzeuge. Es gibt kein Nutzerkonto und keinen eigenen Kontenserver. Die einzelnen Datenflüsse werden nachfolgend getrennt beschrieben.</p>
+<ul><li><a href="mailto:peraza.pedr@gmail.com">Datenschutzkontakt</a></li></ul>
+</section>
+<section aria-labelledby="web-privacy-de-local"><h3 id="web-privacy-de-local" tabindex="-1">2. Lokale Daten und Sicherungen</h3>
+<p>Die App speichert je nach Nutzung Layout, Kartenreihenfolge und aufgeklappte Bereiche, Höhenquelle, Amateurfunk-Berechtigung, ein optionales Rufzeichen, manuelle Koordinaten und Maidenhead-Locator, letzte Position mit Genauigkeit und Zeit, Funk-/DX-Einstellungen, Antennenhöhen, manuelle Ionosondenwerte, VHF/Es-Einstellungen, Alarme und Widget-Standort-/Höhensnapshots. Die App-Sprache folgt der bevorzugten Systemsprache (Deutsch oder Englisch).</p>
+<p>Dafür werden localStorage, IndexedDB, Capacitor Preferences und native App-Speicher verwendet. Solar-, Ionosonden-, SWPC-, Geocoding- und Höhenprofilwerte werden zwischengespeichert. Lokale Standortdaten können für die unten beschriebenen direkten Geodienst-Anfragen verwendet werden. Rufzeichen werden lokal ausgewertet und nicht an Analytics gesendet.</p>
+<p>Android erlaubt im Manifest System-Backups. Je nach System-, Konto- und Geräteeinstellung können lokale App-Daten daher durch das Betriebssystem gesichert oder auf ein anderes Gerät übertragen werden. Der native Analytics-Consent einschließlich Kennung liegt im No-Backup-Verzeichnis. Eine Deinstallation löscht nicht zwingend vorhandene System- oder Empfängerkopien.</p>
+</section>
+<section aria-labelledby="web-privacy-de-logbook"><h3 id="web-privacy-de-logbook" tabindex="-1">3. ADIF, Logbook Wrapped und Teilen</h3>
+<p>Importierte ADIF-Dateien werden lokal ausgewertet. Ein aktives Logbuch mit vollständigem ADIF-Text (bis 20 MiB), Dateiname, Dateigröße, Importzeit und Jahresauswahl wird in IndexedDB gespeichert und beim nächsten Öffnen wiederhergestellt. Es gibt keinen automatischen Upload des Logbuchs. Sie können das gespeicherte Logbuch in Logbook Wrapped löschen oder durch einen neuen Import ersetzen.</p>
+<p>Wenn Sie bewusst Text oder ein PNG teilen, können die dargestellten Auswertungen einschließlich eines angezeigten Rufzeichens an die von Ihnen gewählte App oder Person gelangen. Dafür werden Systemfreigabe, Zwischenablage oder Download verwendet. Für native Bildfreigaben wird eine PNG-Datei im App-Cache erstellt; die nächste gleichnamige Freigabe ersetzt sie. Kopien bei Empfängern werden durch die lokale Löschung nicht zurückgerufen.</p>
+</section>
+<section aria-labelledby="web-privacy-de-sources"><h3 id="web-privacy-de-sources" tabindex="-1">4. Direkte Solar- und Ionosondenabrufe</h3>
+<p>HAMQSL (www.hamqsl.com und hamqsl.com) liefert Solar-, Geomagnetik-, HF- und VHF-Werte. NOAA SWPC (services.swpc.noaa.gov) liefert aktuelle und historische Weltraumwetterdaten. IAP Juliusruh (www.ionosonde.iap-kborn.de) liefert aktuelle Ionosondenwerte über die öffentliche Ionogrammseite; GIRO DIDBase (lgdc.uml.edu) wird für Historien mit festem Stationscode JR055, Messgrößen und UTC-Zeitfenster abgefragt.</p>
+<p>Abrufe erfolgen bei App-/Seitenstart, Aktualisierung oder Historiennachladen. Android kann HAMQSL und IAP auch über einen regelmäßig geplanten Hintergrund-Worker für Daten, Alarme und Widgets abrufen (ungefähr stündlich, durch das System gesteuert). Diese fachlichen Datenabrufe benötigen keine Analytics-Einwilligung. Es werden dabei keine individuellen Standortkoordinaten, Rufzeichen oder Logbuchinhalte als Anfrageparameter gesendet; Verbindungsdaten wie IP-Adresse, Abrufzeit und Client-Header können beim Anbieter anfallen.</p>
+<ul><li><a href="https://www.hamqsl.com/solar.html">HAMQSL – N0NBH / Paul L. Herrman</a></li><li><a href="https://services.swpc.noaa.gov/">NOAA SWPC</a></li><li><a href="https://www.ionosonde.iap-kborn.de/ionogram.htm">IAP Juliusruh</a></li><li><a href="https://lgdc.uml.edu/">GIRO DIDBase</a></li></ul>
+</section>
+<section aria-labelledby="web-privacy-de-location"><h3 id="web-privacy-de-location" tabindex="-1">5. Standort, Ortssuche, Karten und Höhen</h3>
+<p>Der Abruf der Geräteposition benötigt eine System-Standortberechtigung und aktivierte Standortdienste. Präzise oder ungefähre Koordinaten und Höhen-/Genauigkeitswerte werden für Standort- und Funkwerkzeuge verarbeitet. Ohne diese Freigabe stehen allgemeine Daten und viele lokale Werkzeuge zur Verfügung; manuelle Koordinaten oder Locator können GPS ersetzen. Die Gerätepositionsfunktion selbst funktioniert ohne Freigabe nicht. Es wird keine Android-Berechtigung für Hintergrundstandort angefordert. Auf Android bezieht das installierte Capacitor-/Ionic-Geolocation-Plugin die Geräteposition über den Fused Location Provider der Google Play-Dienste. Die systemseitige Verarbeitung ist zusätzlich von den Android-/Google-Einstellungen abhängig und von den direkten App-Anfragen an die genannten Geodienste zu unterscheiden.</p>
+<p>Open-Meteo (api.open-meteo.com/v1/elevation) erhält Breiten- und Längengrad für die Geländehöhe als Vergleich oder Fallback. Nach bereits erteilter Standortfreigabe kann dies bei Home-Start und weiteren Positionsupdates automatisch geschehen. Nominatim (nominatim.openstreetmap.org) erhält bei Ortssuche den Suchtext und die Sprache, bei Reverse-Geocoding Breiten-/Längengrad und Sprache. Nearest-Place-Anfragen können nach Standortupdates oder aus gespeicherten Standorten automatisch erfolgen, ohne einen erneuten Suchklick. Die Geländehöhe verwendet über Open-Meteo das Copernicus DEM GLO-90.</p>
+<p>OpenTopoData (api.opentopodata.org) erhält die gewählten Start- und Zielkoordinaten, Anzahl der Profilpunkte und Interpolationsart. Höhenprofile werden nach einem Profilauftrag oder über das aktivierte optionale Profil einer lokalen Funkbewertung geladen und gegebenenfalls neu berechnet. Verwendet werden regionale offene Höhendaten wie EU-DEM, ASTER und SRTM; EU-DEM basiert auf Copernicus-/EEA-Daten. Die jeweiligen Lizenz-/Attributionsbedingungen bleiben maßgeblich. Profilwerte werden interpoliert; die Verwendung bedeutet keine Unterstützung durch die Europäische Union.</p>
+<p>Beim Öffnen und Bewegen der Zielkarte lädt Leaflet Kacheln von a/b/c.tile.openstreetmap.org. Kachelindizes und Zoomstufe lassen auf den sichtbaren Kartenausschnitt schließen. Ein gewählter Punkt kann eine Nominatim-Länderabfrage auslösen. Die Umrechnung zum Maidenhead-Locator erfolgt lokal. Alle genannten Anbieter können zusätzlich IP-Adresse und technische Zugriffsdaten erhalten. Diese direkten Funktionsanfragen sind unabhängig von Analytics und können daher auch bei ausgeschaltetem Analytics stattfinden.</p>
+<ul><li><a href="https://open-meteo.com/en/docs/elevation-api">Open-Meteo / Copernicus DEM GLO-90</a></li><li><a href="https://www.opentopodata.org/#public-api">OpenTopoData – Datensätze und Attribution</a></li><li><a href="https://nominatim.openstreetmap.org/">Nominatim</a></li><li><a href="https://www.openstreetmap.org/copyright">© OpenStreetMap-Mitwirkende</a></li></ul>
+</section>
+<section aria-labelledby="web-privacy-de-permissions"><h3 id="web-privacy-de-permissions" tabindex="-1">6. Benachrichtigungen und Widgets</h3>
+<p>Alarme speichern Regeln, Schwellenwerte, Bezeichnungen, Zeitpläne und Auslösestatus lokal. Auf Android kann die Alarmfunktion zusätzlich eine Benachrichtigungsberechtigung anfragen; ab Android 13 ist diese für sichtbare App-Benachrichtigungen erforderlich. Für genaue HF-Zeitpläne kann außerdem der Android-Sonderzugriff für genaue Alarme erforderlich sein. Nach Neustart werden Zeitpläne über den System-Bootempfänger wiederhergestellt. INTERNET ist eine feste Berechtigung für Onlinefunktionen, kein optionaler Laufzeitdialog.</p>
+<p>Es wird kein separater Push-Nachrichtendienst verwendet. Benachrichtigungen werden auf dem Gerät erstellt; ihr Inhalt kann je nach Systemeinstellung auf dem Sperrbildschirm sichtbar sein. Das Widget speichert Standort-/Höhenwerte und Quellenzeitpunkte lokal und berechnet die Grayline lokal. Fachliche Hintergrundabrufe sind in Abschnitt 4 beschrieben.</p>
+<p>Nur bei aktivem Analytics werden Öffnungen einer Solar-/HF-Benachrichtigung als Kategorie solar_alarm oder hf_conditions beziehungsweise Öffnungen über die Hauptfläche des Widgets ohne weitere Widget-Properties gemeldet. Keine Meldung der Notification-Inhalte, Alarm-IDs, Zeitplanslots, Widget-IDs oder Standorte. Widget-Refresh, Resume und bloßes Neuzeichnen erzeugen keine Öffnungsmeldung. Herkunftssignale werden nur flüchtig bis zu 30 Sekunden gepuffert, ohne nachträgliche Freigabe durch neue Zustimmung.</p>
+</section>
+<section aria-labelledby="web-privacy-de-review"><h3 id="web-privacy-de-review" tabindex="-1">7. Lokaler Bewertungsdialog</h3>
+<p>Ein lokaler Review-Status enthält Zeitstempel, Dialoganzahl, Nutzungszähler und feste Kategorien sinnvoller abgeschlossener Nutzung. Er dient dazu, den Bewertungsdialog erst nach mindestens 30 Tagen, fünf akzeptierten Nutzungen und zwei Nutzungskategorien und insgesamt höchstens zweimal anzuzeigen. Diese lokale Verarbeitung funktioniert auch ohne Analytics. Eingaben, Rufzeichen, Koordinaten oder ADIF-Inhalte werden dafür nicht gespeichert.</p>
+<p>„Jetzt bewerten“ öffnet auf Android den Google Play Store über einen Store-Link oder HTTPS-Fallback mit der App-Paketkennung. Google kann dabei eigene Verbindungs-/Kontodaten verarbeiten. SolarScope erhält keinen Bewertungsinhalt und prüft nicht, ob eine Bewertung abgegeben wurde. „Später“ und „Schon bewertet“ ändern den lokalen Status. Nur mit aktivem Analytics werden Anzeige und die drei Buttonentscheidungen mit der Promptnummer 1 oder 2 gemeldet; lokale Nutzungszähler werden nicht hochgeladen.</p>
+<ul><li><a href="https://policies.google.com/privacy">Google – Datenschutz</a></li></ul>
+</section>
+<section aria-labelledby="web-privacy-de-analytics"><h3 id="web-privacy-de-analytics" tabindex="-1">8. Freiwillige Produktanalyse mit PostHog</h3>
+<p>Mit Ihrer freiwilligen Einwilligung nutzt SolarScope PostHog zur Produktanalyse und Verbesserung der App. Der Code ist für den PostHog-Cloud-EU-Ingestion-Host https://eu.i.posthog.com eingerichtet. Es werden eine zufällige pseudonyme Analytics-Kennung und die unten erläuterten Ereignisse übertragen. Pseudonym bedeutet nicht vollständig anonym. Auch bei HTTPS kann der Empfänger technische Verbindungsdaten wie IP-Adresse, Abrufzeit, Origin und User-Agent einschließlich daraus erkennbarer Systemmerkmale erhalten.</p>
+<p>Analytics bleibt vor einer gültigen Einwilligung aus; es gibt vorher auch keinen PostHog-Konfigurationsabruf. Bestehende Nutzer ohne gültige aktuelle Entscheidung werden nicht automatisch angemeldet. Einwilligungen zur früheren Policy-Version 1 oder 2 gelten nicht für den erweiterten Ereignisumfang. Sie bleiben wie unbekannte Policy-Versionen gesperrt und benötigen bewusste Bereinigung und erneute Zustimmung zur aktuellen Policy-Version 3. Eine gültige gespeicherte Zustimmung kann bei einem regulären Android-Neustart wiederhergestellt werden. Auf nicht unterstützten Plattformen bleibt Analytics aus.</p>
+<p>Ablehnen, Schließen oder Nichtentscheiden schaltet Analytics nicht ein. Alle App-Funktionen bleiben ohne Analytics nutzbar. Rechtsgrundlage für die optionale Produktanalyse ist, soweit die DSGVO anwendbar ist, Ihre Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO; für die zugehörige nicht erforderliche Endgerätespeicherung gilt § 25 Abs. 1 TDDDG.</p>
+<ul><li><a href="https://posthog.com/privacy">PostHog – Datenschutz</a></li></ul>
+</section>
+<section aria-labelledby="web-privacy-de-events"><h3 id="web-privacy-de-events" tabindex="-1">9. Was Analytics misst – und was ausgeschlossen ist</h3>
+<p>Erfasst werden App-Starts und Sitzungsbeginne, Aufrufe der fünf App-Bereiche, manuelle Home-Aktualisierungen, Sichtbarkeit von Kartenköpfen (mindestens 50 % für eine Sekunde), Kartenöffnungen, Auf-/Zuklappen und Reihenfolgeänderungen. Eine neue Sitzung beginnt beim App-Start oder nach mindestens 30 Minuten im Hintergrund, soweit der bestehende Consent-/Lebenszykluspfad die Erfassung freigibt. Eine neue Zustimmung spielt frühere Starts oder Aktionen nicht nach.</p>
+<p>Weitere Kategorien sind Funktionsöffnung, -nutzung und -abschluss (z. B. Berechnung, ADIF-Import, Teilen oder Ansicht), feste technische Fehlerkategorien, Erstellen/Löschen/Umschalten von Alarmen, Öffnungen von Benachrichtigungen oder Widgets, bewusst geöffnete DXMAPS-/KC2G-Links und die beschriebenen Reviewdialog-Aktionen. Die Meldung eines Teilens belegt keine Zustellung; eine Kartenkopfsichtbarkeit belegt kein Lesen des Inhalts.</p>
+<p>Zulässige Ereignisfelder enthalten ausschließlich feste Kategorien oder begrenzte Zahlen/Schalter: screen_id, card_id, card_position, state, from_position, to_position, feature_id, source, action, tool_id, error_code, metric, enabled, notification_type, destination und prompt_number, jeweils nur gemäß Ereignistyp. Beispiele: Werkzeugkategorie statt eingegebener Frequenz, Alarmmetrik statt Schwellenwert, Fehlerkategorie statt Fehlermeldung. Widgetöffnungen enthalten keine zusätzlichen Ereignisfelder.</p>
+<p>Allgemeine Metadaten sind analytics_schema_version, app_version, build_number, app_language (de/en) und platform (Android). Hinzu kommen die pseudonyme Kennung und technische Steuerfelder zum Ausschluss von Personenprofilen und GeoIP-Anreicherung. Kein Gerätemodell, keine Hardware-/Werbe-ID und keine Betriebssystemversion werden als eigene Analytics-Payloadfelder hinzugefügt. Standort/Locator, Suchtexte, Rufzeichen, ADIF-/QSO-Inhalte, Dateinamen, Freitext, Rohfehler, vollständige URLs, Alarmwerte und Widgetkonfigurationen sind im Ereignisvertrag ausgeschlossen.</p>
+</section>
+<section aria-labelledby="web-privacy-de-withdrawal"><h3 id="web-privacy-de-withdrawal" tabindex="-1">10. Einwilligung ändern und widerrufen</h3>
+<p>Der vorhandene Schalter unter Rechtliches → Datenschutz zeigt den tatsächlichen Consent- und Aktivierungszustand und erlaubt Einwilligung oder Widerruf. Zum Widerruf schalten Sie „Freiwillige Nutzungsstatistiken erlauben“ aus. Die Anzeige unterscheidet gespeicherte Entscheidung, laufende Änderung und technische Fehler. Ein bestätigter Widerruf speichert die Ablehnung und entfernt die lokale Analytics-Kennung.</p>
+<p>Bereits beim Ausschalten wird der Versand in der laufenden App gesperrt; laufende Requests werden abgebrochen. Ein schon beim Server eingegangener Request kann nicht zurückgerufen werden. Vor dauerhaft bestätigter Speicherung kann ein Prozessabbruch eine frühere Zustimmung beim nächsten Start erhalten; beachten Sie die angezeigten Speicherfehler und wiederholen Sie das Ausschalten gegebenenfalls.</p>
+<p>Erneute Zustimmung nach erfolgreichem Widerruf erzeugt eine neue zufällige Kennung. Frühere Ereignisse werden nicht nachgesendet. Der Widerruf wirkt für die Zukunft und berührt nicht die Rechtmäßigkeit der zuvor auf Einwilligung gestützten Verarbeitung. Er löscht keine bereits bei PostHog gespeicherten Ereignisse; eine Löschanfrage richten Sie bitte an den Datenschutzkontakt.</p>
+</section>
+<section aria-labelledby="web-privacy-de-safeguards"><h3 id="web-privacy-de-safeguards" tabindex="-1">11. Technische Maßnahmen und ihre Grenzen</h3>
+<p>Die produktive Analytics-Anbindung verwendet direkte HTTPS-Einzelrequests ohne Analytics-SDK, Cookies, Autocapture, Session Recording, automatische Crashberichte oder Fingerprinting. Ereignisse werden vor dem Versand anhand einer festen Positivliste geprüft. Es gibt keine Eventdateien, Offline-Warteschlange, Batches, automatischen Wiederholungen oder Hintergrundzustellung; nicht zustellbare Ereignisse werden verworfen.</p>
+<p>Die Requests schließen Zugangscookies, Referrer und Weiterleitungen aus und verwenden einen Abbruchmechanismus. Die App fordert mit $geoip_disable=true den Verzicht auf GeoIP-Anreicherung und mit $process_person_profile=false den Verzicht auf Personenprofile an. Diese Codevorgaben sind keine Zusicherung, dass IP-Adressen bei Netzwerk-/Sicherheitsprotokollen anonymisiert werden. Projektseitige Verarbeitung, Zugriffsrechte und Löschregeln müssen zusätzlich im PostHog-Konto bestätigt werden.</p>
+<p>Alle fest konfigurierten fachlichen API-Adressen beginnen mit HTTPS. Für gewöhnliche Fachanfragen gelten nicht sämtliche strengeren Analytics-Transportregeln. Die Geocoding-Komponente unterstützt technisch abweichende HTTP-/HTTPS-Konfigurationen; die ausgelieferte Produktionskonfiguration nennt Nominatim über HTTPS und keine externe Runtime-Konfigurationsadresse. Absolute Sicherheit oder eine besondere Verschlüsselung aller lokalen Daten wird nicht zugesichert.</p>
+</section>
+<section aria-labelledby="web-privacy-de-retention"><h3 id="web-privacy-de-retention" tabindex="-1">12. Speicherdauer und Löschung</h3>
+<p>Lokale Einstellungen, Rufzeichen, letzte Position, Widgetwerte, Reviewstatus, Alarme und Einzelcaches bleiben bis Änderung, Ersetzen oder Löschen bestehen. Die Historie wird beim Verarbeiten auf sieben Tage plus eine Stunde begrenzt. Geocoding nutzt standardmäßig sechs Stunden und höchstens 24 Cacheeinträge; die Bereinigung erfolgt bei Nutzung. Der Höhenvergleich hält höchstens 24 Einträge für zwölf Stunden im Arbeitsspeicher. Persistente Höhenprofile haben keinen automatischen Zeitablauf.</p>
+<p>Logbook Wrapped bietet eine eigene Löschaktion; Alarme und Rufzeichen können über ihre vorhandenen Bearbeitungsfunktionen entfernt werden. Android „App-Daten löschen“ entfernt die lokalen App-Speicher; Deinstallation entfernt regulär die Installation, nicht zwingend Systembackups oder bereits geteilte Daten. Der Analytics-Widerruf entfernt nur die lokale Analytics-Kennung und ändert die Entscheidung, keine fachlichen Daten.</p>
+<p>Die konkrete Aufbewahrungsdauer von PostHog-Ereignissen, technischen Logs, Sicherungen und Exporten ist in den verfügbaren Projektunterlagen nicht verbindlich bestätigt. Auch der tatsächliche serverseitige Löschablauf muss vom Betreiber vor rechtlicher Veröffentlichung bestätigt werden. Es gibt keinen automatischen Serverlöschknopf in der App. Fragen und Löschanfragen sind per E-Mail möglich; ohne zusätzliche Zuordnungsinformationen lassen sich rein pseudonyme Ereignisse möglicherweise nicht Ihrer Person zuordnen. Die App verlangt dafür keine vorsorgliche Identifizierung.</p>
+</section>
+<section aria-labelledby="web-privacy-de-bases"><h3 id="web-privacy-de-bases" tabindex="-1">13. Zwecke und weitere Rechtsgrundlagen</h3>
+<p>Daten werden für die jeweils angeforderte App-Funktion, deren lokale Speicherung, aktuelle Fachinformationen, technische Zuverlässigkeit und Sicherheit oder für die freiwillige Produktanalyse verarbeitet. Soweit für die angeforderte Leistung erforderlich, kommt Art. 6 Abs. 1 lit. b DSGVO in Betracht. Technischer Betrieb, Sicherheit und Bearbeitung allgemeiner Anfragen können auf Art. 6 Abs. 1 lit. f DSGVO beruhen; das berechtigte Interesse liegt in einer zuverlässigen App und der Beantwortung Ihrer Anfrage. Die konkrete rechtliche Einordnung der Funktionspfade ist Teil der noch offenen Betreiberprüfung.</p>
+<p>Für unbedingt erforderliche Endgerätespeicherung einer ausdrücklich gewünschten Funktion kann § 25 Abs. 2 Nr. 2 TDDDG einschlägig sein. Nicht erforderliche Speicherung benötigt gesonderte Einwilligung. Eine System-Standort- oder Benachrichtigungsfreigabe ersetzt nicht automatisch eine datenschutzrechtliche Rechtsgrundlage. Es gibt keine allgemeine gesetzliche Pflicht zur Eingabe personenbezogener Daten; bestimmte Funktionen benötigen aber ihre jeweiligen Eingaben oder Berechtigungen.</p>
+<p>Bei E-Mail-Kontakt werden Absenderadresse, gegebenenfalls Name, Nachricht, Anhänge und technische Versanddaten zur Bearbeitung der Anfrage über die beteiligten E-Mail-Anbieter verarbeitet (Kontaktadresse bei Gmail/Google). Je nach Anliegen gilt Art. 6 Abs. 1 lit. b oder lit. f DSGVO. Nachrichten werden für die Bearbeitung und gegebenenfalls notwendige Nachweise aufbewahrt; verbindliche Fristen und etwaige gesetzliche Aufbewahrungspflichten sind vor Veröffentlichung vom Betreiber festzulegen.</p>
+</section>
+<section aria-labelledby="web-privacy-de-recipients"><h3 id="web-privacy-de-recipients" tabindex="-1">14. Empfänger, Auftragsverarbeitung und Drittlandtransfers</h3>
+<p>Empfänger sind je nach Funktion die genannten Fach-/Geoanbieter, PostHog bei Einwilligung, Anbieter bewusst geöffneter Links, gewählte Freigabeempfänger, System-Backupdienste und beteiligte E-Mail-Anbieter. Der Code enthält keinen Datenverkaufsdienst. Der Betreiber verkauft nach bestehender Betreiberangabe keine personenbezogenen Daten. Direkte Fachanbieter sind nicht automatisch vertragliche Auftragsverarbeiter.</p>
+<p>PostHog soll die Produktanalyse im Auftrag des Betreibers verarbeiten. Der tatsächlich wirksame Vertrag nach Art. 28 DSGVO, die konkrete Vertragspartei und Unterauftragsverarbeiter sind in den verfügbaren Nachweisen nicht abschließend bestätigt. Der EU-Ingestion-Host allein beweist weder EU-exklusive Verarbeitung noch den Ausschluss von Supportzugriffen oder anderen Drittlandübermittlungen.</p>
+<p>Bei PostHog, Fach-/Geoanbietern, GitHub, Google und E-Mail-/Backupdiensten können Verarbeitungen außerhalb der EU/des EWR, insbesondere in den USA, relevant sein. Konkrete Empfängerstandorte, Transfers und jeweils einschlägige Garantien nach Kapitel V DSGVO sind vor rechtlicher Veröffentlichung verbindlich zu bestätigen. Hier wird weder ein unterzeichneter AV-Vertrag noch eine bestimmte Transfergarantie als bereits nachgewiesen behauptet.</p>
+<ul><li><a href="https://posthog.com/dpa">PostHog – AV-Vertragsinformationen</a></li><li><a href="https://posthog.com/subprocessors">PostHog – Unterauftragsverarbeiter</a></li></ul>
+</section>
+<section aria-labelledby="web-privacy-de-links"><h3 id="web-privacy-de-links" tabindex="-1">15. Externe Links und Online-Version</h3>
+<p>Links zu HAMQSL, DXMAPS, KC2G einschließlich Stationsseite, IAP, OpenStreetMap, CEPT-Fachdokumenten, Google Play und der Online-Datenschutzerklärung öffnen nach Ihrer Aktion das jeweilige externe Angebot. Dabei gelten dessen Datenschutzbedingungen; IP-Adresse und technische Verbindungsdaten können anfallen. SolarScope bettet DXMAPS-/KC2G-Karteninhalte nicht ein und hängt für diese Links keine Standortkoordinaten an. GitHub Pages hostet die Online-Version; die gesonderten Website-Datenschutzhinweise erläutern dortige Zugriffsdaten.</p>
+<ul><li><a href="https://perazapedr.github.io/solarscope-privacy/#privacy">Online-Datenschutzerklärung</a></li><li><a href="https://www.dxmaps.com/spots/map.php">DXMAPS</a></li><li><a href="https://prop.kc2g.com/">KC2G</a></li><li><a href="https://prop.kc2g.com/stations/">KC2G – Stationen</a></li></ul>
+</section>
+<section aria-labelledby="web-privacy-de-rights"><h3 id="web-privacy-de-rights" tabindex="-1">16. Ihre Rechte und Beschwerden</h3>
+<p>Soweit die gesetzlichen Voraussetzungen vorliegen, haben Sie Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch gemäß Art. 15–21 DSGVO. Bei Verarbeitung auf Grundlage berechtigter Interessen können Sie aus Gründen Ihrer besonderen Situation widersprechen. Einwilligungen können Sie jederzeit für die Zukunft widerrufen. Für Analytics nutzen Sie den Schalter unter Rechtliches → Datenschutz; für weitere Anliegen den oben genannten Kontakt.</p>
+<p>Sie können sich bei einer Datenschutzaufsichtsbehörde beschweren, insbesondere am gewöhnlichen Aufenthaltsort, Arbeitsplatz oder Ort des vermuteten Verstoßes. Für den Betreiber in Nordrhein-Westfalen kommt die Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen als Anlaufstelle in Betracht. Die App trifft keine automatisierte Entscheidung mit rechtlicher oder ähnlich erheblicher Wirkung im Sinne von Art. 22 DSGVO; Funkbewertungen und der lokale Review-Zeitplan sind technische Hilfsfunktionen.</p>
+<ul><li><a href="https://www.ldi.nrw.de/">LDI Nordrhein-Westfalen</a></li></ul>
+</section>
+<section aria-labelledby="web-privacy-de-accuracy"><h3 id="web-privacy-de-accuracy" tabindex="-1">17. Datenqualität und sachliche Grenzen</h3>
+<p>Messwerte können verzögert, unvollständig oder nicht verfügbar sein. Vorhersagen, Funkbewertungen und Höhenprofile sind Orientierungshilfen und ersetzen keine eigenen Messungen, amtlichen Warnungen oder sicherheitsrelevante Navigation. Die VHF/Es-Beobachtung ist eine SolarScope-Heuristik, keine offizielle NOAA-Vorhersage; NOAA/SWPC unterstützt oder sponsert SolarScope nicht. Tatsächliche Funkbedingungen können erheblich abweichen. Gesetzliche Ansprüche bleiben unberührt.</p>
+</section>
+</article>
 
-          <p>
-            <span class="strong">Stand:</span> 4. April 2026<br>
-            <span class="strong">App:</span> SolarScope Android / iOS<br>
-            <span class="strong">Verantwortlicher:</span> Pedro Peraza Gonzalez<br>
-            <span class="strong">Anschrift:</span> Eichendorffstraße 23, 57482 Wenden, Deutschland<br>
-            <span class="strong">E-Mail:</span> <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a>
-          </p>
+<article id="privacy-en" data-lang-block="en" lang="en" class="legal-panel" aria-labelledby="privacy-en-title">
+<h2 id="privacy-en-title">Privacy Policy for the SolarScope App</h2>
+<p><time datetime="2026-10-22">22 October 2026</time> · SolarScope</p>
+<nav aria-label="Contents"><ul class="toc"><li><a href="#web-privacy-en-controller">1. Controller and contact</a></li><li><a href="#web-privacy-en-local">2. Local data and backups</a></li><li><a href="#web-privacy-en-logbook">3. ADIF, Logbook Wrapped and sharing</a></li><li><a href="#web-privacy-en-sources">4. Direct solar and ionosonde requests</a></li><li><a href="#web-privacy-en-location">5. Location, place search, maps and elevation</a></li><li><a href="#web-privacy-en-permissions">6. Notifications and widgets</a></li><li><a href="#web-privacy-en-review">7. Local review prompt</a></li><li><a href="#web-privacy-en-analytics">8. Optional product analytics with PostHog</a></li><li><a href="#web-privacy-en-events">9. What analytics measures and excludes</a></li><li><a href="#web-privacy-en-withdrawal">10. Changing and withdrawing consent</a></li><li><a href="#web-privacy-en-safeguards">11. Technical measures and their limits</a></li><li><a href="#web-privacy-en-retention">12. Retention and deletion</a></li><li><a href="#web-privacy-en-bases">13. Purposes and other legal bases</a></li><li><a href="#web-privacy-en-recipients">14. Recipients, processors and international transfers</a></li><li><a href="#web-privacy-en-links">15. External links and online version</a></li><li><a href="#web-privacy-en-rights">16. Your rights and complaints</a></li><li><a href="#web-privacy-en-accuracy">17. Data quality and practical limits</a></li></ul></nav>
+<section aria-labelledby="web-privacy-en-controller"><h3 id="web-privacy-en-controller" tabindex="-1">1. Controller and contact</h3>
+<p>Controller: Pedro Lazaro Peraza Gonzalez, Eichendorffstraße 23, 57482 Wenden, Germany. Email: peraza.pedr@gmail.com. These notices cover SolarScope for Android and the corresponding app features on iOS. Optional analytics can currently be activated only through the supported Android consent bridge.</p>
+<p>SolarScope displays solar, geomagnetic, ionosonde and radio data and provides local tools. There is no user account or proprietary account server. The individual data flows are described separately below.</p>
+<ul><li><a href="mailto:peraza.pedr@gmail.com">Privacy contact</a></li></ul>
+</section>
+<section aria-labelledby="web-privacy-en-local"><h3 id="web-privacy-en-local" tabindex="-1">2. Local data and backups</h3>
+<p>Depending on use, the app stores layout, card order and expanded sections, altitude source, amateur-radio authorisation, an optional callsign, manual coordinates and Maidenhead locator, last position with accuracy and time, radio/DX settings, antenna heights, manual ionosonde values, VHF/Es settings, alarms and widget location/altitude snapshots. The app follows the preferred system language (German or English).</p>
+<p>These use localStorage, IndexedDB, Capacitor Preferences and native app storage. Solar, ionosonde, SWPC, geocoding and elevation-profile results are cached. Local location data may be used for the direct geodata requests described below. Callsigns are interpreted locally and are not sent to analytics.</p>
+<p>The Android manifest permits system backups. Depending on system, account and device settings, the operating system may therefore back up local app data or transfer it to another device. Native analytics consent, including its identifier, is stored in the no-backup directory. Uninstalling does not necessarily remove existing system or recipient copies.</p>
+</section>
+<section aria-labelledby="web-privacy-en-logbook"><h3 id="web-privacy-en-logbook" tabindex="-1">3. ADIF, Logbook Wrapped and sharing</h3>
+<p>Imported ADIF files are analysed locally. One active logbook containing the complete ADIF text (up to 20 MiB), filename, file size, import time and year selection is stored in IndexedDB and restored on the next visit. There is no automatic logbook upload. You can delete the saved logbook in Logbook Wrapped or replace it with a new import.</p>
+<p>When you deliberately share text or a PNG, the displayed summaries, including any displayed callsign, may reach the app or person you select. This uses system sharing, clipboard or download. Native image sharing creates a PNG in the app cache; the next share with the same filename replaces it. Local deletion does not recall recipient copies.</p>
+</section>
+<section aria-labelledby="web-privacy-en-sources"><h3 id="web-privacy-en-sources" tabindex="-1">4. Direct solar and ionosonde requests</h3>
+<p>HAMQSL (www.hamqsl.com and hamqsl.com) provides solar, geomagnetic, HF and VHF values. NOAA SWPC (services.swpc.noaa.gov) provides current and historical space-weather data. IAP Juliusruh (www.ionosonde.iap-kborn.de) provides current ionosonde values through its public ionogram page; GIRO DIDBase (lgdc.uml.edu) is queried for history using the fixed station code JR055, measurement types and a UTC time range.</p>
+<p>Requests occur at app/page startup, refresh or history backfill. Android may also request HAMQSL and IAP through a scheduled background worker for data, alarms and widgets (approximately hourly, subject to system scheduling). These functional requests do not require analytics consent. They send no individual location coordinates, callsigns or logbook contents as request parameters; providers may receive connection data such as IP address, request time and client headers.</p>
+<ul><li><a href="https://www.hamqsl.com/solar.html">HAMQSL – N0NBH / Paul L. Herrman</a></li><li><a href="https://services.swpc.noaa.gov/">NOAA SWPC</a></li><li><a href="https://www.ionosonde.iap-kborn.de/ionogram.htm">IAP Juliusruh</a></li><li><a href="https://lgdc.uml.edu/">GIRO DIDBase</a></li></ul>
+</section>
+<section aria-labelledby="web-privacy-en-location"><h3 id="web-privacy-en-location" tabindex="-1">5. Location, place search, maps and elevation</h3>
+<p>Access to the device position requires system location permission and enabled location services. Precise or approximate coordinates and altitude/accuracy values are processed for location and radio tools. General data and many local tools remain available without this permission; manual coordinates or a locator can replace GPS. The device-position function itself cannot work without permission. The app does not request Android background-location permission. On Android, the installed Capacitor/Ionic geolocation plugin obtains the device position through the Google Play services Fused Location Provider. System-side processing also depends on Android/Google settings and is distinct from the app’s direct requests to the geodata services listed below.</p>
+<p>Open-Meteo (api.open-meteo.com/v1/elevation) receives latitude and longitude for terrain elevation as a cross-check or fallback. After location permission has already been granted, this can happen automatically at Home startup and on subsequent position updates. Nominatim (nominatim.openstreetmap.org) receives search text and language for place search, or latitude/longitude and language for reverse geocoding. Nearest-place requests can occur automatically after position updates or using saved locations, without another search click. Terrain elevation uses the Copernicus DEM GLO-90 through Open-Meteo.</p>
+<p>OpenTopoData (api.opentopodata.org) receives the selected start and target coordinates, profile sample count and interpolation method. Elevation profiles are loaded after a profile request or through an enabled optional profile in local radio assessment and may be recalculated. Regional open elevation datasets such as EU-DEM, ASTER and SRTM are used; EU-DEM is based on Copernicus/EEA data. The respective licence and attribution terms continue to apply. Profile values are interpolated; this use does not imply endorsement by the European Union.</p>
+<p>When the target map is opened or moved, Leaflet loads tiles from a/b/c.tile.openstreetmap.org. Tile indices and zoom level indicate the visible map area. A selected point may trigger a Nominatim country lookup. Conversion to a Maidenhead locator is local. All these providers may additionally receive IP addresses and technical access data. These direct functional requests are independent of analytics and can therefore occur while analytics is off.</p>
+<ul><li><a href="https://open-meteo.com/en/docs/elevation-api">Open-Meteo / Copernicus DEM GLO-90</a></li><li><a href="https://www.opentopodata.org/#public-api">OpenTopoData – datasets and attribution</a></li><li><a href="https://nominatim.openstreetmap.org/">Nominatim</a></li><li><a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a></li></ul>
+</section>
+<section aria-labelledby="web-privacy-en-permissions"><h3 id="web-privacy-en-permissions" tabindex="-1">6. Notifications and widgets</h3>
+<p>Alarms store rules, thresholds, labels, schedules and trigger state locally. On Android, the alarm feature can also request notification permission; from Android 13 this is required for visible app notifications. Exact HF schedules may additionally require Android special access for exact alarms. Schedules are restored after restart through the system boot receiver. INTERNET is a fixed permission for online functions, not an optional runtime prompt.</p>
+<p>No separate push notification provider is used. Notifications are created on the device; their contents may be visible on the lock screen depending on system settings. The widget stores location/altitude values and source timestamps locally and calculates the grayline locally. Functional background requests are described in section 4.</p>
+<p>Only with active analytics, opening a solar/HF notification reports the category solar_alarm or hf_conditions, or opening the app through the main widget surface reports an event without additional widget properties. Notification contents, alarm IDs, schedule slots, widget IDs and locations are excluded. Widget refresh, resume and mere redrawing do not report an opening. Origin signals are buffered only in memory for up to 30 seconds and cannot be retrospectively authorised by new consent.</p>
+</section>
+<section aria-labelledby="web-privacy-en-review"><h3 id="web-privacy-en-review" tabindex="-1">7. Local review prompt</h3>
+<p>Local review state contains timestamps, prompt count, usage counters and fixed categories of meaningful completed use. It limits the review prompt to at least 30 days, five accepted uses and two usage categories, with no more than two prompts in total. This local processing works without analytics. Inputs, callsigns, coordinates and ADIF contents are not stored for this purpose.</p>
+<p>On Android, “Rate now” opens Google Play through a store link or HTTPS fallback containing the app package identifier. Google may process its own connection/account data. SolarScope receives no review content and does not verify whether a review was submitted. “Later” and “Already rated” change local state. Only with active analytics are presentation and the three button choices reported with prompt number 1 or 2; local usage counters are not uploaded.</p>
+<ul><li><a href="https://policies.google.com/privacy">Google – Privacy</a></li></ul>
+</section>
+<section aria-labelledby="web-privacy-en-analytics"><h3 id="web-privacy-en-analytics" tabindex="-1">8. Optional product analytics with PostHog</h3>
+<p>With your voluntary consent, SolarScope uses PostHog for product analytics and app improvement. The code is configured for the PostHog Cloud EU ingestion host https://eu.i.posthog.com. A random pseudonymous analytics identifier and the events described below are transmitted. Pseudonymous does not mean fully anonymous. Even with HTTPS, the recipient can receive technical connection data such as IP address, request time, Origin and User-Agent, including system characteristics inferable from these headers.</p>
+<p>Analytics stays off until valid consent exists; there is no earlier PostHog configuration request either. Existing users without a valid current decision are not automatically enrolled. Consent to earlier policy versions 1 or 2 does not cover the expanded event scope. Those decisions, like unknown policy versions, remain blocked and require deliberate cleanup and fresh consent to current policy version 3. Valid saved consent may be restored after an ordinary Android restart. Analytics remains off on unsupported platforms.</p>
+<p>Declining, closing or making no decision does not enable analytics. All app functions remain available without analytics. Where the GDPR applies, the legal basis for optional product analytics is your consent under Art. 6(1)(a) GDPR; associated non-essential storage on your device is subject to Section 25(1) TDDDG.</p>
+<ul><li><a href="https://posthog.com/privacy">PostHog – Privacy</a></li></ul>
+</section>
+<section aria-labelledby="web-privacy-en-events"><h3 id="web-privacy-en-events" tabindex="-1">9. What analytics measures and excludes</h3>
+<p>Events cover app launches and session starts, visits to the five app areas, manual Home refreshes, card-header visibility (at least 50% for one second), card openings, expanding/collapsing and order changes. A new session starts at app launch or after at least 30 minutes in the background, where the existing consent/lifecycle path allows collection. New consent does not replay earlier launches or actions.</p>
+<p>Further categories include feature opening, use and completion (such as calculation, ADIF import, sharing or viewing), fixed technical error categories, creating/deleting/toggling alarms, notification or widget openings, deliberately opened DXMAPS/KC2G links and the review-dialog actions described above. A sharing event does not prove delivery; card-header visibility does not prove that the contents were read.</p>
+<p>Permitted event fields contain only fixed categories or bounded numbers/switches: screen_id, card_id, card_position, state, from_position, to_position, feature_id, source, action, tool_id, error_code, metric, enabled, notification_type, destination and prompt_number, only as allowed for each event type. Examples: tool category instead of entered frequency, alarm metric instead of threshold, error category instead of error message. Widget openings contain no additional event fields.</p>
+<p>General metadata are analytics_schema_version, app_version, build_number, app_language (de/en) and platform (Android). These accompany the pseudonymous identifier and technical control fields requesting no person profiles or GeoIP enrichment. No device model, hardware/advertising ID or operating-system version is added as a separate analytics payload field. Location/locator, search text, callsigns, ADIF/QSO contents, filenames, free text, raw errors, full URLs, alarm values and widget configurations are excluded by the event contract.</p>
+</section>
+<section aria-labelledby="web-privacy-en-withdrawal"><h3 id="web-privacy-en-withdrawal" tabindex="-1">10. Changing and withdrawing consent</h3>
+<p>The existing switch under Legal → Privacy Policy shows actual consent and activation status and lets you consent or withdraw. To withdraw, turn off “Allow optional usage statistics”. The display distinguishes saved decision, pending change and technical errors. Confirmed withdrawal saves the denial and removes the local analytics identifier.</p>
+<p>Turning it off immediately blocks sending in the running app and aborts pending requests. A request already received by the server cannot be recalled. If the process ends before storage is durably confirmed, earlier consent can survive for the next launch; observe any displayed storage errors and repeat turning it off where needed.</p>
+<p>Renewed consent after successful withdrawal creates a new random identifier. Earlier events are not sent retrospectively. Withdrawal applies prospectively and does not affect the lawfulness of earlier consent-based processing. It does not delete events already stored by PostHog; please direct an erasure request to the privacy contact.</p>
+</section>
+<section aria-labelledby="web-privacy-en-safeguards"><h3 id="web-privacy-en-safeguards" tabindex="-1">11. Technical measures and their limits</h3>
+<p>Production analytics uses direct individual HTTPS requests without an analytics SDK, cookies, autocapture, session recording, automatic crash reports or fingerprinting. Events are checked against a fixed allowlist before sending. There are no event files, offline queue, batches, automatic retries or background delivery; undeliverable events are dropped.</p>
+<p>Requests exclude credential cookies, referrers and redirects and use cancellation. The app requests no GeoIP enrichment with $geoip_disable=true and no person profiles with $process_person_profile=false. These code instructions do not guarantee anonymised IP addresses in network/security logs. Project-side processing, access rights and deletion rules must additionally be confirmed in the PostHog account.</p>
+<p>All fixed functional API addresses begin with HTTPS. Ordinary functional requests do not apply every stricter analytics transport rule. The geocoding component technically supports alternative HTTP/HTTPS configurations; the shipped production configuration specifies Nominatim over HTTPS and no external runtime configuration address. Absolute security or special encryption of all local data is not promised.</p>
+</section>
+<section aria-labelledby="web-privacy-en-retention"><h3 id="web-privacy-en-retention" tabindex="-1">12. Retention and deletion</h3>
+<p>Local settings, callsign, last position, widget values, review state, alarms and individual caches remain until changed, replaced or deleted. History is limited during processing to seven days plus one hour. Geocoding defaults to six hours and at most 24 cache entries, with cleanup on use. The altitude cross-check keeps at most 24 entries for twelve hours in memory. Persistent elevation profiles have no automatic expiry.</p>
+<p>Logbook Wrapped has a dedicated delete action; alarms and callsigns can be removed using their existing editing functions. Android “Clear app data” removes local app stores; uninstalling ordinarily removes the installation, but not necessarily system backups or already shared data. Withdrawing analytics removes only the local analytics identifier and changes the decision, not functional data.</p>
+<p>The specific retention period for PostHog events, technical logs, backups and exports has not been authoritatively confirmed in the available project records. The operator must also confirm the actual server-side deletion procedure before legal publication. The app has no automatic server-erasure button. Questions and erasure requests can be sent by email; without additional linking information, purely pseudonymous events may not be attributable to you. The app does not require precautionary identification for this purpose.</p>
+</section>
+<section aria-labelledby="web-privacy-en-bases"><h3 id="web-privacy-en-bases" tabindex="-1">13. Purposes and other legal bases</h3>
+<p>Data are processed for the requested app function, its local storage, current specialist information, technical reliability and security, or optional product analytics. Art. 6(1)(b) GDPR may apply where processing is necessary for the requested service. Technical operation, security and handling general enquiries may rely on Art. 6(1)(f) GDPR; the legitimate interest is a reliable app and answering your enquiry. The precise legal classification of the functional paths remains part of the operator’s pending review.</p>
+<p>Section 25(2) no. 2 TDDDG may apply to device storage strictly necessary for an explicitly requested function. Non-essential storage requires separate consent. System location or notification permission does not automatically replace a data-protection legal basis. There is no general statutory obligation to enter personal data, but specific functions require their respective inputs or permissions.</p>
+<p>If you contact us by email, sender address, any name, message, attachments and technical sending data are processed to handle the enquiry through the email providers involved (the contact address uses Gmail/Google). Depending on the enquiry, Art. 6(1)(b) or (f) GDPR applies. Messages are retained for handling and any necessary evidence; the operator must establish binding periods and any statutory retention duties before publication.</p>
+</section>
+<section aria-labelledby="web-privacy-en-recipients"><h3 id="web-privacy-en-recipients" tabindex="-1">14. Recipients, processors and international transfers</h3>
+<p>Depending on the function, recipients are the named specialist/geodata providers, PostHog with consent, providers of deliberately opened links, selected sharing recipients, system backup services and email providers involved. The code contains no data-sale service. According to the existing operator statement, the app operator does not sell personal data. Direct specialist providers are not automatically contractual processors.</p>
+<p>PostHog is intended to process product analytics on the operator’s behalf. The effective Art. 28 GDPR agreement, precise contracting party and subprocessors have not been conclusively confirmed in the available evidence. The EU ingestion host alone proves neither EU-exclusive processing nor the exclusion of support access or other international transfers.</p>
+<p>PostHog, specialist/geodata providers, GitHub, Google and email/backup services may involve processing outside the EU/EEA, particularly in the USA. Actual recipient locations, transfers and the relevant safeguards under Chapter V GDPR must be authoritatively confirmed before legal publication. Neither a signed processor agreement nor any particular transfer safeguard is asserted here as already proven.</p>
+<ul><li><a href="https://posthog.com/dpa">PostHog – DPA information</a></li><li><a href="https://posthog.com/subprocessors">PostHog – Subprocessors</a></li></ul>
+</section>
+<section aria-labelledby="web-privacy-en-links"><h3 id="web-privacy-en-links" tabindex="-1">15. External links and online version</h3>
+<p>Links to HAMQSL, DXMAPS, KC2G including its station page, IAP, OpenStreetMap, CEPT specialist documents, Google Play and the online privacy policy open the respective external service after your action. Its privacy terms apply; IP address and technical connection data may be processed. SolarScope does not embed DXMAPS/KC2G map contents or attach location coordinates to those links. GitHub Pages hosts the online version; the separate website privacy notice explains its access data.</p>
+<ul><li><a href="https://perazapedr.github.io/solarscope-privacy/#privacy">Online privacy policy</a></li><li><a href="https://www.dxmaps.com/spots/map.php">DXMAPS</a></li><li><a href="https://prop.kc2g.com/">KC2G</a></li><li><a href="https://prop.kc2g.com/stations/">KC2G – Stations</a></li></ul>
+</section>
+<section aria-labelledby="web-privacy-en-rights"><h3 id="web-privacy-en-rights" tabindex="-1">16. Your rights and complaints</h3>
+<p>Where statutory conditions apply, you have rights of access, rectification, erasure, restriction, portability and objection under Art. 15–21 GDPR. For processing based on legitimate interests, you may object for reasons relating to your particular situation. You can withdraw consent at any time for the future. For analytics, use the switch under Legal → Privacy Policy; for other requests use the contact above.</p>
+<p>You may complain to a data protection supervisory authority, particularly where you habitually live, work or where an alleged infringement occurred. For the operator in North Rhine-Westphalia, the State Commissioner for Data Protection and Freedom of Information North Rhine-Westphalia is a possible contact. The app makes no automated decision with legal or similarly significant effects under Art. 22 GDPR; radio assessments and the local review schedule are technical aids.</p>
+<ul><li><a href="https://www.ldi.nrw.de/">LDI North Rhine-Westphalia</a></li></ul>
+</section>
+<section aria-labelledby="web-privacy-en-accuracy"><h3 id="web-privacy-en-accuracy" tabindex="-1">17. Data quality and practical limits</h3>
+<p>Measurements may be delayed, incomplete or unavailable. Forecasts, radio assessments and elevation profiles provide orientation and do not replace your own measurements, official warnings or safety-critical navigation. VHF/Es Watch is a SolarScope heuristic, not an official NOAA forecast; NOAA/SWPC does not endorse or sponsor SolarScope. Actual radio conditions may differ substantially. Statutory rights remain unaffected.</p>
+</section>
+</article>
 
-          <h3>1. Verantwortlicher</h3>
-          <p>
-            Verantwortlicher für die in dieser App beschriebene Datenverarbeitung ist Pedro Peraza Gonzalez,
-            Eichendorffstraße 23, 57482 Wenden, Deutschland,
-            E-Mail: <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a>.
-          </p>
-
-          <h3>2. Kontakt</h3>
-          <p>
-            Bei Fragen zum Datenschutz können Sie uns unter
-            <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a> kontaktieren.
-          </p>
-
-          <h3>3. Allgemeines zur App und zum Geltungsbereich</h3>
-          <p>
-            SolarScope ist eine mobile App zur Anzeige von Solar-, geomagnetischen und funkbezogenen Mess- und Prognosedaten
-            sowie für lokale Converter- und Standortfunktionen. Diese Hinweise betreffen die App selbst.
-            Für externe Websites und Drittanbieter gelten deren eigene Datenschutzbedingungen.
-          </p>
-
-          <h3>4. Welche Daten bei der Nutzung der App verarbeitet werden</h3>
-          <p>
-            Je nach genutzter Funktion verarbeitet die App technische Verbindungsdaten bei Netzwerkanfragen,
-            optionale Standortdaten, Suchbegriffe und Koordinaten bei Ortssuche bzw. Reverse-Geocoding,
-            vom Nutzer eingegebene Inhalte wie Callsign, Locator oder Ortsbezeichnungen sowie lokal gespeicherte
-            Einstellungs-, Cache- und Verlaufsdaten.
-          </p>
-          <p>
-            Nach aktuellem App-Stand werden keine Nutzerkonten, keine Login-Funktion, keine Nutzerprofile,
-            keine Werbe-SDKs, keine Analytics-SDKs und kein gesondertes Crash-Reporting-SDK eingesetzt.
-          </p>
-
-          <h3>5. Berechtigungen der App</h3>
-          <p>
-            Die App nutzt Internetzugriff und kann eine Standortfreigabe anfragen, wenn Sie standortbezogene Funktionen
-            aktiv verwenden. Die Standortberechtigung ist funktionsbezogen und für die allgemeine Nutzung der App
-            nicht zwingend erforderlich.
-          </p>
-
-          <h3>6. Lokale Speicherung auf dem Endgerät</h3>
-          <p>
-            Die App speichert lokal auf dem Endgerät insbesondere ein optionales Callsign, UI- und Komforteinstellungen,
-            lokale Caches für Solar- und Ionosonde-Daten, lokale Verlaufsdaten, Geocoding-Caches sowie Einstellungen
-            der Local-Radio-Assessment-Funktion einschließlich eines manuellen Locators und der zuletzt lokal gespeicherten
-            aktuellen Position.
-          </p>
-          <p>
-            Diese Daten werden nach aktuellem App-Verhalten nicht automatisch an den Betreiber hochgeladen.
-            Soweit keine feste Frist vorgesehen ist, bleiben sie gespeichert, bis sie überschrieben,
-            in der App gelöscht, durch Löschen der App-Daten entfernt oder durch Deinstallation beseitigt werden.
-          </p>
-
-          <h3>7. Nutzung externer Datenquellen und Drittanbieter</h3>
-          <p>
-            Die App ruft Inhalte direkt von externen Datenquellen ab. Je nach genutzter Funktion können dazu insbesondere
-            HAMQSL, Juliusruh / IAP / GIRO DIDBase, NOAA SWPC, Open-Meteo sowie Nominatim / OpenStreetMap gehören.
-            Bei solchen direkten Abrufen können die jeweiligen Anbieter technisch erforderliche Verbindungsdaten verarbeiten,
-            um die Anfrage zu beantworten.
-          </p>
-
-          <h3>8. Standortdaten / Höhenfunktion / aktuelle Position</h3>
-          <p>
-            Standortdaten werden nur verarbeitet, wenn Sie standortbezogene Funktionen aktiv nutzen und die entsprechende
-            Freigabe erteilen. Die allgemeine Nutzung der App ist auch ohne Standortzugriff möglich.
-            Nach aktuellem App-Verhalten erfolgt keine Standortverfolgung im Hintergrund.
-          </p>
-          <p>
-            Die Höhenfunktion ist nicht ausschließlich lokal. GPS- oder Systemwerte können lokal verarbeitet werden;
-            zusätzlich kann die App aktuelle Koordinaten an Open-Meteo übermitteln, um eine Online-Geländehöhe
-            zu bestimmen oder Werte abzugleichen. Die Funktion dient nicht dazu, Bewegungsprofile zu erstellen.
-          </p>
-
-          <h3>9. Geocoding / Place Search / Nearest Place</h3>
-          <p>
-            Für Ortssuche und Reverse-Geocoding kann die App Nominatim unter
-            <a href="https://nominatim.openstreetmap.org/" target="_blank" rel="noopener noreferrer">nominatim.openstreetmap.org</a>
-            verwenden. Dabei können je nach Funktion Suchbegriffe, Koordinaten, Spracheinstellungen
-            und technische Request-Metadaten übermittelt werden. Ergebnisse können lokal auf dem Gerät gecacht werden.
-          </p>
-
-          <h3>10. Juliusruh / Ionosonde / HAMQSL / weitere Funkdatenquellen</h3>
-          <p>
-            SolarScope nutzt externe fachliche Datenquellen ausschließlich, um wissenschaftliche, technische
-            und funkbezogene Mess- oder Prognosedaten in der App anzuzeigen.
-          </p>
-          <p>
-            Wichtig: Der App-Betreiber verkauft keine personenbezogenen Daten. Die App betreibt keinen Handel mit Nutzerdaten.
-            Juliusruh-, GIRO-, HAMQSL-, NOAA- und vergleichbare Quellen werden als Fach- bzw. Messdatenquellen zur Anzeige genutzt,
-            nicht als gekaufte personenbezogene Nutzerdaten. Der App-Betreiber beauftragt diese Quellen nicht damit,
-            personenbezogene Daten der Nutzer zu Werbe- oder Verkaufszwecken zu vermarkten.
-          </p>
-          <p>
-            Die in der App verlinkte Website
-            <a href="https://prop.kc2g.com/stations/" target="_blank" rel="noopener noreferrer">prop.kc2g.com/stations/</a>
-            ist nur ein externer Link und keine aktiv aus der App abgefragte Datenquelle.
-          </p>
-
-          <h3>11. Externe Links innerhalb der App</h3>
-          <p>
-            Die App enthält externe Links, z. B. zu HAMQSL, prop.kc2g.com, Juliusruh / IAP,
-            OpenStreetMap-Attributionen und zur Browser-Version dieser Datenschutzerklärung.
-            Wenn Sie einen solchen Link öffnen, wird eine direkte Verbindung zwischen Ihrem Endgerät
-            und dem jeweiligen Drittanbieter aufgebaut.
-          </p>
-
-          <h3>12. Rechtsgrundlagen der Verarbeitung</h3>
-          <p>
-            Soweit personenbezogene oder personenbeziehbare Daten verarbeitet werden, stützen wir die Verarbeitung
-            nach aktueller Einordnung insbesondere auf Art. 6 Abs. 1 lit. b DSGVO für aktiv von Ihnen genutzte App-Funktionen
-            sowie auf Art. 6 Abs. 1 lit. f DSGVO für technisch notwendige lokale Speicherung, Cache-Nutzung,
-            UI-Persistenz und die zuverlässige Bereitstellung der App. Für E-Mail-Anfragen kommt je nach Inhalt
-            Art. 6 Abs. 1 lit. b oder lit. f DSGVO in Betracht.
-          </p>
-
-          <h3>13. Empfänger / Kategorien von Empfängern</h3>
-          <p>
-            Je nach Funktion können Daten an externe Datenquellen und API-Anbieter, an Anbieter externer Websites
-            oder an beteiligte E-Mail-Provider übermittelt werden. Eine eigene Nutzer-Datenbank oder ein eigener
-            Backend-Dienst für diese Verarbeitungen besteht nach aktuellem App-Aufbau nicht.
-          </p>
-
-          <h3>14. Drittlandübermittlungen</h3>
-          <p>
-            Bei direkt aus der App aufgerufenen Drittanbietern kann nicht ausgeschlossen werden,
-            dass Daten auch außerhalb der EU / des EWR verarbeitet werden. Dies kann insbesondere
-            für Anbieter mit Sitz in den USA gelten. Direkte externe Links und direkte externe Abrufe
-            unterliegen den Datenschutzpraktiken des jeweiligen Anbieters.
-          </p>
-
-          <h3>15. Speicherdauer / Löschung</h3>
-          <p>
-            Nach aktueller App-Logik bleiben lokal gespeicherte Einstellungen, Caches, Verlaufswerte,
-            Callsign-Daten, ein gespeicherter manueller Locator und eine lokal gespeicherte letzte aktuelle Position
-            auf dem Gerät, bis sie überschrieben, in der App gelöscht, durch Löschen der App-Daten entfernt
-            oder durch Deinstallation beseitigt werden. Reine Laufzeitwerte werden nur während der aktiven Nutzung im Speicher gehalten.
-          </p>
-
-          <h3>16. Datensicherheit</h3>
-          <p>
-            Die App versucht externe Abrufe nach aktuellem Stand über HTTPS durchzuführen,
-            soweit dies vom jeweiligen Anbieter unterstützt wird. Gleichwohl kann keine absolute Sicherheit garantiert werden.
-          </p>
-
-          <h3>17. Rechte der betroffenen Personen</h3>
-          <p>
-            Soweit die Voraussetzungen der DSGVO vorliegen, haben Sie insbesondere Rechte auf Auskunft,
-            Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch.
-            Bei direkten Drittanfragen können zusätzlich die jeweiligen Drittanbieter Ansprechpartner sein.
-          </p>
-
-          <h3>18. Beschwerderecht bei einer Aufsichtsbehörde</h3>
-          <p>
-            Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren,
-            insbesondere in dem Mitgliedstaat Ihres gewöhnlichen Aufenthalts, Ihres Arbeitsplatzes
-            oder des Orts des mutmaßlichen Verstoßes.
-          </p>
-
-          <h3>19. Pflicht zur Bereitstellung von Daten</h3>
-          <p>
-            Es besteht keine gesetzliche oder vertragliche Pflicht, personenbezogene Daten für die allgemeine Nutzung
-            der App bereitzustellen. Wenn Sie bestimmte Funktionen nutzen möchten, können einzelne Daten jedoch technisch
-            erforderlich sein, z. B. Standortdaten für standortbezogene Funktionen, Suchbegriffe für Ortssuche,
-            Koordinaten für Reverse-Geocoding oder ein Callsign für die optionale lokale Anzeige in der App.
-          </p>
-
-          <h3>20. Kinder und Jugendliche</h3>
-          <p>
-            Die App ist nicht speziell an Kinder gerichtet. Nach aktuellem App-Aufbau ist keine bewusste Erhebung
-            personenbezogener Daten von Kindern vorgesehen.
-          </p>
-        </article>
-
-<article id="privacy-en" data-lang-block="en" class="legal-panel" aria-labelledby="privacy-en-title" lang="en">
-          <p class="kicker">English</p>
-          <h2 id="privacy-en-title">Privacy Policy for the SolarScope App</h2>
-
-          <p>
-            <span class="strong">Effective date:</span> April 4, 2026<br>
-            <span class="strong">App:</span> SolarScope Android / iOS<br>
-            <span class="strong">Controller:</span> Pedro Peraza Gonzalez<br>
-            <span class="strong">Postal address:</span> Eichendorffstraße 23, 57482 Wenden, Germany<br>
-            <span class="strong">Email:</span> <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a>
-          </p>
-
-          <h3>1. Controller</h3>
-          <p>
-            The controller for the processing described in this app is Pedro Peraza Gonzalez,
-            Eichendorffstraße 23, 57482 Wenden, Germany,
-            email: <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a>.
-          </p>
-
-          <h3>2. Contact</h3>
-          <p>
-            If you have questions about data protection, you can contact
-            <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a>.
-          </p>
-
-          <h3>3. General information about the app and scope</h3>
-          <p>
-            SolarScope is a mobile app used to display solar, geomagnetic and radio-related measurement or forecast data
-            and to provide local converter and location-based features. These notices apply to the app itself.
-            External websites and third-party providers are subject to their own privacy terms.
-          </p>
-
-          <h3>4. What data may be processed when using the app</h3>
-          <p>
-            Depending on the feature used, the app may process technical connection data for network requests,
-            optional location data, search terms and coordinates for place search or reverse geocoding,
-            user-entered content such as a callsign, locator or place name, and locally stored settings,
-            cache and history data.
-          </p>
-          <p>
-            Based on the current state of the app, there are no user accounts, no login function, no user profiles,
-            no advertising SDKs, no analytics SDKs and no separate crash-reporting SDK in use.
-          </p>
-
-          <h3>5. App permissions</h3>
-          <p>
-            According to the current app setup, the app uses Internet access and may request location access
-            when you actively use location-based features. Location access is feature-specific and is not required
-            for general use of the app.
-          </p>
-
-          <h3>6. Local storage on the device</h3>
-          <p>
-            The app stores several items locally on the device, including an optional callsign, UI and convenience settings,
-            local caches for solar and ionosonde data, local trend history, geocoding caches and Local Radio Assessment settings
-            including a manual locator and the last locally saved current position.
-          </p>
-          <p>
-            According to the current app behavior, these local data are not automatically uploaded to the operator.
-            Where no fixed retention period exists in the app logic, the data remain stored until overwritten,
-            deleted in the app, or removed by clearing app data or uninstalling the app.
-          </p>
-
-          <h3>7. Use of external data sources and third parties</h3>
-          <p>
-            The app directly requests content from external data sources. Depending on the feature used,
-            these may include HAMQSL, Juliusruh / IAP / GIRO DIDBase, NOAA SWPC, Open-Meteo and Nominatim / OpenStreetMap.
-            When such direct requests are made, the relevant providers may process technically required connection data
-            in order to answer the request.
-          </p>
-
-          <h3>8. Location data / altitude feature / current position</h3>
-          <p>
-            Location data are processed only if you actively use location-based features and grant the relevant permission.
-            General use of the app is possible without location access. According to the current app behavior,
-            location is not tracked in the background.
-          </p>
-          <p>
-            The altitude feature is not purely local. GPS or system values may be processed locally, but the app may also
-            transmit current coordinates to Open-Meteo for online terrain elevation fallback or cross-checking.
-            The app operator does not use this feature to create movement profiles.
-          </p>
-
-          <h3>9. Geocoding / place search / nearest place</h3>
-          <p>
-            For place search and reverse geocoding, the app may use Nominatim at
-            <a href="https://nominatim.openstreetmap.org/" target="_blank" rel="noopener noreferrer">nominatim.openstreetmap.org</a>.
-            Depending on the feature, place names, search terms, coordinates, language settings and technical request metadata
-            may be transmitted. Results may be cached locally on the device.
-          </p>
-
-          <h3>10. Juliusruh / ionosonde / HAMQSL / other radio-related data sources</h3>
-          <p>
-            SolarScope uses external specialist data sources exclusively to display scientific, technical and radio-related
-            measurement or forecast data in the app.
-          </p>
-          <p>
-            Important: The app operator does not sell personal data. The app does not engage in data trading.
-            Juliusruh, GIRO, HAMQSL, NOAA and comparable sources are used as specialist or measurement data sources for display,
-            not as purchased personal user data. The app operator does not instruct these sources to market users' personal data
-            for advertising or sale.
-          </p>
-          <p>
-            The website
-            <a href="https://prop.kc2g.com/stations/" target="_blank" rel="noopener noreferrer">prop.kc2g.com/stations/</a>
-            linked in the app is only an external link and not a data source actively fetched by the app.
-          </p>
-
-          <h3>11. External links inside the app</h3>
-          <p>
-            The app contains external links, for example to HAMQSL, prop.kc2g.com, Juliusruh / IAP,
-            OpenStreetMap attribution pages and the browser version of this privacy policy.
-            If you open such a link, a direct connection will be established between your device and the relevant third-party provider.
-          </p>
-
-          <h3>12. Legal bases for processing</h3>
-          <p>
-            Where personal data or data linkable to a person are processed, the current assessment mainly relies on
-            Art. 6(1)(b) GDPR for app features actively requested by you and Art. 6(1)(f) GDPR for technically necessary
-            local storage, caching, UI persistence and reliable app operation. Email enquiries may rely on Art. 6(1)(b)
-            or Art. 6(1)(f) GDPR depending on the content of the enquiry.
-          </p>
-
-          <h3>13. Recipients / categories of recipients</h3>
-          <p>
-            Depending on the feature used, data may be transmitted to external data sources and API providers,
-            to providers of external websites, or to involved email providers.
-            According to the current app structure, there is no own user database and no dedicated backend service
-            for these processing activities.
-          </p>
-
-          <h3>14. International transfers</h3>
-          <p>
-            For third-party providers accessed directly by the app, it cannot be ruled out that data may also be processed
-            outside the EU / EEA. This may in particular apply to providers located in the United States.
-            Direct external links and direct external requests remain subject to the privacy practices of the respective provider.
-          </p>
-
-          <h3>15. Storage period / deletion</h3>
-          <p>
-            According to the current app logic, locally stored settings, caches, history values, callsign data,
-            a stored manual locator and a locally stored last current position remain on the device until they are overwritten,
-            deleted in the app, removed by clearing app data, or removed by uninstalling the app.
-            Runtime-only values are held only for the duration of active use.
-          </p>
-
-          <h3>16. Security</h3>
-          <p>
-            Based on the current implementation, the app attempts to use HTTPS for external requests wherever supported
-            by the relevant provider. However, absolute security cannot be guaranteed.
-          </p>
-
-          <h3>17. Rights of data subjects</h3>
-          <p>
-            Where the GDPR applies, you may in particular have rights of access, rectification, erasure,
-            restriction of processing, data portability and objection. For direct third-party requests,
-            the relevant third-party provider may also need to be contacted.
-          </p>
-
-          <h3>18. Right to lodge a complaint with a supervisory authority</h3>
-          <p>
-            You have the right to lodge a complaint with a data protection supervisory authority,
-            in particular in the Member State of your habitual residence, place of work or the place of the alleged infringement.
-          </p>
-
-          <h3>19. Requirement to provide data</h3>
-          <p>
-            There is no legal or contractual obligation to provide personal data for general use of the app.
-            However, some data may be technically required if you want to use specific features,
-            for example location data for location-based functions, search terms for place search,
-            coordinates for reverse geocoding or a callsign for optional local display in the app.
-          </p>
-
-          <h3>20. Children and young people</h3>
-          <p>
-            The app is not specifically directed at children. The current app design does not indicate any deliberate
-            collection of children's personal data.
-          </p>
-        </article>
-
-<article id="short-summary-de" data-lang-block="de" class="legal-panel" aria-labelledby="summary-title">
-          <p class="kicker">Kurzfassung</p>
-          <h2 id="summary-title">Kurze In-App-Kurzfassung</h2>
-          <div class="summary-box">
-            <ul>
-              <li>Nach aktuellem App-Stand werden keine Werbe-, Tracking-, Analytics- oder Crash-Reporting-SDKs eingesetzt.</li>
-              <li>Die App speichert bestimmte Einstellungen, Caches, Verlaufswerte und ein optionales Callsign lokal auf dem Gerät.</li>
-              <li>Standortzugriff ist optional. Ohne Standort bleiben viele Funktionen der App nutzbar.</li>
-              <li>Wenn standortbezogene Funktionen genutzt werden, können Koordinaten an externe Dienste wie Open-Meteo und/oder Nominatim übermittelt werden.</li>
-              <li>Solar- und Funkdaten werden je nach Funktion direkt von externen Quellen wie HAMQSL, Juliusruh / GIRO DIDBase oder NOAA abgerufen; diese Anbieter können technische Verbindungsdaten sehen.</li>
-              <li>Externe Links werden erst bei Öffnung aktiv und führen dann direkt zu Angeboten Dritter.</li>
-              <li>Der Betreiber verkauft keine personenbezogenen Daten. Juliusruh, HAMQSL und weitere Quellen werden nur als technische bzw. wissenschaftliche Datenquellen genutzt.</li>
-            </ul>
-          </div>
-        </article>
+<article id="short-summary-de" data-lang-block="de" lang="de" class="legal-panel" aria-labelledby="summary-title"><h2 id="summary-title">Kurze In-App-Kurzfassung</h2><div class="summary-box"><ul><li>Optionales PostHog-Analytics ist standardmäßig aus und wird nur mit gültiger Einwilligung aktiv. Widerruf: Rechtliches → Datenschutz in der App.</li><li>Pseudonyme Kennung, App-/Buildversion, Sprache, Plattform und feste Nutzungskategorien; keine Rufzeichen, Standort-, Such- oder ADIF-Inhalte im Analytics-Payload.</li><li>Lokale Einstellungen, Logbücher, Reviewzähler, Alarme und Widgetwerte bleiben im App-Speicher; Android-Systembackups und bewusstes Teilen sind gesondert zu beachten.</li><li>Direkte Fachabrufe können bereits bei Start oder im Android-Hintergrund stattfinden. Geodienste erhalten je nach Funktion Koordinaten, Suchtext oder Kartenausschnitt, unabhängig von Analytics.</li><li>PostHog-Aufbewahrung, Verträge und internationale Transfers müssen vor rechtlicher Veröffentlichung bestätigt werden. Der EU-Host beweist keine EU-exklusive Verarbeitung.</li></ul></div></article>
 
 
-        <article id="short-summary-en" data-lang-block="en" class="legal-panel" aria-labelledby="summary-title-en" lang="en">
-          <p class="kicker">Short summary</p>
-          <h2 id="summary-title-en">Short in-app privacy summary</h2>
-          <div class="summary-box">
-            <ul>
-              <li>Based on the current app state, SolarScope does not use advertising, tracking, analytics or separate crash-reporting SDKs.</li>
-              <li>The app stores selected settings, caches, history values and an optional callsign locally on the device.</li>
-              <li>Location access is optional. Many app features remain usable without location permission.</li>
-              <li>When location-based features are used, coordinates may be sent to external services such as Open-Meteo and/or Nominatim.</li>
-              <li>Solar, ionosonde and radio-related data are requested directly from external sources such as HAMQSL, Juliusruh / GIRO DIDBase or NOAA; those providers may receive technical connection data.</li>
-              <li>External links only become active when opened and then lead directly to third-party websites.</li>
-              <li>The operator does not sell personal data. Juliusruh, HAMQSL and similar sources are used only as scientific or technical data sources.</li>
-            </ul>
-          </div>
-        </article>
+        <article id="short-summary-en" data-lang-block="en" lang="en" class="legal-panel" aria-labelledby="summary-title-en"><h2 id="summary-title-en">Short in-app privacy summary</h2><div class="summary-box"><ul><li>Optional PostHog analytics is off by default and becomes active only with valid consent. Withdraw under Legal → Privacy Policy in the app.</li><li>Pseudonymous identifier, app/build version, language, platform and fixed usage categories; no callsigns, location, search or ADIF contents in analytics payloads.</li><li>Local settings, logbooks, review counters, alarms and widget values stay in app storage; Android system backups and deliberate sharing require separate consideration.</li><li>Direct functional requests can occur at startup or in the Android background. Depending on the function, geodata services receive coordinates, search text or map area independently of analytics.</li><li>PostHog retention, contracts and international transfers must be confirmed before legal publication. The EU host does not prove EU-exclusive processing.</li></ul></div></article>
 
       </div>
     </section>
 
     <section id="website-privacy" class="section compact">
       <div class="container legal-container">
-        <article class="legal-panel" aria-labelledby="website-privacy-title" data-lang-block="de">
-          <p class="kicker">Website Privacy</p>
-          <h2 id="website-privacy-title">Datenschutzhinweise für diese Webseite</h2>
-          <h3>1. Geltungsbereich</h3>
-          <p>Diese Hinweise betreffen den Besuch dieser SolarScope-Webseite. Die App-Datenschutzerklärung oben betrifft dagegen die Nutzung der SolarScope-App selbst.</p>
-          <h3>2. Hosting und technische Zugriffsdaten</h3>
-          <p>Diese Seite ist als statische Webseite aufgebaut. Wenn sie über GitHub Pages oder einen vergleichbaren statischen Hosting-Anbieter bereitgestellt wird, können beim Aufruf der Webseite technisch erforderliche Zugriffsdaten verarbeitet werden, zum Beispiel IP-Adresse, Zeitpunkt des Abrufs, angeforderte Datei, Browser- und Geräteinformationen sowie technische Logdaten.</p>
-          <p>Zweck dieser Verarbeitung ist die Auslieferung der Webseite, die technische Stabilität, die Sicherheit und die Fehleranalyse. Rechtsgrundlage ist, soweit personenbezogene Daten betroffen sind, Art. 6 Abs. 1 lit. f DSGVO.</p>
-          <h3>3. Spracheinstellung</h3>
-          <p>Beim ersten Aufruf erkennt die Webseite die bevorzugte Browsersprache. Ist diese Deutsch, wird die Seite auf Deutsch angezeigt. In allen anderen Fällen wird Englisch verwendet. Wenn Sie die Sprache oben manuell ändern, kann diese Auswahl lokal im Browser gespeichert werden, damit die Seite beim nächsten Besuch wieder in der gewählten Sprache erscheint.</p>
-          <h3>4. Keine Cookies, kein Tracking und keine Analytics in dieser Datei</h3>
-          <p>Der Quellcode dieser Webseite bindet keine Tracking-Skripte, keine Analytics-Dienste, keine Werbenetzwerke und keine externen Fonts ein. Diese Webseite setzt im vorliegenden Stand selbst keine Cookies.</p>
-          <p>Wenn später externe Dienste, Analysewerkzeuge, Karten, Videos, Kontaktformulare, Newsletter-Funktionen oder Cookies ergänzt werden, müssen diese Datenschutzhinweise entsprechend aktualisiert werden.</p>
-          <h3>5. E-Mail-Kontakt</h3>
-          <p>Wenn Sie per E-Mail Kontakt aufnehmen, werden die von Ihnen übermittelten Angaben verarbeitet, um die Anfrage zu beantworten. Dazu können insbesondere Ihre E-Mail-Adresse, Ihr Name, der Inhalt der Nachricht sowie technische Versanddaten gehören.</p>
-          <h3>6. Keine Kontaktformulare und kein Newsletter</h3>
-          <p>Diese Webseite enthält derzeit kein Kontaktformular und keine Newsletter-Anmeldung. Eine Kontaktaufnahme erfolgt ausschließlich über die angegebene E-Mail-Adresse.</p>
-        </article>
+        <article class="legal-panel" aria-labelledby="website-privacy-title" data-lang-block="de" lang="de"><h2 id="website-privacy-title">Datenschutzhinweise für diese Webseite</h2><p><time datetime="2026-10-22">22. Oktober 2026</time></p><h3>1. Verantwortlicher und Geltungsbereich</h3><p>Pedro Lazaro Peraza Gonzalez, Eichendorffstraße 23, 57482 Wenden, Deutschland; E-Mail: peraza.pedr@gmail.com. Diese Hinweise betreffen die Website auf GitHub Pages. Die App-Datenschutzerklärung oben erläutert gesondert die Android-App einschließlich des optionalen PostHog-Analytics.</p>
+<h3>2. GitHub Pages und Zugriffsdaten</h3><p>Diese Website wird von GitHub über GitHub Pages bereitgestellt. Zur Auslieferung und Absicherung werden technisch erforderliche Zugriffsdaten verarbeitet, etwa IP-Adresse, Zeitpunkt, angeforderte Datei sowie Browser-/Clientinformationen. GitHub erklärt ausdrücklich, dass IP-Adressen von Seitenbesuchern zu Sicherheitszwecken protokolliert und gespeichert werden, auch ohne GitHub-Anmeldung. Die Seite verarbeitet daher nicht „grundsätzlich keinerlei Daten“. Zweck ist die Bereitstellung, Stabilität und Sicherheit; soweit personenbezogene Daten betroffen sind, ist Art. 6 Abs. 1 lit. f DSGVO die vorgesehene Rechtsgrundlage (Interesse an einem sicheren Informationsangebot).</p>
+<h3>3. Browsersprache und lokale Sprachwahl</h3><p>Die Erkennung der bevorzugten Browsersprache erfolgt lokal über navigator.languages/language. Deutsch führt zur deutschen, andere Sprachen zur englischen Fassung. Eine manuell gewählte Sprache wird unter solarscope.website.language.v1 im localStorage dieses Browsers gespeichert, bis Sie sie ändern oder die Websitedaten löschen. Sie wird nicht als Analytics-Ereignis gesendet. Die Speicherung dient ausschließlich der ausdrücklich gewählten Darstellung; hierfür kommt § 25 Abs. 2 Nr. 2 TDDDG in Betracht.</p>
+<h3>4. Tracking und externe Ressourcen</h3><p>Diese HTML-Datei enthält keine PostHog-Integration, Werbe- oder Tracking-Skripte, externen Fonts, Kontaktformulare oder Newsletter-Anmeldung und setzt selbst keine Cookies. Das Logo wird von der bestehenden GitHub-Pages-Adresse geladen; dabei gelten die genannten Hostingzugriffe. PostHog in der Android-App ist davon getrennt und einwilligungsabhängig. Externe Links werden erst nach Öffnung zum jeweiligen Anbieter aufgerufen; dort gelten dessen eigene Datenschutzhinweise.</p>
+<h3>5. E-Mail-Kontakt</h3><p>Bei bewusstem E-Mail-Versand werden Adresse, gegebenenfalls Name, Nachricht, Anhänge und technische Versanddaten zur Beantwortung über die beteiligten Mailanbieter verarbeitet; die Kontaktadresse liegt bei Gmail/Google. Je nach Inhalt gilt Art. 6 Abs. 1 lit. b oder lit. f DSGVO (Interesse an Beantwortung/Support). Nachrichten bleiben für die Bearbeitung und erforderliche Nachweise gespeichert; verbindliche Fristen und etwaige gesetzliche Aufbewahrungspflichten muss der Betreiber vor Veröffentlichung bestätigen.</p>
+<h3>6. Empfänger, Fristen und Drittlandverarbeitung</h3><p>GitHub und gegebenenfalls E-Mail-Anbieter erhalten die genannten Daten. Die konkreten Hosting-/Log- und Backupfristen, Vertragsrollen, wirksame Verträge und möglichen Übermittlungen außerhalb der EU/des EWR, einschließlich USA, sind vor rechtlicher Veröffentlichung anhand der tatsächlichen Betreiberverträge zu bestätigen. Diese Datei behauptet weder eine bestimmte Löschfrist noch einen unterzeichneten AV-Vertrag oder eine bereits belegte Transfergarantie. Die Datenschutzinformationen von GitHub und Google erläutern deren Verarbeitung; sie ersetzen diese Betreiberprüfung nicht.</p>
+<h3>7. Rechte und Kontakt</h3><p>Soweit die gesetzlichen Voraussetzungen erfüllt sind, bestehen Rechte auf Auskunft, Berichtigung, Löschung, Einschränkung, Datenübertragbarkeit und Widerspruch. Bei Art. 6 Abs. 1 lit. f DSGVO ist ein Widerspruch aus Gründen Ihrer besonderen Situation möglich. Einwilligungen können für die Zukunft widerrufen werden. Anfragen: peraza.pedr@gmail.com. Ein Beschwerderecht besteht bei einer Datenschutzaufsichtsbehörde, insbesondere am Wohn-/Arbeitsort oder Ort des vermuteten Verstoßes; für den Betreiber kommt die LDI Nordrhein-Westfalen in Betracht. Es gibt auf dieser Website keine automatisierten Entscheidungen mit rechtlicher oder ähnlich erheblicher Wirkung.</p><ul><li><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages">GitHub Pages</a></li><li><a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy</a></li><li><a href="https://policies.google.com/privacy">Google Privacy</a></li><li><a href="https://www.ldi.nrw.de/">LDI Nordrhein-Westfalen</a></li><li><a href="mailto:peraza.pedr@gmail.com">Datenschutzkontakt</a></li></ul></article>
 
-        <article class="legal-panel" aria-labelledby="website-privacy-title-en" data-lang-block="en" lang="en">
-          <p class="kicker">Website Privacy</p>
-          <h2 id="website-privacy-title-en">Privacy notes for this website</h2>
-          <h3>1. Scope</h3>
-          <p>These notes apply to visits to this SolarScope website. The app privacy policy above applies to the use of the SolarScope app itself.</p>
-          <h3>2. Hosting and technical access data</h3>
-          <p>This page is built as a static website. If it is provided via GitHub Pages or a comparable static hosting provider, technically required access data may be processed when the website is opened, for example IP address, access time, requested file, browser and device information and technical log data.</p>
-          <p>The purpose is delivery of the website, technical stability, security and error analysis. Where personal data are involved, the legal basis is Art. 6(1)(f) GDPR.</p>
-          <h3>3. Language setting</h3>
-          <p>On the first visit, the website detects the preferred browser language. If it is German, the page is shown in German. In all other cases English is used. If you manually change the language above, this choice may be stored locally in your browser so the selected language can be restored on your next visit.</p>
-          <h3>4. No cookies, no tracking and no analytics in this file</h3>
-          <p>The source code of this website does not include tracking scripts, analytics services, advertising networks or external fonts. In its current state, this website itself does not set cookies.</p>
-          <p>If external services, analytics tools, maps, videos, contact forms, newsletter features or cookies are added later, these privacy notes must be updated accordingly.</p>
-          <h3>5. Email contact</h3>
-          <p>If you contact us by email, the information you provide will be processed in order to answer your request. This may include your email address, your name, the message content and technical sending data.</p>
-          <h3>6. No contact forms and no newsletter</h3>
-          <p>This website currently does not contain a contact form or newsletter subscription. Contact is possible only via the email address provided.</p>
-        </article>
+        <article class="legal-panel" aria-labelledby="website-privacy-title-en" data-lang-block="en" lang="en"><h2 id="website-privacy-title-en">Privacy notes for this website</h2><p><time datetime="2026-10-22">22 October 2026</time></p><h3>1. Controller and scope</h3><p>Pedro Lazaro Peraza Gonzalez, Eichendorffstraße 23, 57482 Wenden, Germany; email: peraza.pedr@gmail.com. These notices cover the GitHub Pages website. The app privacy policy above separately explains the Android app, including optional PostHog analytics.</p>
+<h3>2. GitHub Pages and access data</h3><p>GitHub provides this website through GitHub Pages. Technically necessary access data are processed to deliver and secure it, such as IP address, time, requested file and browser/client information. GitHub explicitly states that visitors’ IP addresses are logged and stored for security purposes, even without signing in to GitHub. The page therefore does not process “no data whatsoever”. The purposes are delivery, stability and security; where personal data are involved, the intended legal basis is Art. 6(1)(f) GDPR (interest in a secure information service).</p>
+<h3>3. Browser language and local language choice</h3><p>Preferred browser language is detected locally through navigator.languages/language. German selects the German version; other languages select English. A manually selected language is stored under solarscope.website.language.v1 in this browser’s localStorage until changed or until website data are cleared. It is not sent as an analytics event. Storage serves only the explicitly selected presentation; Section 25(2) no. 2 TDDDG may apply.</p>
+<h3>4. Tracking and external resources</h3><p>This HTML file contains no PostHog integration, advertising or tracking scripts, external fonts, contact forms or newsletter registration and does not itself set cookies. The logo loads from the existing GitHub Pages address and involves the hosting access described above. PostHog in the Android app is separate and consent-dependent. External links contact their respective providers only when opened; those providers’ own privacy notices apply.</p>
+<h3>5. Email contact</h3><p>When you deliberately send email, address, any name, message, attachments and technical sending data are processed to answer it through the email providers involved; the contact address uses Gmail/Google. Depending on the content, Art. 6(1)(b) or (f) GDPR applies (interest in responding/support). Messages remain for handling and necessary evidence; the operator must confirm binding periods and any statutory retention duties before publication.</p>
+<h3>6. Recipients, periods and international processing</h3><p>GitHub and, where relevant, email providers receive the data described above. Actual hosting/log and backup periods, contractual roles, effective agreements and possible transfers outside the EU/EEA, including the USA, must be confirmed against actual operator agreements before legal publication. This file asserts neither a particular deletion period nor a signed processor agreement or a proven transfer safeguard. GitHub and Google privacy notices explain their processing; they do not replace this operator review.</p>
+<h3>7. Rights and contact</h3><p>Where statutory conditions are met, rights include access, rectification, erasure, restriction, portability and objection. For Art. 6(1)(f) GDPR, you may object for reasons relating to your particular situation. Consent can be withdrawn prospectively. Requests: peraza.pedr@gmail.com. You may complain to a supervisory authority, particularly where you live/work or where an alleged infringement occurred; for the operator, LDI North Rhine-Westphalia is a possible contact. This website makes no automated decisions with legal or similarly significant effects.</p><ul><li><a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages">GitHub Pages</a></li><li><a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy</a></li><li><a href="https://policies.google.com/privacy">Google Privacy</a></li><li><a href="https://www.ldi.nrw.de/">LDI Nordrhein-Westfalen</a></li><li><a href="mailto:peraza.pedr@gmail.com">Privacy contact</a></li></ul></article>
       </div>
     </section>
 
@@ -1820,13 +1594,14 @@
             <li><strong>NOAA SWPC</strong><span>Space-Weather-Daten, aktuelle Werte und historische Solar-/Geomagnetik-Verläufe.</span></li>
             <li><strong>Juliusruh / IAP</strong><span>Fachliche Quelle im Zusammenhang mit Juliusruh-Ionosondenwerten.</span></li>
             <li><strong>GIRO DIDBase</strong><span>Externe Fachquelle für Ionosonde-Daten.</span></li>
-            <li><strong>Open-Meteo</strong><span>Kann für standortbezogene Werte, insbesondere Höhen- und Höhenprofilinformationen, genutzt werden.</span></li>
-            <li><strong>Nominatim / OpenStreetMap</strong><span>Kann für Ortssuche, Reverse-Geocoding, Kartenauswahl und OpenStreetMap-Attributionen genutzt werden.</span></li>
+            <li><strong>Open-Meteo</strong><span>Erhält Koordinaten für Geländehöhen als Vergleich oder Fallback.</span></li>
+            <li><strong>OpenTopoData</strong><span>Höhenprofile mit Start-/Zielkoordinaten: EU-DEM (Copernicus/EEA), ASTER, SRTM. <a href="https://www.opentopodata.org/#public-api">Attribution und Datensätze</a>.</span></li>
+<li><strong>Nominatim / OpenStreetMap</strong><span>Kann für Ortssuche, Reverse-Geocoding, Kartenauswahl und OpenStreetMap-Attributionen genutzt werden.</span></li>
             <li><strong>DXMAPS / KC2G</strong><span>Externe Kartenlinks für zusätzliche Funk- und VHF/Es-Beobachtung; Inhalte werden nicht eingebettet oder kopiert.</span></li>
             <li><strong>Lokaler Gerätespeicher</strong><span>Speichert Einstellungen, Caches, Verlauf, Callsign, Locator und Alarmdaten lokal auf dem Gerät.</span></li>
           </ul>
           <h3>Hinweis zur Verfügbarkeit und Richtigkeit</h3>
-          <p>SolarScope übernimmt keine Gewähr für die Vollständigkeit, Richtigkeit, Aktualität oder ständige Verfügbarkeit externer Daten. Externe Anbieter haben eigene Datenschutz- und Nutzungsbedingungen. Der Betreiber verkauft keine personenbezogenen Daten.</p>
+          <p>Messwerte und Vorhersagen können unvollständig, verzögert oder nicht verfügbar sein. Sie dienen der Orientierung; gesetzliche Ansprüche bleiben unberührt. Externe Anbieter haben eigene Datenschutz- und Nutzungsbedingungen. Der Betreiber verkauft keine personenbezogenen Daten.</p>
         </article>
 
         <article class="legal-panel" aria-labelledby="data-sources-title-en" data-lang-block="en" lang="en">
@@ -1838,13 +1613,13 @@
             <li><strong>NOAA SWPC</strong><span>Space-weather data, current values and historical solar/geomagnetic trends.</span></li>
             <li><strong>Juliusruh / IAP</strong><span>Specialist source related to Juliusruh ionosonde values.</span></li>
             <li><strong>GIRO DIDBase</strong><span>External specialist source for ionosonde data.</span></li>
-            <li><strong>Open-Meteo</strong><span>May be used for location-based values, especially elevation and elevation profile information.</span></li>
+            <li><strong>Open-Meteo</strong><span>Receives coordinates for terrain-elevation cross-checks or fallback.</span></li>
             <li><strong>Nominatim / OpenStreetMap</strong><span>May be used for place search, reverse geocoding, map selection and OpenStreetMap attributions.</span></li>
             <li><strong>DXMAPS / KC2G</strong><span>External map links for additional radio and VHF/Es observation; content is not embedded or copied.</span></li>
             <li><strong>Local device storage</strong><span>Stores settings, caches, history, callsign, locator and alarm data locally on the device.</span></li>
           </ul>
           <h3>Availability and accuracy note</h3>
-          <p>SolarScope does not guarantee completeness, accuracy, timeliness or permanent availability of external data. External providers have their own privacy and usage terms. The operator does not sell personal data.</p>
+          <p>Measurements and forecasts may be incomplete, delayed or unavailable. They provide orientation; statutory rights remain unaffected. External providers have their own privacy and usage terms. The operator does not sell personal data.</p>
         </article>
       </div>
     </section>
@@ -1914,15 +1689,15 @@
     <section id="disclaimer" class="section compact">
       <div class="container legal-container">
         <article class="legal-panel" aria-labelledby="disclaimer-title" data-lang-block="de">
-          <p class="kicker">Disclaimer</p>
+          <p class="kicker">Rechtlicher Hinweis</p>
           <h2 id="disclaimer-title">Rechtlicher Hinweis</h2>
-          <p>SolarScope dient der Information und Visualisierung von Solar-, geomagnetischen, ionosphärischen und funkbezogenen Daten. Die Inhalte werden ohne Gewähr bereitgestellt. Es besteht keine Garantie für Aktualität, Vollständigkeit, Richtigkeit oder ständige Verfügbarkeit.</p>
+          <p>SolarScope dient der Information und Visualisierung von Solar-, geomagnetischen, ionosphärischen und funkbezogenen Daten. Messwerte und Vorhersagen können verzögert, unvollständig oder nicht verfügbar sein. Gesetzliche Ansprüche bleiben unberührt.</p>
           <p>Die App und diese Webseite sind nicht für sicherheitskritische Entscheidungen bestimmt. Externe Datenquellen können ausfallen, verzögert reagieren oder abweichende Werte liefern.</p>
         </article>
         <article class="legal-panel" aria-labelledby="disclaimer-title-en" data-lang-block="en" lang="en">
           <p class="kicker">Disclaimer</p>
           <h2 id="disclaimer-title-en">Legal disclaimer</h2>
-          <p>SolarScope is intended for information and visualization of solar, geomagnetic, ionospheric and radio-related data. The content is provided without warranty. No guarantee is given for timeliness, completeness, accuracy or permanent availability.</p>
+          <p>SolarScope is intended for information and visualization of solar, geomagnetic, ionospheric and radio-related data. Measurements and forecasts may be delayed, incomplete or unavailable. Statutory rights remain unaffected.</p>
           <p>The app and this website are not intended for safety-critical decisions. External data sources may fail, respond with delay or provide differing values.</p>
         </article>
       </div>
@@ -1931,14 +1706,14 @@
     <section id="impressum" class="section compact">
       <div class="container legal-container">
         <article class="legal-panel" aria-labelledby="impressum-title" data-lang-block="de">
-          <p class="kicker">Legal Notice</p>
+          <p class="kicker">Rechtliches</p>
           <h2 id="impressum-title">Impressum</h2>
           <h3>Angaben gemäß § 5 DDG</h3>
-          <p>Pedro Peraza Gonzalez<br>Eichendorffstraße 23<br>57482 Wenden<br>Deutschland</p>
+          <p>Pedro Lazaro Peraza Gonzalez<br>Eichendorffstraße 23<br>57482 Wenden<br>Deutschland</p>
           <h3>Kontakt</h3>
           <p>E-Mail: <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a></p>
           <h3>Verantwortlich für den Inhalt</h3>
-          <p>Pedro Peraza Gonzalez, Anschrift wie oben.</p>
+          <p>Pedro Lazaro Peraza Gonzalez, Anschrift wie oben.</p>
           <h3>Haftung für Inhalte</h3>
           <p>Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Eine Verpflichtung zur Überwachung übermittelter oder gespeicherter fremder Informationen besteht jedoch nur nach Maßgabe der gesetzlichen Vorschriften.</p>
           <h3>Haftung für Links</h3>
@@ -1950,11 +1725,11 @@
           <p class="kicker">Legal Notice</p>
           <h2 id="impressum-title-en">Legal notice</h2>
           <h3>Information according to § 5 DDG</h3>
-          <p>Pedro Peraza Gonzalez<br>Eichendorffstraße 23<br>57482 Wenden<br>Germany</p>
+          <p>Pedro Lazaro Peraza Gonzalez<br>Eichendorffstraße 23<br>57482 Wenden<br>Germany</p>
           <h3>Contact</h3>
           <p>Email: <a href="mailto:peraza.pedr@gmail.com">peraza.pedr@gmail.com</a></p>
           <h3>Responsible for content</h3>
-          <p>Pedro Peraza Gonzalez, address as above.</p>
+          <p>Pedro Lazaro Peraza Gonzalez, address as above.</p>
           <h3>Liability for content</h3>
           <p>As a service provider, we are responsible for our own content on these pages in accordance with general laws. An obligation to monitor transmitted or stored third-party information exists only as required by statutory provisions.</p>
           <h3>Liability for links</h3>
@@ -1970,19 +1745,19 @@
     <div class="container footer-grid">
       <div>
         <a class="brand" href="#home" aria-label="Back to home" data-i18n-aria-label="footerHome">
-          <span class="brand-mark" aria-hidden="true"><img src="icon.png" alt=""></span>
+          <span class="brand-mark" aria-hidden="true"><img src="https://perazapedr.github.io/solarscope-privacy/icon.png" alt=""></span>
           <span>SolarScope</span>
         </a>
         <p class="small" data-lang-block="de">Offizielle Informationsseite zur SolarScope-App. Keine Cookies, keine Tracking-Skripte und keine externen Fonts in dieser statischen Datei.</p>
         <p class="small" data-lang-block="en" lang="en">Official information page for the SolarScope app. No cookies, no tracking scripts and no external fonts in this static file.</p>
       </div>
-      <div class="footer-links" aria-label="Footer links">
+      <div class="footer-links" aria-label="Footer links" data-i18n-aria-label="footerLinks">
         <a href="#privacy" data-i18n="navPrivacy">Privacy</a>
         <a href="#website-privacy" data-i18n="navWebsitePrivacy">Website privacy</a>
         <a href="#impressum" data-i18n="navLegal">Legal notice</a>
         <a href="#support" data-i18n="navSupport">Support</a>
         <a href="#data-sources" data-i18n="navSources">Data sources</a>
-        <a href="#disclaimer">Disclaimer</a>
+        <a href="#disclaimer" data-i18n="footerDisclaimer">Disclaimer</a>
       </div>
     </div>
   </footer>
@@ -2022,9 +1797,11 @@
           phoneLocal: 'Lokal',
           phoneLocation: 'Standort',
           phoneOptional: 'Optional',
-          phoneTracking: 'Tracking',
-          phoneNone: 'Keins',
+          phoneTracking: 'Analytics',
+          phoneNone: 'Mit Einwilligung',
           footerHome: 'Zurück zur Startseite',
+          footerLinks: 'Links im Fußbereich',
+          footerDisclaimer: 'Rechtlicher Hinweis',
           backToTop: 'Nach oben'
         },
         en: {
@@ -2057,11 +1834,18 @@
           phoneLocation: 'Location',
           phoneOptional: 'Optional',
           phoneTracking: 'Tracking',
-          phoneNone: 'None',
+          phoneNone: 'With consent',
           footerHome: 'Back to home',
+          footerLinks: 'Footer links',
+          footerDisclaimer: 'Disclaimer',
           backToTop: 'Back to top'
         }
       };
+
+      function languageFromHash() {
+        var match = /^(?:#privacy-|#short-summary-|#web-privacy-)(de|en)(?:-|$)/.exec(location.hash);
+        return match ? match[1] : null;
+      }
 
       function normalizeLanguage(lang) {
         return lang === 'de' ? 'de' : 'en';
@@ -2104,12 +1888,30 @@
         }
       }
 
+      function focusLanguageTarget() {
+        var target;
+        try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch (error) { return; }
+        if (!target || !languageFromHash()) return;
+        if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+        target.scrollIntoView({ block: 'start', behavior: 'instant' });
+        target.focus({ preventScroll: true });
+      }
+
       document.addEventListener('DOMContentLoaded', function () {
         var initial = document.documentElement.getAttribute('data-lang') || 'en';
-        applyLanguage(initial, false);
+        applyLanguage(languageFromHash() || initial, false);
+        focusLanguageTarget();
+        window.addEventListener('hashchange', function () {
+          var anchored = languageFromHash();
+          if (anchored) { applyLanguage(anchored, false); focusLanguageTarget(); }
+        });
         document.querySelectorAll('[data-lang-switch]').forEach(function (button) {
           button.addEventListener('click', function () {
-            applyLanguage(button.getAttribute('data-lang-switch'), true);
+            var next = button.getAttribute('data-lang-switch');
+            var mapped = location.hash.replace(/^(#(?:privacy-|short-summary-|web-privacy-))(de|en)/, '$1' + next);
+            if (mapped !== location.hash) history.replaceState(null, '', mapped);
+            applyLanguage(next, true);
+            if (languageFromHash()) focusLanguageTarget();
           });
         });
       });
